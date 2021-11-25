@@ -6,7 +6,9 @@
             @reduxjs/toolkit react-redux
 2. npm start: khởi động project
 
-structure
+
+
+
 src
 |-- api				### chứa các file api
 |-- app 			### chứa các file cho redux
