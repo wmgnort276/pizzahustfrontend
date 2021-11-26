@@ -14,10 +14,23 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     boxSizing: 'border-box',
     marginBottom: '70px',
+    boxShadow: '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+    transition: 'all 0.2s ease-in-out',
 
     '& img': {
       alignSelf: 'center',
       marginTop: '-70px',
+    },
+
+    '&:hover': {
+      '& img': {
+        transform: 'scale(1.2)',
+        transform: 'rotate(20deg)',
+        transition: '0.5s',
+      },
+      '& p': {
+        color: '#ff8000',
+      },
     },
 
     '& p': {
@@ -25,11 +38,17 @@ const useStyles = makeStyles({
       fontSize: '14px',
       fontWeight: 600,
     },
+    '& Fab': {
+      backgroundColor: '#ff8000',
+    },
   },
 
   body: {
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  text: {
+
   },
 });
 
@@ -54,8 +73,8 @@ export default function PizzaItem({ item }) {
           <Rating defaultValue={item.rating} size="small" />
           <p>{item.cost}đ</p>
         </div>
-        <Fab size="small" onClick={handleAddClick}>
-          <AddIcon />
+        <Fab size="small" onClick={handleAddClick} style={{backgroundColor: '#ff8000'}}>
+          <AddIcon style={{fill: '#fff'}}/>
         </Fab>
       </div>
     </div>

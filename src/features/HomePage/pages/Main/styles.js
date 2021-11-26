@@ -39,6 +39,7 @@ const useStyles = makeStyles({
     fontWeight: 700,
     color: '#000',
     textDecoration: 'none',
+    boxShadow: '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
 
     '&.active': {
       backgroundColor: '#FF8000',
@@ -56,10 +57,19 @@ const useStyles = makeStyles({
     borderRadius: '50%',
     marginTop: '12px',
     backgroundColor: '#fff',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    '& svg': {
+      width: '100%',
+      height: '100%',
+      fill: '#ff8000',
+    },
   },
 
   arrow: {
     marginTop: '12px',
+    borderRadius: '20px',
   },
 });
 
