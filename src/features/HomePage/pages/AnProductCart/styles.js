@@ -9,6 +9,11 @@ const useStyles = makeStyles({
     height: '100vh',
   },
 
+  logo: {
+    display: 'flex',
+    alignItems: 'flex-end',
+  },
+
   product: {
     display: 'flex',
     width: '100%',

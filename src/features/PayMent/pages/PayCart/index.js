@@ -100,7 +100,9 @@ export default function PayCard() {
                 <span style={{ color: '#ff8000' }}>đ</span>
               </span>
             </p>
-            <span onClick={() => navigate(-1)}>Tiếp tục mua hàng</span>
+            <span onClick={() => navigate('/', { replace: true })}>
+              Tiếp tục mua hàng
+            </span>
           </Box>
         </Box>
       </Box>

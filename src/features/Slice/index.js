@@ -14,6 +14,10 @@ const cart = createSlice({
       state.chooseProduct = action.payload;
     },
 
+    BackBtnClick: (state) => {
+      state.chooseProduct = {};
+    },
+
     SubBtnClick: (state, action) => {
       const idx = action.payload;
       if (state.listProduct[idx].quantity === 1) {
@@ -62,6 +66,7 @@ export const {
   AddBtnClick,
   SubBtnClick,
   DelBtnClick,
+  BackBtnClick,
 } = cart.actions;
 
 export default cart.reducer;

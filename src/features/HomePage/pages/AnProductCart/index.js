@@ -3,7 +3,13 @@ import Button from 'components/Button';
 import React, { useState } from 'react';
 import { useStyles } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
-import { AddBtnClick, addOldProduct, addProduct } from 'features/Slice';
+import {
+  AddBtnClick,
+  addOldProduct,
+  addProduct,
+  BackBtnClick,
+} from 'features/Slice';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export default function AnProductCart({ chooseProduct }) {
   const classes = useStyles();
@@ -21,6 +27,10 @@ export default function AnProductCart({ chooseProduct }) {
     topping,
     note,
   };
+
+  function handleBackBtn() {
+    dispatch(BackBtnClick());
+  }
 
   function handleToCartBtn() {
     const idx = cart.findIndex((item) => item.id === product.id);
@@ -43,13 +53,13 @@ export default function AnProductCart({ chooseProduct }) {
   return (
     <Box className={classes.root}>
       <Box className={classes.logo}>
+        <ArrowBackIosIcon onClick={handleBackBtn} sx={{ cursor: 'pointer' }} />
         <img
-          srcSet={process.env.PUBLIC_URL + `${chooseProduct.imgUrl}`}
+          srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
           alt=""
           style={{ marginLeft: 'auto', display: 'block' }}
         />
       </Box>
-
       <Box className={classes.product}>
         <img srcSet={process.env.PUBLIC_URL + 'pizza.png 2x'} alt="" />
         <Box>
@@ -69,15 +79,22 @@ export default function AnProductCart({ chooseProduct }) {
           <Autocomplete
             disablePortal
             id="size"
-            value={size}
-            onChange={(event, newValue) => {
+            inputValue={size}
+            autoHighlight
+            options={sizes}
+            onInputChange={(event, newValue) => {
               setSize(newValue);
             }}
             isOptionEqualToValue={(option, value) =>
               option.value === value.value
             }
-            options={['size S', 'size M', 'size L']}
+            getOptionLabel={(option) => option.size}
             sx={{ mt: 1, mb: 1, width: '100%' }}
+            renderOption={(props, option) => (
+              <Box component="li" {...props}>
+                {option.size} ({option.cost}đ)
+              </Box>
+            )}
             renderInput={(params) => (
               <TextField
                 name="size"
@@ -90,15 +107,21 @@ export default function AnProductCart({ chooseProduct }) {
           <Autocomplete
             disablePortal
             id="sole"
-            value={sole}
-            onChange={(event, newValue) => {
+            inputValue={sole}
+            options={soles}
+            onInputChange={(event, newValue) => {
               setSole(newValue);
             }}
             isOptionEqualToValue={(option, value) =>
               option.value === value.value
             }
-            options={['đế giòn', 'đế mềm xốp']}
+            getOptionLabel={(option) => option.sole}
             sx={{ mt: 1, mb: 1, width: '100%' }}
+            renderOption={(props, option) => (
+              <Box component="li" {...props}>
+                {option.sole} ({option.cost})
+              </Box>
+            )}
             renderInput={(params) => (
               <TextField
                 name="sole"
@@ -111,31 +134,25 @@ export default function AnProductCart({ chooseProduct }) {
           <Autocomplete
             disablePortal
             id="topping"
-            value={topping}
-            onChange={(event, newValue) => {
+            inputValue={topping}
+            options={toppings}
+            onInputChange={(event, newValue) => {
               setTopping(newValue);
             }}
             isOptionEqualToValue={(option, value) =>
               option.value === value.value
             }
-            options={['thêm phô mai phủ', 'thêm phô mai viền', 'double sốt']}
+            getOptionLabel={(option) => option.topping}
             sx={{ mt: 1, mb: 1, width: '100%' }}
+            renderOption={(props, option) => (
+              <Box component="li" {...props}>
+                {option.topping} ({option.cost}đ)
+              </Box>
+            )}
             renderInput={(params) => (
               <TextField name="sole" {...params} label="Chọn Topping" />
             )}
           />
-
-          <Box className={classes.note}>
-            <TextField
-              id="outlined-multiline-static"
-              label="Ghi chú"
-              multiline
-              rows={4}
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-              sx={{ width: '100%', mt: '20px' }}
-            />
-          </Box>
         </Box>
 
         <Button type="submit" name={'Thêm vào giỏ'} />
@@ -143,3 +160,44 @@ export default function AnProductCart({ chooseProduct }) {
     </Box>
   );
 }
+
+const sizes = [
+  {
+    size: 'size S',
+    cost: 40000,
+  },
+  {
+    size: 'size L',
+    cost: 690000,
+  },
+  {
+    size: 'size M',
+    cost: 99000,
+  },
+];
+
+const soles = [
+  {
+    sole: 'đế giòn',
+    cost: 'miễn phí',
+  },
+  {
+    sole: 'đế mềm xốp',
+    cost: 'miễn phí',
+  },
+];
+
+const toppings = [
+  {
+    topping: 'thêm phô mai phủ',
+    cost: 10000,
+  },
+  {
+    topping: 'thêm phô mai viền',
+    cost: 10000,
+  },
+  {
+    topping: 'double sốt',
+    cost: 10000,
+  },
+];

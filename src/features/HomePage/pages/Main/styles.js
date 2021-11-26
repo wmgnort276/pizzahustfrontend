@@ -28,18 +28,20 @@ const useStyles = makeStyles({
 
   item: {
     width: '87px',
-    height: '106px',
+    height: '115px',
     borderRadius: 10,
     backgroundColor: '#fff',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
     cursor: 'pointer',
     fontSize: '12px',
     fontWeight: 700,
     color: '#000',
     textDecoration: 'none',
-    boxShadow: '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+    boxShadow:
+      '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
 
     '&.active': {
       backgroundColor: '#FF8000',
@@ -47,19 +49,18 @@ const useStyles = makeStyles({
     },
 
     '& span': {
-      marginTop: '6px',
+      marginTop: '10px',
+      textAlign: 'center',
+      marginBottom: '6px',
+      height: '15px',
     },
   },
 
   circle: {
-    width: '33px',
     height: '33px',
     borderRadius: '50%',
-    marginTop: '12px',
+    marginTop: '8px',
     backgroundColor: '#fff',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     '& svg': {
       width: '100%',
       height: '100%',
