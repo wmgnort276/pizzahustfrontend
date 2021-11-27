@@ -168,7 +168,7 @@ const sizes = [
   },
   {
     size: 'size L',
-    cost: 690000,
+    cost: 69000,
   },
   {
     size: 'size M',
