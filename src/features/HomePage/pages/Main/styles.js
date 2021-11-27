@@ -29,7 +29,7 @@ const useStyles = makeStyles({
   item: {
     width: '87px',
     height: '115px',
-    borderRadius: 10,
+    borderRadius: 20,
     backgroundColor: '#fff',
     display: 'flex',
     flexDirection: 'column',
@@ -42,13 +42,18 @@ const useStyles = makeStyles({
     textDecoration: 'none',
     boxShadow:
       '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+    transition: 'transform 0.5s',
 
     '&.active': {
       backgroundColor: '#FF8000',
       color: '#fff',
+      transition: 'transform 0.5s',
+      '& span': {
+        transform: 'rotate(90deg)',
+      },
     },
-
-    '& span': {
+    
+    '& p': {
       marginTop: '10px',
       textAlign: 'center',
       marginBottom: '6px',
@@ -57,7 +62,7 @@ const useStyles = makeStyles({
   },
 
   circle: {
-    height: '33px',
+    height: '40px',
     borderRadius: '50%',
     marginTop: '8px',
     backgroundColor: '#fff',

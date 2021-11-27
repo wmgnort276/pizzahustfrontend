@@ -10,6 +10,10 @@ import Pizza from './pages/Pizza';
 const useStyles = makeStyles({
   root: {},
 
+  navBar:{
+    // borderRadius: '20px',
+  },
+
   navBar: {},
 
   main: {
@@ -26,7 +30,7 @@ export default function HomePage() {
   return (
     <>
       <Grid className={classes.root} container>
-        <Grid item xs={1}>
+        <Grid item xs={1} className={classes.nav}>
           <NavBar className={classes.navBar} />
         </Grid>
         <Grid className={classes.main} item xs={7}>

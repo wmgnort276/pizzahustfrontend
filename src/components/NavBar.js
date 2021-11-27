@@ -1,11 +1,10 @@
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import NavIcon from "./NavIcon";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import * as React from "react";
+import React, { useState } from 'react';
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
@@ -66,34 +65,24 @@ const useStyles = makeStyles({
 
 export default function NavBar() {
   const classes = useStyles();
-  const currentIndex=1;
+  const [isActive, setIsActive] = useState(1);
+
   return (
     <List component="nav" className={classes.navList}>
       {/* <ListItem index={1} className={`${classes.navIcon} ${Number(this.index)===currentIndex ? classes.active : ''}`}
         currentIndex={currentIndex}
       >
-
         
         <NavIcon sx={{ fontSize: 30 }} />
       </ListItem> */}
 
-      <ListItem className={classes.navIcon}>
-        <NavIcon sx={{ fontSize: 30 }} />
-      </ListItem>
+      {nav.map((item)=>(
+        <ListItem className={`${classes.navIcon}  ${isActive === item.id ? classes.active : ''} `} onClick={() => setIsActive(item.id)}>
+          <NavIcon sx={{ fontSize: 30 }} />
+        </ListItem>
+      ))}
 
-      <ListItem className={classes.navIcon}>
-        <NavIcon sx={{ fontSize: 30 }} />
-      </ListItem>
-
-      <ListItem className={classes.navIcon}>
-        <NavIcon sx={{ fontSize: 30 }} />
-      </ListItem>
-
-      <ListItem className={classes.navIcon}>
-        <NavIcon sx={{ fontSize: 30 }} />
-      </ListItem>
-
-      <Divider variant="middle" flexItem />
+      <Divider variant="middle" flexItem style={{marginTop: '10px', marginBottom: '10px'}}/>
 
       <ListItem className={classes.navIcon}>
         <PersonOutlinedIcon sx={{ fontSize: 30 }} />
@@ -105,3 +94,26 @@ export default function NavBar() {
     </List>
   );
 }
+
+const nav = [
+  {
+    id: 1,
+    name: 'HomePage',
+    link: 'pizza3',
+  },
+  {
+    id: 2,
+    name: 'Category',
+    link: 'pizza',
+  },
+  {
+    id: 3,
+    name: 'Menu',
+    link: 'pizza1',
+  },
+  {
+    id: 4,
+    name: 'Sale',
+    link: 'pizza2',
+  }, 
+];

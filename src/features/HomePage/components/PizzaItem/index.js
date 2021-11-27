@@ -34,9 +34,17 @@ const useStyles = makeStyles({
     },
 
     '& p': {
-      margin: '10px 0',
-      fontSize: '14px',
+      margin: 0,
+      fontSize: '16px',
+      display: 'WebkitBox',
+      WebkitBoxOrient: 'vertical',
+      WebkitLineClamp: '2',
+      maxHeight: '4rem',
+      minHeight: '2.4rem',
       fontWeight: 600,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      textAlign: 'left',
     },
     '& Fab': {
       backgroundColor: '#ff8000',
