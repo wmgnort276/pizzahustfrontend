@@ -1,6 +1,6 @@
 import { Autocomplete, Box, TextField } from '@mui/material';
 import Button from 'components/Button';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStyles } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -14,20 +14,37 @@ import './styles.css';
 
 export default function AnProductCart({ chooseProduct }) {
   const classes = useStyles();
+  const [cost, setCost] = useState(chooseProduct.cost);
+  const [unitCost, setUnitCost] = useState(chooseProduct.unitCost);
   const [size, setSize] = useState('');
   const [sole, setSole] = useState('');
   const [topping, setTopping] = useState('');
-  const [note, setNote] = useState('Không hành');
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
 
   const product = {
     ...chooseProduct,
+    cost,
+    unitCost,
     size,
     sole,
     topping,
-    note,
   };
+
+  useEffect(() => {
+    if (size !== '') {
+      const newCost = sizes.find((x) => x.size === size).cost;
+      setCost(newCost);
+      setUnitCost(newCost);
+    }
+  }, [size]);
+
+  useEffect(() => {
+    if (topping !== '') {
+      const newCost = toppings.find((x) => x.topping === topping).cost + cost;
+      setCost(newCost);
+    }
+  }, [topping]);
 
   function handleBackBtn() {
     dispatch(BackBtnClick());
@@ -77,7 +94,9 @@ export default function AnProductCart({ chooseProduct }) {
         onSubmit={handleToCartBtn}
       >
         <Box sx={{ flex: 1 }}>
+          {/* <span>Chọn size</span> */}
           <Autocomplete
+            className={classes.select}
             disablePortal
             id="size"
             inputValue={size}
@@ -101,11 +120,14 @@ export default function AnProductCart({ chooseProduct }) {
                 name="size"
                 required
                 {...params}
-                label="Chọn kích thước"
+                placeholder="Chọn size"
               />
             )}
           />
+
+          {/* <span>Chọn đế</span> */}
           <Autocomplete
+            className={classes.select}
             disablePortal
             id="sole"
             inputValue={sole}
@@ -128,11 +150,14 @@ export default function AnProductCart({ chooseProduct }) {
                 name="sole"
                 required
                 {...params}
-                label="Chọn loại đế"
+                placeholder="Chọn đế"
               />
             )}
           />
+
+          {/* <span>Chọn topping</span> */}
           <Autocomplete
+            className={classes.select}
             disablePortal
             id="topping"
             inputValue={topping}
@@ -151,7 +176,11 @@ export default function AnProductCart({ chooseProduct }) {
               </Box>
             )}
             renderInput={(params) => (
-              <TextField name="sole" {...params} label="Chọn Topping" />
+              <TextField
+                name="topping"
+                {...params}
+                placeholder="Chọn topping"
+              />
             )}
           />
         </Box>

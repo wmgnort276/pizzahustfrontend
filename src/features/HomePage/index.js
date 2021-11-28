@@ -8,16 +8,17 @@ import MainPage from './pages/Main';
 import Pizza from './pages/Pizza';
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    backgroundColor: '#FFF2F2',
+  },
 
-  navBar:{
+  navBar: {
     // borderRadius: '20px',
   },
 
   navBar: {},
 
   main: {
-    backgroundColor: '#FFF2F2',
     padding: '0 40px 40px',
   },
 

@@ -93,13 +93,28 @@ export default function PayCard() {
 
           {/* Tổng tiền */}
           <Box className={classes.total}>
-            <p style={{ float: 'right' }}>
-              Tổng{' '}
-              <span style={{ marginLeft: '52px' }}>
-                {total}
-                <span style={{ color: '#ff8000' }}>đ</span>
-              </span>
-            </p>
+            <Box className={classes.fee}>
+              <p>
+                Tổng tiền hàng
+                <span>
+                  {total}
+                  <span>đ</span>
+                </span>
+              </p>
+              <p>
+                Phí vẫn chuyển
+                <span>
+                  22000<span>đ</span>
+                </span>
+              </p>
+              <p>
+                Tổng thanh toán
+                <span>
+                  {total}
+                  <span>đ</span>
+                </span>
+              </p>
+            </Box>
             <span onClick={() => navigate('/', { replace: true })}>
               Tiếp tục mua hàng
             </span>

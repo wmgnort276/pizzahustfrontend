@@ -69,9 +69,12 @@ const useStyles = makeStyles({
 
   cost: {
     marginRight: '20px',
-    alignSelf: 'flex-end',
-    marginBottom: '20px',
     fontWeight: 700,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'end',
+    height: '55px',
+    justifyContent: 'space-around',
   },
 });
 

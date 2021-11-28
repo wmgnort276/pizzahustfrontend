@@ -1,45 +1,47 @@
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import NavIcon from "./NavIcon";
-import Divider from "@mui/material/Divider";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import NavIcon from './NavIcon';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 import React, { useState } from 'react';
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   navList: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    borderRadius: "0 30px 0 0",
-    backgroundColor: "#fff",
-    position: "fixed !important",
-    width: "8.3333%",
-    "& li": {
-      justifyContent: "center",
-      margin: "12px 0",
-      height: "46px",
-      width: "46px",
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    borderRadius: '0 30px 0 0',
+    backgroundColor: '#fff',
+    position: 'fixed !important',
+    width: '8.3333%',
+    height: '100vh',
+    '& li': {
+      justifyContent: 'center',
+      margin: '12px 0',
+      height: '46px',
+      width: '46px',
     },
   },
   navIcon: {
-    cursor: "pointer",
-    borderRadius: "12px",
-    background: "rgba(255, 255, 255, 0.5)",
+    cursor: 'pointer',
+    borderRadius: '12px',
+    background: 'rgba(255, 255, 255, 0.5)',
     boxShadow:
-      "4px 4px 4px rgba(156, 156, 156, 0.1), -2px -2px 4px rgba(208, 208, 208, 0.15)",
+      '4px 4px 4px rgba(156, 156, 156, 0.1), -2px -2px 4px rgba(208, 208, 208, 0.15)',
     transition: 'transform 0.5s',
-    
-    "& svg": {
+
+    '& svg': {
       fill: '#D2D2D2',
     },
-    "&:hover": {
+    '&:hover': {
       backgroundColor: '#fff',
       cursor: 'pointer',
       transform: 'scale(1.2)',
-      boxShadow: '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
-      "& svg": {
+      boxShadow:
+        '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+      '& svg': {
         fill: '#ff8001',
       },
     },
@@ -48,15 +50,16 @@ const useStyles = makeStyles({
     borderRadius: '45px',
     backgroundColor: '#ff8001 !important',
     transform: 'scale(1.2)',
-    "& svg": {
+    '& svg': {
       fill: '#fff',
     },
-    "&:hover": {
+    '&:hover': {
       backgroundColor: '#fff',
       cursor: 'pointer',
       transform: 'scale(1.2)',
-      boxShadow: '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
-      "& svg": {
+      boxShadow:
+        '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+      '& svg': {
         fill: '#fff',
       },
     },
@@ -76,13 +79,22 @@ export default function NavBar() {
         <NavIcon sx={{ fontSize: 30 }} />
       </ListItem> */}
 
-      {nav.map((item)=>(
-        <ListItem className={`${classes.navIcon}  ${isActive === item.id ? classes.active : ''} `} onClick={() => setIsActive(item.id)}>
+      {nav.map((item) => (
+        <ListItem
+          className={`${classes.navIcon}  ${
+            isActive === item.id ? classes.active : ''
+          } `}
+          onClick={() => setIsActive(item.id)}
+        >
           <NavIcon sx={{ fontSize: 30 }} />
         </ListItem>
       ))}
 
-      <Divider variant="middle" flexItem style={{marginTop: '10px', marginBottom: '10px'}}/>
+      <Divider
+        variant="middle"
+        flexItem
+        style={{ marginTop: '10px', marginBottom: '10px' }}
+      />
 
       <ListItem className={classes.navIcon}>
         <PersonOutlinedIcon sx={{ fontSize: 30 }} />
@@ -115,5 +127,5 @@ const nav = [
     id: 4,
     name: 'Sale',
     link: 'pizza2',
-  }, 
+  },
 ];

@@ -8,10 +8,12 @@ import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
-    // position: 'fixed',
-    // width: '33.3333%',
+    position: 'fixed',
+    width: '33.3333%',
     // boxSizing: 'border-box',
     // padding: '21px 28px 34px 32px',
+    backgroundColor: '#fff',
+    borderRadius: '20px 0 0 0',
   },
 });
 

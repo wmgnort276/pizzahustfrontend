@@ -12,6 +12,6 @@
   border: none;
 }
 
-.css-wb57ya-MuiFormControl-root-MuiTextField-root label {
-  display: none;
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  border: none !important;
 }

@@ -31,20 +31,22 @@ const useStyles = makeStyles({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-  },
-
-  toppingItem: {
-    width: '65px',
-    height: '66px',
-    textAlign: 'center',
-    display: 'inline-block',
-    cursor: 'pointer',
 
     '& span': {
-      display: 'block',
-      fontSize: '12px',
-      lineHeight: 14 / 12,
+      fontWeight: 500,
+      marginTop: '10px',
     },
+
+    '& input::placeholder': {
+      color: '#000',
+      fontSize: '16px',
+    },
+  },
+
+  select: {
+    boxShadow: '0px 4px 14px rgba(0, 0, 0, 0.1)',
+    borderRadius: '8px',
+    marginBottom: '20px !important',
   },
 });
 
