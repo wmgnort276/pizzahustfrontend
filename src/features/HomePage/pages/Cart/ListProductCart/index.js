@@ -47,10 +47,10 @@ export default function ListProductCart({ cart }) {
               />
               <Box className={classes.itemInfo}>
                 <p>{item.name}</p>
-                <p>
+                {/* <p>
                   {item.size}, {item.sole}
                   {!!item.topping ? ', Topping' : ''}
-                </p>
+                </p> */}
                 <Box className={classes.quantity}>
                   <Box onClick={() => onSubBtnClick(item.id)}>
                     <RemoveIcon sx={{ cursor: 'pointer' }} />

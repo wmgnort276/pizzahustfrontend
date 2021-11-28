@@ -50,9 +50,16 @@ const useStyles = makeStyles({
       transition: 'transform 0.5s',
       '& span': {
         transform: 'rotate(90deg)',
+        // stroke: '#FF8000',
+        '& circle': {
+          fill: '#fff',
+        },
+        '& path': {
+          stroke: '#FF8000',
+        },
       },
     },
-    
+
     '& p': {
       marginTop: '10px',
       textAlign: 'center',

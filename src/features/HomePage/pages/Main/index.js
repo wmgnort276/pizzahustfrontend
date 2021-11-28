@@ -17,7 +17,7 @@ export default function MainPage() {
           style={{ margin: 'auto 0' }}
         />
 
-        <img 
+        <img
           srcSet={process.env.PUBLIC_URL + 'img/Delivery2.png'}
           alt=""
           style={{ width: '100%' }}
@@ -44,26 +44,20 @@ export default function MainPage() {
                 <span className={classes.arrow}>
                   {!isActive && (
                     <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="
-                      menu__item--footer__icon-right
-                      feather feather-chevron-right
-                    "
+                      width="17"
+                      height="17"
+                      viewBox="0 0 17 17"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <polyline
-                        points="9 18 15 12 9 6"
-                      ></polyline>
+                      <circle cx="8.5" cy="8.5" r="8.5" fill="#FF8001" />
+                      <path
+                        d="M7 5L11 8.5L7 12"
+                        stroke="white"
+                        stroke-linecap="round"
+                      />
                     </svg>
-                  )
-                }
+                  )}
                 </span>
               </NavLink>
             </div>

@@ -10,6 +10,7 @@ import {
   BackBtnClick,
 } from 'features/Slice';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import './styles.css';
 
 export default function AnProductCart({ chooseProduct }) {
   const classes = useStyles();

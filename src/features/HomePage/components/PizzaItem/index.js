@@ -14,7 +14,8 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     boxSizing: 'border-box',
     marginBottom: '70px',
-    boxShadow: '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+    boxShadow:
+      '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
     transition: 'all 0.2s ease-in-out',
 
     '& img': {
@@ -55,9 +56,7 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
-  text: {
-
-  },
+  text: {},
 });
 
 export default function PizzaItem({ item }) {
@@ -71,18 +70,22 @@ export default function PizzaItem({ item }) {
   return (
     <div className={classes.root}>
       <img
-        src={process.env.PUBLIC_URL + `${item.srcImg}`}
+        // src={process.env.PUBLIC_URL + `${item.srcImg}`}
         srcSet={process.env.PUBLIC_URL + `${item.srcImg} 2x`}
         alt=""
       />
       <p>{item.name}</p>
       <div className={classes.body}>
         <div>
-          <Rating defaultValue={item.rating} size="small" />
+          <Rating readOnly defaultValue={item.rating} size="small" />
           <p>{item.cost}đ</p>
         </div>
-        <Fab size="small" onClick={handleAddClick} style={{backgroundColor: '#ff8000'}}>
-          <AddIcon style={{fill: '#fff'}}/>
+        <Fab
+          size="small"
+          onClick={handleAddClick}
+          style={{ backgroundColor: '#ff8000' }}
+        >
+          <AddIcon style={{ fill: '#fff' }} />
         </Fab>
       </div>
     </div>
