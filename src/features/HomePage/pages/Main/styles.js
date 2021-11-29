@@ -13,11 +13,33 @@ const useStyles = makeStyles({
   },
 
   header: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '250px',
+    '& img': {
+      marginTop: '77px',
+      width: '100%',
+    },
+  },
+
+  searchBox: {
+    position: 'fixed',
+    zIndex: 1,
+    backgroundColor: '#FFF2F2',
+    height: '77px',
+    width: '100%',
+    '& svg': {
+      marginLeft: '-25px',
+      verticalAlign: 'middle',
+    },
+  },
+
+  searchBtn: {
+    margin: '25px auto auto 420px ',
+    height: '27px',
+    width: '163px',
+    border: 'none',
+    outline: 'none',
+    borderRadius: '45px',
+    padding: '0 19px',
+    boxSizing: 'border-box',
   },
 
   category: {

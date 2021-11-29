@@ -12,10 +12,6 @@ const useStyles = makeStyles({
     backgroundColor: '#FFF2F2',
   },
 
-  navBar: {
-    // borderRadius: '20px',
-  },
-
   navBar: {},
 
   main: {
