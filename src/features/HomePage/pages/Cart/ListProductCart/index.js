@@ -74,7 +74,7 @@ export default function ListProductCart({ cart }) {
                   sx={{ cursor: 'pointer' }}
                   onClick={() => onDelBtnClick(item.id)}
                 />
-                <span>{item.cost} đ</span>
+                <span>{item.cost * item.quantity} đ</span>
               </Box>
             </Box>
           ))}

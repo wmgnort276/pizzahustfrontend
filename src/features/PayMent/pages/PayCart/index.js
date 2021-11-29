@@ -20,6 +20,7 @@ export default function PayCard() {
     let newTotal = 0;
     cart.map(function calcTotal(item) {
       newTotal = newTotal + item.cost;
+      return newTotal;
     });
     setTotal(newTotal);
   }, []);
@@ -102,15 +103,16 @@ export default function PayCard() {
                 </span>
               </p>
               <p>
-                Phí vẫn chuyển
+                Phí vận chuyển
                 <span>
-                  22000<span>đ</span>
+                  {total ? 22000 : 0}
+                  <span>đ</span>
                 </span>
               </p>
               <p>
                 Tổng thanh toán
                 <span>
-                  {total}
+                  {total + total ? 22000 : 0}
                   <span>đ</span>
                 </span>
               </p>
