@@ -1,4 +1,4 @@
-import Item from 'features/HomePage/components/Item'
+import Item from 'features/HomePage/components/Item';
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { v4 } from 'uuid';
@@ -9,7 +9,6 @@ const useStyles = makeStyles({
     display: 'grid',
     gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
     gridGap: '20px',
-    
   },
 });
 // console.log(getData());
@@ -18,24 +17,22 @@ export default function Pizza() {
   const classes = useStyles();
   const [data, setData] = useState([]);
   useEffect(() => {
-    async function getData(){
-      const requestUrl = 'http://127.0.0.1:8000/piza/?size=S'
-      const response = await fetch(requestUrl)
+    async function getData() {
+      const requestUrl = 'http://127.0.0.1:8000/piza/?size=S';
+      const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       console.log(responseJSON);
       setData(responseJSON);
     }
-    
+
     getData();
-  }, [])
+  }, []);
 
   return (
     <div className={classes.root}>
-      {
-      data.map((item) => (
+      {data.map((item) => (
         <Item key={item.id} item={item} />
-      ))
-      }
+      ))}
     </div>
   );
 }

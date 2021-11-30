@@ -19,7 +19,7 @@ export default function PayCard() {
   useEffect(() => {
     let newTotal = 0;
     cart.map(function calcTotal(item) {
-      newTotal = newTotal + item.cost;
+      newTotal = newTotal + item.cost * item.quantity;
       return newTotal;
     });
     setTotal(newTotal);
@@ -28,20 +28,20 @@ export default function PayCard() {
   const onSubBtnClick = (id) => {
     const idx = cart.findIndex((item) => item.id === id);
     dispatch(SubBtnClick(idx));
-    const newTotal = total - cart[idx].unitCost;
+    const newTotal = total - cart[idx].cost;
     setTotal(newTotal);
   };
 
   const onAddBtnClick = (id) => {
     const idx = cart.findIndex((item) => item.id === id);
     dispatch(AddBtnClick(idx));
-    const newTotal = total + cart[idx].unitCost;
+    const newTotal = total + cart[idx].cost;
     setTotal(newTotal);
   };
 
   const onDelBtnClick = (id) => {
     const idx = cart.findIndex((item) => item.id === id);
-    const newTotal = total - cart[idx].cost;
+    const newTotal = total - cart[idx].cost * cart[idx].quantity;
     setTotal(newTotal);
     dispatch(DelBtnClick(idx));
   };
@@ -54,10 +54,7 @@ export default function PayCard() {
           <Box className={classes.productList}>
             {cart.map((item) => (
               <Box key={item.id} className={classes.productItem}>
-                <img
-                  src={item.image}
-                  alt=""
-                />
+                <img src={item.image} alt="" />
                 <Box className={classes.itemInfo}>
                   <p>{item.name}</p>
                   <Box className={classes.quantity}>
@@ -66,7 +63,7 @@ export default function PayCard() {
                     </Box>
                     <Divider orientation="vertical" flexItem />
                     <Box>
-                      <span style={{color: '#ff8000'}}>{item.quantity}</span>
+                      <span style={{ color: '#ff8000' }}>{item.quantity}</span>
                     </Box>
                     <Divider orientation="vertical" flexItem />
                     <Box onClick={() => onAddBtnClick(item.id)}>
@@ -74,7 +71,8 @@ export default function PayCard() {
                     </Box>
                   </Box>
                   <p style={{ fontSize: '10px', lineHeight: 6 / 5 }}>
-                    {item.size}, {item.sole}, {item.topping}
+                    {item.size}, {item.sole}
+                    {item.topping !== '' ? `, ${item.topping}` : ''}
                   </p>
                 </Box>
                 <Box className={classes.price}>
@@ -83,7 +81,7 @@ export default function PayCard() {
                     sx={{ float: 'right', mb: 2, cursor: 'pointer' }}
                   />
                   <p>
-                    {item.cost}
+                    {item.cost * item.quantity}
                     <span style={{ color: '#ff8000' }}>đ</span>
                   </p>
                 </Box>
@@ -111,7 +109,7 @@ export default function PayCard() {
               <p>
                 Tổng thanh toán
                 <span>
-                  {total + total ? 22000 : 0}
+                  {total + (total ? 22000 : 0)}
                   <span>đ</span>
                 </span>
               </p>

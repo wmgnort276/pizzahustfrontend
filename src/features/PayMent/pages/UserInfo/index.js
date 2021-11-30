@@ -3,6 +3,8 @@ import { Alert, Box, Snackbar, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Button from 'components/Button';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { buyAllRequest } from 'features/Slice';
 
 const useStyles = makeStyles({
   root: {
@@ -34,22 +36,23 @@ const useStyles = makeStyles({
       borderColor: '#ff8000',
       '&:hover': {
         borderColor: '#ff8000',
-      }
+      },
     },
-    "& .MuiFormLabel-root": {
+    '& .MuiFormLabel-root': {
       // color: "#ff8000"
     },
-    "& .MuiFormLabel-filled": {
+    '& .MuiFormLabel-filled': {
       // color: "#ff8000"
       borderColor: '#ff8000',
     },
-    "& .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {
+    '& .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
       color: '#ff8000',
     },
-    "& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: '#ff8000',
-    },
-    "& .css-1d3z3hw-MuiOutlinedInput-notchedOutline": {
+    '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused:hover .MuiOutlinedInput-notchedOutline':
+      {
+        borderColor: '#ff8000',
+      },
+    '& .css-1d3z3hw-MuiOutlinedInput-notchedOutline': {
       // borderColor: '#ff8000',
     },
   },
@@ -59,12 +62,15 @@ export default function UserInfo() {
   const classes = useStyles();
   const [buySuccess, setBuySuccess] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  function handleBuyBtn() {
+  function handleBuyBtn(event) {
+    event.preventDefault();
+    dispatch(buyAllRequest());
     setBuySuccess(true);
     setTimeout(() => {
       navigate('/', { replace: true });
-    }, 300);
+    }, 1000);
   }
 
   function handleClose() {

@@ -52,6 +52,10 @@ const cart = createSlice({
       state.chooseProduct = {};
       state.listProduct.push(newProduct);
     },
+
+    buyAllRequest: (state) => {
+      state.listProduct = [];
+    },
   },
 });
 
@@ -63,6 +67,7 @@ export const {
   SubBtnClick,
   DelBtnClick,
   BackBtnClick,
+  buyAllRequest,
 } = cart.actions;
 
 export default cart.reducer;

@@ -12,8 +12,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from './styles';
 import './styles.css';
 
-const storageKey = 'cartList';
-
 export default function AnProductCart({ chooseProduct }) {
   const classes = useStyles();
   const [size, setSize] = useState('');
@@ -36,7 +34,7 @@ export default function AnProductCart({ chooseProduct }) {
 
     const product = {
       ...chooseProduct,
-      cost: newSize.cost + toppingCost,
+      cost: newSize.cost + chooseProduct.cost + toppingCost,
       size,
       sole,
       topping,
@@ -73,7 +71,7 @@ export default function AnProductCart({ chooseProduct }) {
       <Box className={classes.product}>
         <img src={chooseProduct.image} alt="" />
         <Box>
-          <p style={{  }}>{chooseProduct.name}</p>
+          <p style={{}}>{chooseProduct.name}</p>
           <p style={{ fontWeight: 400 }}>{chooseProduct.description}</p>
           <p>
             {chooseProduct.cost}
