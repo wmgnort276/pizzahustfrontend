@@ -22,9 +22,13 @@ const useStyles = makeStyles({
   searchBox: {
     position: 'fixed',
     zIndex: 1,
-    backgroundColor: '#FFF2F2',
-    height: '77px',
-    width: '100%',
+    // backgroundColor: '#FFF2F2',
+    // height: '77px',
+    // width: '100%',
+    top: '27px',
+    left: '565px',
+    boxShadow:
+      '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
     '& svg': {
       marginLeft: '-25px',
       verticalAlign: 'middle',
@@ -32,7 +36,7 @@ const useStyles = makeStyles({
   },
 
   searchBtn: {
-    margin: '25px auto auto 420px ',
+    // margin: '25px auto auto 420px ',
     height: '27px',
     width: '163px',
     border: 'none',
