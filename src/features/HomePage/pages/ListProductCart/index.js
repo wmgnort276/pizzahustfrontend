@@ -41,15 +41,14 @@ export default function ListProductCart({ cart }) {
           {cart.map((item) => (
             <Box key={item.id} className={classes.productItem}>
               <img
-                src={process.env.PUBLIC_URL + `${item.srcImg}`}
-                srcSet={process.env.PUBLIC_URL + `${item.srcImg} 2x`}
+                src={item.image}
                 alt=""
               />
               <Box className={classes.itemInfo}>
                 <p>{item.name}</p>
                 <p>
-                  {item.size}, {item.sole}
-                  {!!item.topping ? ', Topping' : ''}
+                  {item.size}, {item.sole}, 
+                  {!!item.topping ? item.topping : ''}
                 </p>
                 <Box className={classes.quantity}>
                   <Box onClick={() => onSubBtnClick(item.id)}>

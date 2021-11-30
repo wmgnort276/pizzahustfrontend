@@ -1,4 +1,4 @@
-import Item from 'features/HomePage/components/Item'
+import Item from 'features/HomePage/components/Item';
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { v4 } from 'uuid';
@@ -12,14 +12,13 @@ const useStyles = makeStyles({
     
   },
 });
-// console.log(getData());
 
-export default function Pizza() {
+export default function Pasta() {
   const classes = useStyles();
   const [data, setData] = useState([]);
   useEffect(() => {
     async function getData(){
-      const requestUrl = 'http://127.0.0.1:8000/piza/?size=S'
+      const requestUrl = 'http://127.0.0.1:8000/side/?type=Noodle'
       const response = await fetch(requestUrl)
       const responseJSON = await response.json();
       console.log(responseJSON);

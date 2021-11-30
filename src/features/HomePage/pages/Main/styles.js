@@ -20,6 +20,31 @@ const useStyles = makeStyles({
     height: '250px',
   },
 
+  header__search: {
+    position: 'sticky',
+    top: '0px',
+    right: '0',
+    float: 'right',
+  },
+  header__input_search: {
+    width: '250px',
+    height: '40px',
+    borderRadius: '20px',
+    outline: 'none',
+    border: '1px solid #fff',
+    color: '#666',
+    padding: '0 20px',
+  },
+  header__icon__search: {
+    width: '17px',
+    height: '17px',
+    color: '#333',
+    fontWeight: 500,
+    position: 'relative',
+    top: '-2px',
+    left: '-40px',
+  },
+
   category: {
     display: 'flex',
     justifyContent: 'space-around',

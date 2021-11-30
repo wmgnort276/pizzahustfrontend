@@ -17,7 +17,6 @@ export default function Cart() {
   const classes = useStyles();
   const cart = useSelector((state) => state.cart.listProduct);
   const choose = useSelector((state) => state.cart.chooseProduct);
-  console.log(cart);
 
   return (
     <Box className={classes.root}>

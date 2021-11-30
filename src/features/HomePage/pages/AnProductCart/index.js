@@ -11,6 +11,8 @@ import {
 } from 'features/Slice';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
+const storageKey = 'cartList';
+
 export default function AnProductCart({ chooseProduct }) {
   const classes = useStyles();
   const [size, setSize] = useState('');
@@ -53,17 +55,18 @@ export default function AnProductCart({ chooseProduct }) {
   return (
     <Box className={classes.root}>
       <Box className={classes.logo}>
-        <ArrowBackIosIcon onClick={handleBackBtn} sx={{ cursor: 'pointer' }} />
         <img
           srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
           alt=""
           style={{ marginLeft: 'auto', display: 'block' }}
         />
       </Box>
+      <ArrowBackIosIcon className={classes.back} onClick={handleBackBtn} />
       <Box className={classes.product}>
-        <img srcSet={process.env.PUBLIC_URL + 'pizza.png 2x'} alt="" />
+        <img src={chooseProduct.image} alt="" />
         <Box>
-          <p style={{ marginTop: '30px' }}>{chooseProduct.name}</p>
+          <p style={{  }}>{chooseProduct.name}</p>
+          <p style={{ fontWeight: 400 }}>{chooseProduct.description}</p>
           <p>
             {chooseProduct.cost}
             <span style={{ color: '#FF8000' }}>đ</span>
@@ -163,41 +166,41 @@ export default function AnProductCart({ chooseProduct }) {
 
 const sizes = [
   {
-    size: 'size S',
-    cost: 40000,
+    size: 'Nhỏ',
+    cost: '',
   },
   {
-    size: 'size L',
-    cost: 690000,
+    size: 'Vừa',
+    cost: '+80000',
   },
   {
-    size: 'size M',
-    cost: 99000,
+    size: 'Lớn',
+    cost: '+160000',
   },
 ];
 
 const soles = [
   {
-    sole: 'đế giòn',
+    sole: 'Đế giòn',
     cost: 'miễn phí',
   },
   {
-    sole: 'đế mềm xốp',
+    sole: 'Đế mềm xốp',
     cost: 'miễn phí',
   },
 ];
 
 const toppings = [
   {
-    topping: 'thêm phô mai phủ',
+    topping: 'Thêm phô mai phủ',
     cost: 10000,
   },
   {
-    topping: 'thêm phô mai viền',
+    topping: 'Thêm phô mai viền',
     cost: 10000,
   },
   {
-    topping: 'double sốt',
+    topping: 'Double sốt',
     cost: 10000,
   },
 ];

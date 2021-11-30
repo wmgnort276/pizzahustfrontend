@@ -54,8 +54,7 @@ export default function PayCard() {
             {cart.map((item) => (
               <Box key={item.id} className={classes.productItem}>
                 <img
-                  src={process.env.PUBLIC_URL + `${item.srcImg}`}
-                  srcSet={process.env.PUBLIC_URL + `${item.srcImg} 2x`}
+                  src={item.image}
                   alt=""
                 />
                 <Box className={classes.itemInfo}>
@@ -66,7 +65,7 @@ export default function PayCard() {
                     </Box>
                     <Divider orientation="vertical" flexItem />
                     <Box>
-                      <span>{item.quantity}</span>
+                      <span style={{color: '#ff8000'}}>{item.quantity}</span>
                     </Box>
                     <Divider orientation="vertical" flexItem />
                     <Box onClick={() => onAddBtnClick(item.id)}>
@@ -93,6 +92,20 @@ export default function PayCard() {
 
           {/* Tổng tiền */}
           <Box className={classes.total}>
+            {/* <table className={classes.products_pay_price}>
+              <tr>
+                <td>Tạm Tính</td>
+                <td className={classes.products_provisional_price}>{total}</td>
+              </tr>
+              <tr>
+                <td>Phí Ship</td>
+                <td className={classes.products_shipping_price}>22.000<span className={classes.color_orange}> đ</span></td>
+              </tr>
+              <tr>
+                <td className={classes.products_total_text}>Tổng</td>
+                <td className={classes.products_total_price}>{total}</td>
+              </tr>
+            </table> */}
             <p style={{ float: 'right' }}>
               Tổng{' '}
               <span style={{ marginLeft: '52px' }}>

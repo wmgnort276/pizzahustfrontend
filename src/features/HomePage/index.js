@@ -6,6 +6,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Cart from './pages/Cart';
 import MainPage from './pages/Main';
 import Pizza from './pages/Pizza';
+import Pasta from './pages/Pasta';
 
 const useStyles = makeStyles({
   root: {},
@@ -38,6 +39,7 @@ export default function HomePage() {
           <Routes>
             <Route path="/" element={<Navigate to="/pizza" />} />
             <Route path="/pizza" element={<Pizza />} />
+            <Route path="/pasta" element={<Pasta />} />
           </Routes>
         </Grid>
         <Grid className={classes.cart} item xs={4}>

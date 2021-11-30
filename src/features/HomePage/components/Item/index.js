@@ -60,7 +60,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PizzaItem({ item }) {
+export default function Item({ item }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -71,14 +71,13 @@ export default function PizzaItem({ item }) {
   return (
     <div className={classes.root}>
       <img
-        src={process.env.PUBLIC_URL + `${item.srcImg}`}
-        srcSet={process.env.PUBLIC_URL + `${item.srcImg} 2x`}
+        src={item.image}
         alt=""
       />
       <p>{item.name}</p>
       <div className={classes.body}>
         <div>
-          <Rating defaultValue={item.rating} size="small" />
+          <Rating defaultValue='5' size="small" />
           <p>{item.cost}đ</p>
         </div>
         <Fab size="small" onClick={handleAddClick} style={{backgroundColor: '#ff8000'}}>

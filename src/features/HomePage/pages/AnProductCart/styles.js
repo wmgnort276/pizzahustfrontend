@@ -7,7 +7,17 @@ const useStyles = makeStyles({
     boxSizing: 'border-box',
     padding: '21px 28px 34px 32px',
     height: '100vh',
+
   },
+  
+  back:{
+    cursor: 'pointer' ,
+    
+    '&:hover': {
+      fill: '#ff8000',
+    },
+  },
+
 
   logo: {
     display: 'flex',
@@ -17,6 +27,11 @@ const useStyles = makeStyles({
   product: {
     display: 'flex',
     width: '100%',
+
+    '& img': {
+      width: '40%',
+      height: 'auto',
+    },
 
     '& p': {
       margin: '15px 0 0 10px',
@@ -31,6 +46,12 @@ const useStyles = makeStyles({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
+    '& .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#ff8000',
+    },
+    '& .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
+      color: '#ff8000',
+    },
   },
 
   toppingItem: {

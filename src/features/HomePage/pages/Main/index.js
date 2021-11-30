@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useStyles } from './styles';
 
+
 export default function MainPage() {
   const classes = useStyles();
 
@@ -11,11 +12,36 @@ export default function MainPage() {
   return (
     <Box className={classes.root}>
       <Box className={classes.header}>
-        <img
-          srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
-          alt=""
-          style={{ margin: 'auto 0' }}
-        />
+        <div className={classes.header__search}>
+          <input
+            className={classes.header__input_search}
+            id="input_search" 
+            placeholder="Tìm kiếm"
+            type="text"
+          />
+          <svg
+            className={classes.header__icon__search}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-search"
+            onclick="handleSearch()"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line
+              x1="21"
+              y1="21"
+              x2="16.65"
+              y2="16.65"
+            ></line>
+          </svg>
+        </div>
 
         <img 
           srcSet={process.env.PUBLIC_URL + 'img/Delivery2.png'}
@@ -83,26 +109,26 @@ const category = [
   {
     id: 2,
     name: 'Mỳ Ý',
-    link: 'pizza1',
+    link: 'pasta',
   },
   {
     id: 3,
     name: 'Gà BBQ',
-    link: 'pizza2',
+    link: 'bbq',
   },
   {
     id: 4,
     name: 'Salad',
-    link: 'pizza3',
+    link: 'salad',
   },
   {
     id: 5,
     name: 'Khoai tây chiên',
-    link: 'pizza4',
+    link: 'chips',
   },
   {
     id: 6,
     name: 'Đồ uống',
-    link: 'pizza5',
+    link: 'drink',
   },
 ];
