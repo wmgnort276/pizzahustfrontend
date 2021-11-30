@@ -1,7 +1,8 @@
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+  },
 
   body: {
     marginTop: '20px',
