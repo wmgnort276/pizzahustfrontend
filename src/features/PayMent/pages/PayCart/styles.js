@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     backgroundColor: '#fff',
     display: 'flex',
     flexDirection: 'column',
+    borderRadius: '20px 0 0 0',
 
     '& > span': {
       fontSize: '18px',
@@ -83,35 +84,33 @@ const useStyles = makeStyles({
     fontWeight: 700,
   },
 
-  // total: {
-  //   position: 'relative',
-  //   height: '58px',
-  // },
+  total: {
+    position: 'relative',
+    height: '100px',
 
-  // product_price: {
-  //   font_weight: 700,
-  //   display: 'flex',
-  // },
-  
-  // products_pay_price: {
-  //   width: '40%',
-  //   margin_left: 'auto',
-  //   margin_bottom: '30px',
-  //   margin_top: '10px',
-  //   font_size: '14px',
-  //   line_height: '20px',
-  // },
-  
-  // products_total_price:{
-  //   text_align: 'right',
-  // },
-  
-  // products_total_price:{
-  //   font_weight: 700,
-  //   line_height: '25px',
-  //   font_size: '18px',
-  // },
-
+    '& > span': {
+      position: 'absolute',
+      bottom: 0,
+      color: '#ff8000',
+      fontSize: '12px',
+      fontWeight: 700,
+      cursor: 'pointer',
+    },
+  },
+  fee: {
+    float: 'right',
+    '& > p': {
+      fontSize: '20px',
+      fontWeight: 700,
+      margin: '10px 0',
+      '& > span': {
+        marginLeft: '52px',
+        '& span': {
+          color: '#ff8000',
+        },
+      },
+    },
+  },
 });
 
 export { useStyles };

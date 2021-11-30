@@ -1,5 +1,6 @@
 import { makeStyles } from '@mui/styles';
 import HomePage from 'features/HomePage';
+import Login from 'features/Login/pages';
 import Pay from 'features/PayMent';
 import React from 'react';
 import { Route, Routes } from 'react-router';
@@ -17,6 +18,7 @@ export default function App() {
         {/* <Route path="/" element={<Navigate to="/home" />} /> */}
         <Route path="/*" element={<HomePage />} />
         <Route path="/pay" element={<Pay />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

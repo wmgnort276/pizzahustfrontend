@@ -9,16 +9,13 @@ import Pizza from './pages/Pizza';
 import Pasta from './pages/Pasta';
 
 const useStyles = makeStyles({
-  root: {},
-
-  navBar:{
-    // borderRadius: '20px',
+  root: {
+    backgroundColor: '#FFF2F2',
   },
 
   navBar: {},
 
   main: {
-    backgroundColor: '#FFF2F2',
     padding: '0 40px 40px',
   },
 

@@ -1,15 +1,16 @@
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Autocomplete, Box, TextField } from '@mui/material';
 import Button from 'components/Button';
-import React, { useState } from 'react';
-import { useStyles } from './styles';
-import { useSelector, useDispatch } from 'react-redux';
 import {
   AddBtnClick,
   addOldProduct,
   addProduct,
   BackBtnClick,
 } from 'features/Slice';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useStyles } from './styles';
+import './styles.css';
 
 const storageKey = 'cartList';
 
@@ -18,26 +19,33 @@ export default function AnProductCart({ chooseProduct }) {
   const [size, setSize] = useState('');
   const [sole, setSole] = useState('');
   const [topping, setTopping] = useState('');
-  const [note, setNote] = useState('Không hành');
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
-
-  const product = {
-    ...chooseProduct,
-    size,
-    sole,
-    topping,
-    note,
-  };
 
   function handleBackBtn() {
     dispatch(BackBtnClick());
   }
 
   function handleToCartBtn() {
+    // change cost when choose size, topping
+    const newSize = sizes.find((x) => x.size === size);
+    let toppingCost = 0;
+    if (topping !== '') {
+      toppingCost = toppings.find((x) => x.topping === topping).cost;
+    }
+
+    const product = {
+      ...chooseProduct,
+      cost: newSize.cost + toppingCost,
+      size,
+      sole,
+      topping,
+    };
+    console.log('product', product);
+
     const idx = cart.findIndex((item) => item.id === product.id);
     if (idx !== -1) {
-      console.log('can find');
+      // Nếu sản phẩm mới trùng sản phẩm đã chọn, quantity + 1
       if (
         cart[idx].size === product.size &&
         cart[idx].sole === product.sole &&
@@ -80,10 +88,10 @@ export default function AnProductCart({ chooseProduct }) {
       >
         <Box sx={{ flex: 1 }}>
           <Autocomplete
+            className={classes.select}
             disablePortal
             id="size"
             inputValue={size}
-            autoHighlight
             options={sizes}
             onInputChange={(event, newValue) => {
               setSize(newValue);
@@ -95,19 +103,22 @@ export default function AnProductCart({ chooseProduct }) {
             sx={{ mt: 1, mb: 1, width: '100%' }}
             renderOption={(props, option) => (
               <Box component="li" {...props}>
-                {option.size} ({option.cost}đ)
+                {option.size} (+{option.cost}đ)
               </Box>
             )}
             renderInput={(params) => (
               <TextField
                 name="size"
+                // autoFocus
                 required
                 {...params}
-                label="Chọn kích thước"
+                label="Chọn size"
               />
             )}
           />
+
           <Autocomplete
+            className={classes.select}
             disablePortal
             id="sole"
             inputValue={sole}
@@ -126,15 +137,13 @@ export default function AnProductCart({ chooseProduct }) {
               </Box>
             )}
             renderInput={(params) => (
-              <TextField
-                name="sole"
-                required
-                {...params}
-                label="Chọn loại đế"
-              />
+              <TextField name="sole" required {...params} label="Chọn đế" />
             )}
           />
+
+          {/* <span>Chọn topping</span> */}
           <Autocomplete
+            className={classes.select}
             disablePortal
             id="topping"
             inputValue={topping}
@@ -149,11 +158,11 @@ export default function AnProductCart({ chooseProduct }) {
             sx={{ mt: 1, mb: 1, width: '100%' }}
             renderOption={(props, option) => (
               <Box component="li" {...props}>
-                {option.topping} ({option.cost}đ)
+                {option.topping} (+{option.cost}đ)
               </Box>
             )}
             renderInput={(params) => (
-              <TextField name="sole" {...params} label="Chọn Topping" />
+              <TextField name="topping" {...params} label="Chọn topping" />
             )}
           />
         </Box>
@@ -167,26 +176,26 @@ export default function AnProductCart({ chooseProduct }) {
 const sizes = [
   {
     size: 'Nhỏ',
-    cost: '',
+    cost: 0,
   },
   {
-    size: 'Vừa',
-    cost: '+80000',
+    size: 'size M',
+    cost: 80000,
   },
   {
-    size: 'Lớn',
-    cost: '+160000',
+    size: 'size L',
+    cost: 160000,
   },
 ];
 
 const soles = [
   {
     sole: 'Đế giòn',
-    cost: 'miễn phí',
+    cost: 'Miễn phí',
   },
   {
     sole: 'Đế mềm xốp',
-    cost: 'miễn phí',
+    cost: 'Miễn phí',
   },
 ];
 

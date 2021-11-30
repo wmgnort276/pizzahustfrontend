@@ -62,10 +62,21 @@ const useStyles = makeStyles({
     cursor: 'pointer',
 
     '& span': {
-      display: 'block',
-      fontSize: '12px',
-      lineHeight: 14 / 12,
+      fontWeight: 500,
+      marginTop: '10px',
     },
+
+    '& input::placeholder': {
+      color: '#000',
+      fontSize: '16px',
+    },
+  },
+
+  select: {
+    boxShadow:
+      '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+    borderRadius: '8px',
+    marginBottom: '20px !important',
   },
 });
 

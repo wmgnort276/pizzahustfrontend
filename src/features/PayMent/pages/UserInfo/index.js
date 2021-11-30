@@ -39,11 +39,18 @@ const useStyles = makeStyles({
     "& .MuiFormLabel-root": {
       // color: "#ff8000"
     },
+    "& .MuiFormLabel-filled": {
+      // color: "#ff8000"
+      borderColor: '#ff8000',
+    },
     "& .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {
       color: '#ff8000',
     },
-    "& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    "& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused:hover .MuiOutlinedInput-notchedOutline": {
       borderColor: '#ff8000',
+    },
+    "& .css-1d3z3hw-MuiOutlinedInput-notchedOutline": {
+      // borderColor: '#ff8000',
     },
   },
 });
@@ -55,9 +62,9 @@ export default function UserInfo() {
 
   function handleBuyBtn() {
     setBuySuccess(true);
-    // setTimeout(() => {
-    // navigate('/', { replace: true });
-    // }, 3000);
+    setTimeout(() => {
+      navigate('/', { replace: true });
+    }, 300);
   }
 
   function handleClose() {
@@ -80,43 +87,45 @@ export default function UserInfo() {
       >
         <span>Thông tin thanh toán</span>
         <Box className={classes.userForm}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="name"
-              label="Họ và tên"
-              name="Name"
-              sx={{ mt: 2, mb: 2 }}
-            />
-
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="phone"
-              label="Số điện thoại"
-              name="Phone"
-              sx={{ mt: 2, mb: 2 }}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="Email"
-              sx={{ mt: 2, mb: 2 }}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="address"
-              label="Địa chỉ"
-              name="Address"
-              sx={{ mt: 2, mb: 2 }}
-            />
+          <TextField
+            margin="normal"
+            autoFocus
+            required
+            fullWidth
+            id="name"
+            label="Họ và tên"
+            name="Name"
+            sx={{ mt: 2, mb: 2 }}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="phone"
+            label="Số điện thoại"
+            name="Phone"
+            sx={{ mt: 2, mb: 2 }}
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            type="email"
+            id="email"
+            label="Email"
+            name="Email"
+            sx={{ mt: 2, mb: 2 }}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="address"
+            label="Địa chỉ"
+            name="Address"
+            sx={{ mt: 2, mb: 2 }}
+          />
         </Box>
         <Button type="submit" name={'Mua hàng'} />
       </Box>

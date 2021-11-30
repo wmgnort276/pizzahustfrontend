@@ -20,6 +20,7 @@ export default function PayCard() {
     let newTotal = 0;
     cart.map(function calcTotal(item) {
       newTotal = newTotal + item.cost;
+      return newTotal;
     });
     setTotal(newTotal);
   }, []);
@@ -92,27 +93,29 @@ export default function PayCard() {
 
           {/* Tổng tiền */}
           <Box className={classes.total}>
-            {/* <table className={classes.products_pay_price}>
-              <tr>
-                <td>Tạm Tính</td>
-                <td className={classes.products_provisional_price}>{total}</td>
-              </tr>
-              <tr>
-                <td>Phí Ship</td>
-                <td className={classes.products_shipping_price}>22.000<span className={classes.color_orange}> đ</span></td>
-              </tr>
-              <tr>
-                <td className={classes.products_total_text}>Tổng</td>
-                <td className={classes.products_total_price}>{total}</td>
-              </tr>
-            </table> */}
-            <p style={{ float: 'right' }}>
-              Tổng{' '}
-              <span style={{ marginLeft: '52px' }}>
-                {total}
-                <span style={{ color: '#ff8000' }}>đ</span>
-              </span>
-            </p>
+            <Box className={classes.fee}>
+              <p>
+                Tổng tiền hàng
+                <span>
+                  {total}
+                  <span>đ</span>
+                </span>
+              </p>
+              <p>
+                Phí vận chuyển
+                <span>
+                  {total ? 22000 : 0}
+                  <span>đ</span>
+                </span>
+              </p>
+              <p>
+                Tổng thanh toán
+                <span>
+                  {total + total ? 22000 : 0}
+                  <span>đ</span>
+                </span>
+              </p>
+            </Box>
             <span onClick={() => navigate('/', { replace: true })}>
               Tiếp tục mua hàng
             </span>

@@ -13,11 +13,37 @@ const useStyles = makeStyles({
   },
 
   header: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '250px',
+    '& img': {
+      marginTop: '77px',
+      width: '100%',
+    },
+  },
+
+  searchBox: {
+    position: 'fixed',
+    zIndex: 1,
+    // backgroundColor: '#FFF2F2',
+    // height: '77px',
+    // width: '100%',
+    top: '27px',
+    left: '565px',
+    boxShadow:
+      '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+    '& svg': {
+      marginLeft: '-25px',
+      verticalAlign: 'middle',
+    },
+  },
+
+  searchBtn: {
+    // margin: '25px auto auto 420px ',
+    height: '27px',
+    width: '163px',
+    border: 'none',
+    outline: 'none',
+    borderRadius: '45px',
+    padding: '0 19px',
+    boxSizing: 'border-box',
   },
 
   header__search: {
@@ -75,9 +101,16 @@ const useStyles = makeStyles({
       transition: 'transform 0.5s',
       '& span': {
         transform: 'rotate(90deg)',
+        // stroke: '#FF8000',
+        '& circle': {
+          fill: '#fff',
+        },
+        '& path': {
+          stroke: '#FF8000',
+        },
       },
     },
-    
+
     '& p': {
       marginTop: '10px',
       textAlign: 'center',

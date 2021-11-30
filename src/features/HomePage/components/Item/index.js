@@ -14,7 +14,8 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     boxSizing: 'border-box',
     marginBottom: '70px',
-    boxShadow: '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+    boxShadow:
+      '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
     transition: 'all 0.2s ease-in-out',
 
     '& img': {
@@ -24,8 +25,7 @@ const useStyles = makeStyles({
 
     '&:hover': {
       '& img': {
-        transform: 'scale(1.2)',
-        transform: 'rotate(20deg)',
+        transform: 'scale(1.2) rotate(20deg)',
         transition: '0.5s',
       },
       '& p': {
@@ -55,9 +55,7 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
-  text: {
-
-  },
+  text: {},
 });
 
 export default function Item({ item }) {
@@ -77,11 +75,15 @@ export default function Item({ item }) {
       <p>{item.name}</p>
       <div className={classes.body}>
         <div>
-          <Rating defaultValue='5' size="small" />
+          <Rating readOnly defaultValue={item.rating} size="small" />
           <p>{item.cost}đ</p>
         </div>
-        <Fab size="small" onClick={handleAddClick} style={{backgroundColor: '#ff8000'}}>
-          <AddIcon style={{fill: '#fff'}}/>
+        <Fab
+          size="small"
+          onClick={handleAddClick}
+          style={{ backgroundColor: '#ff8000' }}
+        >
+          <AddIcon style={{ fill: '#fff' }} />
         </Fab>
       </div>
     </div>
