@@ -15,6 +15,7 @@ const useStyles = makeStyles({
 
 export default function Pasta() {
   const classes = useStyles();
+  // API
   const [data, setData] = useState([]);
   useEffect(() => {
     async function getData(){
@@ -27,6 +28,7 @@ export default function Pasta() {
     
     getData();
   }, [])
+  //API
 
   return (
     <div className={classes.root}>

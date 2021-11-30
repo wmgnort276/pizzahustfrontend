@@ -10,20 +10,41 @@ const useStyles = makeStyles({
   },
 
   product: {
+    display: 'flex',
+    flexDirection: 'column',
     flex: 1,
     marginTop: '18px',
     overflow: 'auto',
     marginBottom: '40px',
-  },
 
+  },
+  
   productList: {
-    margin: '30px 0',
+    flex: 1,
+    overflow: 'auto',
+    /* width */
+    '&::-webkit-scrollbar': {
+      width: '5px',
+      borderRadius: '10px',
+    },
+  
+    /* Track */
+    '&::-webkit-scrollbar-track': {
+      background: '#fff2e0',
+    },
+  
+    /* Handle */
+    '&::-webkit-scrollbar-thumb': {
+      background: '#ff8000',
+      borderRadius: '10px',
+    },
   },
 
   text: {
     '& span:last-child': {
       float: 'right',
     },
+    marginBottom: '30px',
   },
 
   productItem: {

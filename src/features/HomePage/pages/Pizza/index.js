@@ -2,7 +2,7 @@ import Item from 'features/HomePage/components/Item'
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { v4 } from 'uuid';
-
+// import Data from 'API/Category/Pizza';
 const useStyles = makeStyles({
   root: {
     marginTop: '100px',
@@ -16,19 +16,20 @@ const useStyles = makeStyles({
 
 export default function Pizza() {
   const classes = useStyles();
+  // API
   const [data, setData] = useState([]);
   useEffect(() => {
-    async function getData(){
+  async function getData(){
       const requestUrl = 'http://127.0.0.1:8000/piza/?size=S'
       const response = await fetch(requestUrl)
       const responseJSON = await response.json();
       console.log(responseJSON);
       setData(responseJSON);
-    }
-    
-    getData();
+  }
+  
+  getData();
   }, [])
-
+  //
   return (
     <div className={classes.root}>
       {

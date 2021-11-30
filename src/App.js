@@ -6,7 +6,8 @@ import React from 'react';
 import { Route, Routes } from 'react-router';
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+  },
 });
 
 export default function App() {

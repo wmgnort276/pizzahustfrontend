@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     '& img': {
       alignSelf: 'center',
       marginTop: '-70px',
+      transition: '.3s all ease-in-out!important',
     },
 
     '&:hover': {
@@ -71,6 +72,7 @@ export default function Item({ item }) {
       <img
         src={item.image}
         alt=""
+        style={{width:'100%'}}
       />
       <p>{item.name}</p>
       <div className={classes.body}>
