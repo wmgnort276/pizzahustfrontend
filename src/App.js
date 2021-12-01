@@ -2,12 +2,12 @@ import { makeStyles } from '@mui/styles';
 import HomePage from 'features/HomePage';
 import Login from 'features/Login/pages';
 import Pay from 'features/PayMent';
+import Personal from 'features/Personal/pages';
 import React from 'react';
 import { Route, Routes } from 'react-router';
 
 const useStyles = makeStyles({
-  root: {
-  },
+  root: {},
 });
 
 export default function App() {
@@ -20,6 +20,7 @@ export default function App() {
         <Route path="/*" element={<HomePage />} />
         <Route path="/pay" element={<Pay />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/personal" element={<Personal />} />
       </Routes>
     </div>
   );
