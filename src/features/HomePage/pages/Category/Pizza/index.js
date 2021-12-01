@@ -1,7 +1,6 @@
+import { makeStyles } from '@mui/styles';
 import Item from 'features/HomePage/components/Item';
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@mui/styles';
-import { v4 } from 'uuid';
 // import Data from 'API/Category/Pizza';
 const useStyles = makeStyles({
   root: {

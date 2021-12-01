@@ -4,9 +4,10 @@ import NavBar from 'components/NavBar';
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Cart from './pages/Cart';
-import MainPage from './pages/Main';
-import Pizza from './pages/Pizza';
-import Pasta from './pages/Pasta';
+import Header from './pages/Header';
+import Pizza from './pages/Category/Pizza';
+import Pasta from './pages/Category/Pasta';
+import TaskBar from './pages/TaskBar.js';
 
 const useStyles = makeStyles({
   root: {
@@ -25,12 +26,12 @@ const useStyles = makeStyles({
       width: '5px',
       borderRadius: '10px',
     },
-  
+
     /* Track */
     '&::-webkit-scrollbar-track': {
       background: '#fff2e0',
     },
-  
+
     /* Handle */
     '&::-webkit-scrollbar-thumb': {
       background: '#ff8000',
@@ -51,7 +52,8 @@ export default function HomePage() {
           <NavBar className={classes.navBar} />
         </Grid>
         <Grid className={classes.main} item xs={7}>
-          <MainPage />
+          <Header />
+          <TaskBar />
           <Routes>
             <Route path="/" element={<Navigate to="/pizza" />} />
             <Route path="/pizza" element={<Pizza />} />
