@@ -1,62 +1,11 @@
 import React, { useState } from 'react';
 import { Alert, Box, Snackbar, TextField } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import Button from 'components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { buyAllRequest } from 'features/Slice';
-
-const useStyles = makeStyles({
-  root: {
-    padding: '12px 28px 34px 32px',
-    boxSizing: 'border-box',
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100vh',
-    backgroundColor: '#fff',
-  },
-
-  userInfo: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-
-    '& span': {
-      fontSize: '18px',
-      lineHeight: 22 / 18,
-      fontWeight: 700,
-    },
-  },
-
-  userForm: {
-    margin: '30px 0 0 0',
-    flex: 1,
-    '& .MuiInputBase-root': {
-      borderRadius: '8px',
-      borderColor: '#ff8000',
-      '&:hover': {
-        borderColor: '#ff8000',
-      },
-    },
-    '& .MuiFormLabel-root': {
-      // color: "#ff8000"
-    },
-    '& .MuiFormLabel-filled': {
-      // color: "#ff8000"
-      borderColor: '#ff8000',
-    },
-    '& .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
-      color: '#ff8000',
-    },
-    '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused:hover .MuiOutlinedInput-notchedOutline':
-      {
-        borderColor: '#ff8000',
-      },
-    '& .css-1d3z3hw-MuiOutlinedInput-notchedOutline': {
-      // borderColor: '#ff8000',
-    },
-  },
-});
+import { useStyles } from './styles';
+import './styles.css';
 
 export default function UserInfo() {
   const classes = useStyles();
@@ -99,7 +48,7 @@ export default function UserInfo() {
             required
             fullWidth
             id="name"
-            label="Họ và tên"
+            placeholder="Họ và tên"
             name="Name"
             sx={{ mt: 2, mb: 2 }}
           />
@@ -108,7 +57,7 @@ export default function UserInfo() {
             required
             fullWidth
             id="phone"
-            label="Số điện thoại"
+            placeholder="Số điện thoại"
             name="Phone"
             sx={{ mt: 2, mb: 2 }}
             inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
@@ -119,7 +68,7 @@ export default function UserInfo() {
             fullWidth
             type="email"
             id="email"
-            label="Email"
+            placeholder="Email"
             name="Email"
             sx={{ mt: 2, mb: 2 }}
           />
@@ -128,7 +77,7 @@ export default function UserInfo() {
             required
             fullWidth
             id="address"
-            label="Địa chỉ"
+            placeholder="Địa chỉ"
             name="Address"
             sx={{ mt: 2, mb: 2 }}
           />
