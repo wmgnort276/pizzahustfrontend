@@ -35,6 +35,7 @@ export default function AnProductCart({ chooseProduct }) {
     const product = {
       ...chooseProduct,
       cost: newSize.cost + chooseProduct.cost + toppingCost,
+      quantity: 1,
       size,
       sole,
       topping,
