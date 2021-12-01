@@ -7,7 +7,7 @@ import Cart from './pages/Cart';
 import Header from './pages/Header';
 import Pizza from './pages/Category/Pizza';
 import Pasta from './pages/Category/Pasta';
-import TaskBar from './pages/TaskBar.js';
+import TaskBar from './components/TaskBar.js/index.js';
 
 const useStyles = makeStyles({
   root: {
