@@ -48,17 +48,13 @@ export default function ListProductCart({ cart }) {
             <Box key={item.id} className={classes.productItem}>
               <img src={item.image} alt="" />
               <Box className={classes.itemInfo}>
-                <p>{item.name}</p>
-                {/* <p>
-                  {item.size}, {item.sole}
-                  {!!item.topping ? ', Topping' : ''}
-                </p> */}
+                <p className={classes.itemName}>{item.name}</p>
                 <Box className={classes.quantity}>
                   <Box onClick={() => onSubBtnClick(item.id)}>
                     <RemoveIcon sx={{ cursor: 'pointer' }} />
                   </Box>
                   <Divider orientation="vertical" variant="middle" flexItem />
-                  <Box sx={{ margin: '0 10px' }}>{item.quantity}</Box>
+                  <Box style={{color: '#ff8000'}} sx={{ margin: '0 10px' }}>{item.quantity}</Box>
                   <Divider orientation="vertical" variant="middle" flexItem />
                   <Box onClick={() => onAddBtnClick(item.id)}>
                     <AddIcon sx={{ cursor: 'pointer' }} />
@@ -70,7 +66,7 @@ export default function ListProductCart({ cart }) {
                   sx={{ cursor: 'pointer' }}
                   onClick={() => onDelBtnClick(item.id)}
                 />
-                <span>{item.cost * item.quantity} đ</span>
+                <span>{item.cost * item.quantity} <span style={{color: '#ff8000'}}>đ</span></span>
               </Box>
             </Box>
           ))}

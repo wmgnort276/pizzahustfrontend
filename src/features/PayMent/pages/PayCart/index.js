@@ -92,7 +92,7 @@ export default function PayCard() {
           {/* Tổng tiền */}
           <Box className={classes.total}>
             <Box className={classes.fee}>
-              <p>
+              {/* <p>
                 Tổng tiền hàng
                 <span>
                   {total}
@@ -112,7 +112,24 @@ export default function PayCard() {
                   {total + (total ? 22000 : 0)}
                   <span>đ</span>
                 </span>
-              </p>
+              </p> */}
+              <table>
+            <tr>
+              <td style={{paddingRight: '10px'}}>Tổng tiền hàng</td>
+              <td style={{textAlign: 'right'}}>{total}
+                  <span>đ</span></td>
+            </tr>
+            <tr>
+              <td style={{paddingRight: '10px'}}>Phí vận chuyển</td>
+              <td style={{textAlign: 'right'}}>{total ? 22000 : 0}
+                  <span>đ</span></td>
+            </tr>
+            <tr style={{fontWeight: '700', fontSize: '16px'}}>
+              <td style={{paddingRight: '10px'}}>Tổng thanh toán</td>
+              <td style={{textAlign: 'right'}}>{total + (total ? 22000 : 0)}
+                  <span>đ</span></td>
+            </tr>
+          </table>
             </Box>
             <span onClick={() => navigate('/', { replace: true })}>
               Tiếp tục mua hàng
@@ -123,62 +140,3 @@ export default function PayCard() {
     </Box>
   );
 }
-
-// const items = [
-//   {
-//     id: 1,
-//     srcImg: 'pizza.png 2x',
-//     name: 'Pizza Hải Sản Đào',
-//     quantity: 1,
-//     price: 69000,
-//     desc: 'Đế Mỏng, Viền Phô Mai, Không topping',
-//   },
-//   {
-//     id: 2,
-//     srcImg: 'pizza1.png',
-//     name: 'Pizza Hải Sản Pesto Xanh',
-//     quantity: 2,
-//     price: 99000,
-//     desc: 'Tôm, cua, mực và bông cải xanh tươi ngon trên nền sốt Pesto Xanh',
-//   },
-//   {
-//     id: 3,
-//     srcImg: 'pizza2.png',
-//     name: 'Pizza Hải Sản Cao Cấp',
-//     quantity: 1,
-//     price: 179000,
-//     desc: 'Tôm, cua, mực và nghêu với sốt Marinara',
-//   },
-//   {
-//     id: 4,
-//     srcImg: 'pizza3.png',
-//     name: 'Pizza Thịt Nguội Kiểu Canada',
-//     quantity: 3,
-//     price: 149000,
-//     desc: 'Sự kết hợp giữa thịt nguội và bắp ngọt',
-//   },
-//   {
-//     id: 5,
-//     srcImg: 'pizza4.png',
-//     name: 'Pizza Thịt Xông Khói',
-//     quantity: 4,
-//     price: 169000,
-//     desc: 'Thịt giăm bông, thịt xông khói và hai loại rau của ớt xanh, cà chua',
-//   },
-//   {
-//     id: 6,
-//     srcImg: 'chicken.png',
-//     name: 'Đùi Gà Tẩm Bột Chiên Giòn (6pcs)',
-//     quantity: 5,
-//     price: 279000,
-//     desc: 'Đùi Gà phủ một lớp bột chiên giòn rụm',
-//   },
-//   {
-//     id: 7,
-//     srcImg: 'pasta.png',
-//     name: 'Mì Ý Tôm Sốt Kem Cà Chua',
-//     quantity: 10,
-//     price: 279000,
-//     desc: 'Sự tươi ngon của tôm kết hợp với sốt kem cà chua',
-//   },
-// ];

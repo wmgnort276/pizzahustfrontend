@@ -25,30 +25,30 @@ const useStyles = makeStyles({
   userForm: {
     margin: '30px 0 0 0',
     flex: 1,
-    // '& .MuiInputBase-root': {
-    //   borderRadius: '8px',
-    //   borderColor: '#ff8000',
-    //   '&:hover': {
-    //     borderColor: '#ff8000',
-    //   },
-    // },
-    // '& .MuiFormLabel-root': {
-    //   // color: "#ff8000"
-    // },
-    // '& .MuiFormLabel-filled': {
-    //   // color: "#ff8000"
-    //   borderColor: '#ff8000',
-    // },
-    // '& .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
-    //   color: '#ff8000',
-    // },
-    // '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused:hover .MuiOutlinedInput-notchedOutline':
-    //   {
-    //     borderColor: '#ff8000',
-    //   },
-    // '& .css-1d3z3hw-MuiOutlinedInput-notchedOutline': {
-    //   // borderColor: '#ff8000',
-    // },
+    '& .MuiInputBase-root': {
+      borderRadius: '8px',
+      borderColor: '#ff8000',
+      '&:hover': {
+        borderColor: '#ff8000',
+      },
+    },
+    '& .MuiFormLabel-root': {
+      // color: "#ff8000"
+    },
+    '& .MuiFormLabel-filled': {
+      // color: "#ff8000"
+      borderColor: '#ff8000',
+    },
+    '& .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
+      color: '#ff8000',
+    },
+    '& .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused:hover .MuiOutlinedInput-notchedOutline':
+      {
+        borderColor: '#ff8000',
+      },
+    '& .css-1d3z3hw-MuiOutlinedInput-notchedOutline': {
+      // borderColor: '#ff8000',
+    },
   },
 });
 
