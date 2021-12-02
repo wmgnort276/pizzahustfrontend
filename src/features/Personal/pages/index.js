@@ -1,6 +1,5 @@
 import { Grid} from '@mui/material';
 import { Box } from '@mui/system';
-import Button from 'components/Button';
 import NavBar from 'components/NavBar';
 import { useStyles } from 'features/HomePage/pages/Header/styles';
 import React from 'react';
@@ -9,11 +8,11 @@ import './styles.css';
 export default function Personal() {
   const classes = useStyles();
   return (
-    <Grid container>
+    <Grid container className = "content">
     <Grid item xs={1} >
       <NavBar />
     </Grid>
-    <Grid  item xs={7} className = "content">
+    <Grid  item xs={8} >
       <img className = "header__img" srcSet={process.env.PUBLIC_URL + 'img/logo.png'} alt=""/>
       <Box className={classes.header}>
             <Box className={classes.searchBox}>
@@ -35,8 +34,12 @@ export default function Personal() {
               </svg>
             </Box>
       </Box>
-      <Grid container className = "user-info" justifyContent="center" alignItems="center">
-        <Grid item xs = {4} >
+      <Grid container className = "user-info">
+        <Grid item xs = {4}  style = {{
+          display : "flex",
+          flexDirection : "column",
+          alignItems : "center"
+      }}>
             <img className = "user-info__img" srcSet={process.env.PUBLIC_URL + 'user.png'} alt=""/>
             <div>
                 Hi, <span className = "user-info__userName">
@@ -53,48 +56,52 @@ export default function Personal() {
                 Danh sách địa chỉ
             </div>
         </Grid>
-        <Grid item xs = {8} className = "address-info">
-            <h2 className = "address-info__text">Danh sách địa chỉ</h2>
+        <Grid item xs = {8} >
+            <h2 className = "address-info">Danh sách địa chỉ</h2>
             <h4 className = "address-info__text">Địa chỉ mặc định</h4>
             <h6 className = "address-info__place">Nhà riêng</h6>
             <div className = "address-info__item">
-               <span className = "address-info__text">Số điện thoại</span>
-               <span className = "address-info__text">0886765593</span>
+              <span className = "address-info__item--text">
+                <div className = "address-info--text">Số điện thoại</div>
+                <div>Địa chỉ</div>
+              </span>
+              <span className = "address-info__item--info">
+                <div className = "address-info--text">0886765593</div>
+                <div>101/70 Thanh Nhàn , Hai Bà Trưng , Hà Nội</div>
+              </span>
             </div>
-            <div className = "address-info__item">
-               <span className = "address-info__text">Địa chỉ</span>
-               <span className = "address-info__text">101/70 Thanh Nhàn , Hai Bà Trưng , Hà Nội</span>
-            </div>
-            <h4 className = "address-info__place">Địa chỉ khác</h4>
+            <h4 className = "address-info__text">Địa chỉ khác</h4>
             <h6 className = "address-info__place">Công ty</h6>
             <div className = "address-info__item">
-               <span className = "address-info__text">Số điện thoại</span>
-               <span className = "address-info__text">0886765593</span>
-            </div>
-            <div className = "address-info__item">
-               <span className = "address-info__text">Địa chỉ</span>
-               <span className = "address-info__text">B1 Trường ĐH Bách Khoa Hà Nội</span>
+              <span className = "address-info__item--text">
+                <div className = "address-info--text">Số điện thoại</div>
+                <div>Địa chỉ</div>
+              </span>
+              <span className = "address-info__item--info">
+                <div className = "address-info--text">0886765593</div>
+                <div>101/70 Thanh Nhàn , Hai Bà Trưng , Hà Nội</div>
+              </span>
             </div>
         </Grid>
       </Grid>
     </Grid>
     <Grid  item xs={3}>
-      <h2>Thêm địa chỉ</h2>
+      <h2 className ="add-address__text">Thêm địa chỉ</h2>
       <div className = "add-address">
-          <p className = "address-info__text">Số điện thoại</p>
+          <p>Số điện thoại</p>
           <input className = "add-address__input" type = "text"  />
       </div>
       <div className = "add-address">
-          <p className = "address-info__text">Địa chỉ</p>
+          <p>Địa chỉ</p>
           <input className = "add-address__input" type = "text"  />
       </div>
       <div className = "add-address">
-          <p className = "address-info__text">Tên gợi nhớ</p>
+          <p>Tên gợi nhớ</p>
           <input className = "add-address__input" type = "text"  />
       </div>  
-      <input type = "checkbox" />
+      <input className = "add-address--checkbox" type = "checkbox" />
       <span>Đặt làm địa chỉ mặc định</span>
-      <Button/>
+      <button className = "add-address--button">Thêm mới</button>
     </Grid>
   </Grid>
   );
