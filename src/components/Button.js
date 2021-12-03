@@ -1,6 +1,6 @@
 import { makeStyles } from '@mui/styles';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Button({ name, disable, product }) {
+export default function Button({ name, disable }) {
   const classes = useStyles({ name, disable });
   const cart = useSelector((state) => state.cart.listProduct);
   const choose = useSelector((state) => state.cart.chooseProduct);

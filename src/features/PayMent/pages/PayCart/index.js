@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Divider } from '@mui/material';
+import { Box, Divider, Collapse } from '@mui/material';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { AddBtnClick, DelBtnClick, SubBtnClick } from 'features/Slice/index.js';
 import { useNavigate } from 'react-router-dom';
+import { TransitionGroup } from 'react-transition-group';
 
 export default function PayCard() {
   const classes = useStyles();
@@ -46,13 +47,56 @@ export default function PayCard() {
     dispatch(DelBtnClick(idx));
   };
 
+  function renderItem({ item }) {
+    return (
+      <Box key={item.id} className={classes.productItem}>
+        <img src={item.image} alt="" />
+        <Box className={classes.itemInfo}>
+          <p>{item.name}</p>
+          <Box className={classes.quantity}>
+            <Box onClick={() => onSubBtnClick(item.id)}>
+              <RemoveIcon sx={{ cursor: 'pointer' }} />
+            </Box>
+            <Divider orientation="vertical" flexItem />
+            <Box>
+              <span style={{ color: '#ff8000' }}>{item.quantity}</span>
+            </Box>
+            <Divider orientation="vertical" flexItem />
+            <Box onClick={() => onAddBtnClick(item.id)}>
+              <AddIcon sx={{ cursor: 'pointer' }} />
+            </Box>
+          </Box>
+          <p style={{ fontSize: '10px', lineHeight: 6 / 5 }}>
+            {item.size}, {item.sole}
+            {item.topping !== '' ? `, ${item.topping}` : ''}
+          </p>
+        </Box>
+        <Box className={classes.price}>
+          <HighlightOffIcon
+            onClick={() => onDelBtnClick(item.id)}
+            sx={{ float: 'right', mb: 2, cursor: 'pointer' }}
+          />
+          <p>
+            {item.cost * item.quantity}
+            <span style={{ color: '#ff8000' }}>đ</span>
+          </p>
+        </Box>
+      </Box>
+    );
+  }
+
   return (
     <Box className={classes.root}>
       <Box className={classes.container}>
         <Box className={classes.cart}>
           <span>Giỏ hàng</span>
           <Box className={classes.productList}>
-            {cart.map((item) => (
+            <TransitionGroup>
+              {cart.map((item) => (
+                <Collapse key={item.id}>{renderItem({ item })}</Collapse>
+              ))}
+            </TransitionGroup>
+            {/* {cart.map((item) => (
               <Box key={item.id} className={classes.productItem}>
                 <img src={item.image} alt="" />
                 <Box className={classes.itemInfo}>
@@ -86,7 +130,7 @@ export default function PayCard() {
                   </p>
                 </Box>
               </Box>
-            ))}
+            ))} */}
           </Box>
 
           {/* Tổng tiền */}

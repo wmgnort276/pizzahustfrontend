@@ -174,15 +174,15 @@ export default function AnProductCart({ chooseProduct }) {
 
 const sizes = [
   {
-    size: 'Nhỏ',
+    size: 'Size S',
     cost: 0,
   },
   {
-    size: 'size M',
+    size: 'Size M',
     cost: 80000,
   },
   {
-    size: 'size L',
+    size: 'Size L',
     cost: 160000,
   },
 ];

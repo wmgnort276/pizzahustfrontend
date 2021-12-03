@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 import Item from 'features/HomePage/components/Item';
 import React, { useEffect, useState } from 'react';
 import { v4 } from 'uuid';
-// import Data from 'API/Category/Pizza';
+
 const useStyles = makeStyles({
   root: {},
   body: {
@@ -13,41 +13,26 @@ const useStyles = makeStyles({
     gridGap: '20px',
   },
 });
-// console.log(getData());
 
 export default function Pizza() {
   const classes = useStyles();
   const [limit, setLimit] = useState(3);
 
   function handleMoreBtn() {
-    if (limit < pizzaList.length) {
+    if (limit < breakfastList.length) {
       setLimit(limit + 6);
     }
   }
 
-  // API
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   async function getData() {
-  //     const requestUrl = 'http://127.0.0.1:8000/piza/?size=S';
-  //     const response = await fetch(requestUrl);
-  //     const responseJSON = await response.json();
-  //     console.log(responseJSON);
-  //     setData(responseJSON);
-  //   }
-
-  //   getData();
-  // }, []);
-
   return (
     <Box className={classes.root}>
       <Box className={classes.body}>
-        {pizzaList.slice(0, limit).map((item) => (
+        {breakfastList.slice(0, limit).map((item) => (
           <Item key={item.id} item={item} />
         ))}
       </Box>
       <Button
-        sx={{ display: limit >= pizzaList.length ? 'none' : '' }}
+        sx={{ display: limit >= breakfastList.length ? 'none' : '' }}
         variant="contained"
         onClick={handleMoreBtn}
       >
@@ -57,7 +42,7 @@ export default function Pizza() {
   );
 }
 
-const pizzaList = [
+const breakfastList = [
   {
     id: v4(),
     srcImg: 'pizza.png',

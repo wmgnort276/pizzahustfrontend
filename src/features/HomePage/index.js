@@ -2,12 +2,10 @@ import { Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import NavBar from 'components/NavBar';
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
 import Cart from './pages/Cart';
+import Category from './pages/Category';
 import Header from './pages/Header';
-import Pizza from './pages/Category/Pizza';
-import Pasta from './pages/Category/Pasta';
-import TaskBar from './components/TaskBar.js/index.js';
+import Menu from './pages/Menu';
 
 const useStyles = makeStyles({
   root: {
@@ -53,12 +51,8 @@ export default function HomePage() {
         </Grid>
         <Grid className={classes.main} item xs={7}>
           <Header />
-          <TaskBar />
-          <Routes>
-            <Route path="/" element={<Navigate to="/pizza" />} />
-            <Route path="/pizza" element={<Pizza />} />
-            <Route path="/pasta" element={<Pasta />} />
-          </Routes>
+          <Category />
+          <Menu />
         </Grid>
         <Grid className={classes.cart} item xs={4}>
           <Cart />
