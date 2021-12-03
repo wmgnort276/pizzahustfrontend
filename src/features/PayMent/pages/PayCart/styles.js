@@ -86,7 +86,7 @@ const useStyles = makeStyles({
 
   total: {
     position: 'relative',
-    height: '100px',
+    // height: '100px',
 
     '& > span': {
       position: 'absolute',
@@ -99,13 +99,11 @@ const useStyles = makeStyles({
   },
   fee: {
     float: 'right',
-    '& > p': {
-      fontSize: '20px',
-      fontWeight: 700,
-      margin: '10px 0',
-      '& > span': {
-        marginLeft: '52px',
-        '& span': {
+    '& > table': {
+      fontSize: '14px',
+      fontWeight: 500,
+      '& > tr': {
+        '& td span': {
           color: '#ff8000',
         },
       },

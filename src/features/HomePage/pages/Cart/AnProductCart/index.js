@@ -19,7 +19,7 @@ export default function AnProductCart({ chooseProduct }) {
   const [topping, setTopping] = useState('');
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
-
+  console.log(cart)
   function handleBackBtn() {
     dispatch(BackBtnClick());
   }
@@ -132,7 +132,7 @@ export default function AnProductCart({ chooseProduct }) {
             sx={{ mt: 1, mb: 1, width: '100%' }}
             renderOption={(props, option) => (
               <Box component="li" {...props}>
-                {option.sole} ({option.cost})
+                {option.sole} (+{option.cost}đ)
               </Box>
             )}
             renderInput={(params) => (
@@ -190,11 +190,11 @@ const sizes = [
 const soles = [
   {
     sole: 'Đế giòn',
-    cost: 'Miễn phí',
+    cost: 0,
   },
   {
     sole: 'Đế mềm xốp',
-    cost: 'Miễn phí',
+    cost: 0,
   },
 ];
 

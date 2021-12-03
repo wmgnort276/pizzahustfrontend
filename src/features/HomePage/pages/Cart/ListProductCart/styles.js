@@ -48,7 +48,7 @@ const useStyles = makeStyles({
   },
 
   productItem: {
-    height: '60px',
+    height: '80px',
     backgroundColor: '#FFECD1',
     display: 'flex',
     alignItems: 'center',
@@ -56,7 +56,7 @@ const useStyles = makeStyles({
     borderRadius: '57px',
 
     '& img': {
-      width: '90px',
+      width: '100px',
       marginLeft: '-5px',
     },
 
@@ -77,12 +77,22 @@ const useStyles = makeStyles({
     },
   },
 
+  itemName: {
+    display: 'WebkitBox',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: '2',
+    maxHeight: '2.4rem',
+    fontWeight: 600,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    textAlign: 'left',
+  },
+
   quantity: {
     display: 'inline-flex',
     alignItems: 'center',
     marginLeft: '-8px',
     fontWeight: 700,
-
     '& > div': {
       padding: '0 5px',
     },

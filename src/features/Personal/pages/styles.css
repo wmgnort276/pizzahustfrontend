@@ -1,0 +1,89 @@
+.content {
+    background-color: #FFF2E0;
+}
+.header__img {
+    width: 80px;
+    margin-left: 100%;
+    margin-top: 40px;
+}
+.user-info {
+    margin-top: 60px;
+}
+.user-info__img {
+    width: 40px;
+    margin:20px 0;
+}
+.user-info__userName {
+    font-weight: 600;
+}
+.user-info__text {
+    margin-top: 20px;
+}
+.user-info__text:hover {
+    cursor: pointer;
+    color: #FF3300;
+}
+.address-info {
+    font-weight: 400;
+    font-size: 24px;
+    color: #333;
+    position: relative;
+}
+.address-info::before {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 2px;
+    top: 35px;
+    left: 0;
+    background-color: #333;
+}
+.address-info__text {
+    margin-top: 25px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+.address-info__place {
+    font-size: 18px;
+    margin: 0 0 10px 20px;
+    font-weight: 500;
+}
+.address-info__item {
+    margin-left: 20px;
+    display: flex;
+}
+.address-info__item--info {
+    margin-left: 50px;
+}
+.address-info--text {
+    margin-bottom: 10px;
+}
+.add-address__text {
+    margin: 180px 0 10px 0;
+    font-weight: 400;
+    text-align: center;
+}
+
+.add-address__input {
+    padding: 10px 20px;
+    width: 80%;
+    margin-bottom: 10px;
+    outline: none;
+    border: 1px solid #ccc;
+}
+.add-address--checkbox {
+    margin: 20px 10px 20px 20px;
+}
+.add-address--button {
+    display: block;
+    padding: 8px 30px;
+    color: #fff;
+    background-color: #FF8000;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+}
+.add-address--button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
