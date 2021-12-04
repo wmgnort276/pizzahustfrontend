@@ -12,6 +12,13 @@ const useStyles = makeStyles({
     gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
     gridGap: '20px',
   },
+
+  moreBtn: {
+    width: '100%',
+    background: 'linear-gradient(45deg, #f59838  30%, #ffca53 90%)',
+    borderRadius: '30px !important',
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
 });
 // console.log(getData());
 
@@ -47,6 +54,7 @@ export default function Pizza() {
         ))}
       </Box>
       <Button
+        className={classes.moreBtn}
         sx={{ display: limit >= pizzaList.length ? 'none' : '' }}
         variant="contained"
         onClick={handleMoreBtn}
