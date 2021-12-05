@@ -3,12 +3,8 @@ import React from 'react';
 
 export default function BuyHistory() {
   return (
-    <Box className = "product-list">
-        <Box className = "product-item">
-            
-        </Box>
-    </Box>
-  );;
+     <div>lịch sử mua hàng</div> 
+  );
 }
 
 const buyHistory = [
