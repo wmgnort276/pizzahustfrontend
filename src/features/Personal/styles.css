@@ -91,22 +91,3 @@
   cursor: pointer;
   opacity: 0.8;
 }
-.tab-buy {
-  display: inline-block;
-  margin: 0 50px 40px 0;
-  font-weight: 500;
-  position: relative;
-}
-.tab-buy::before {
-  content: "";
-  position: absolute;
-  width: 70%;
-  height: 1px;
-  top: 27px;
-  left: 4px;
-  background-color: #000;
-}
-.tab-buy:hover {
-  cursor: pointer;
-  color: #ff3300;
-}

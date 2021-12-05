@@ -53,9 +53,9 @@ export default function ListProductCart({ cart }) {
       <Box className={classes.product}>
         <Box className={classes.text}>
           <span style={{ fontSize: '18px', fontWeight: 700 }}>Giỏ hàng</span>
-          <span style={{ fontSize: '12px', fontWeight: 500, color: '#FF8000' }}>
+          {/* <span style={{ fontSize: '12px', fontWeight: 500, color: '#FF8000' }}>
             Xem thêm
-          </span>
+          </span> */}
         </Box>
         <Box className={classes.productList}>
           <>
