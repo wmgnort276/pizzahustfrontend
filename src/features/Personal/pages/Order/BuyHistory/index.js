@@ -1,7 +1,14 @@
+import { Box } from '@mui/system';
 import React from 'react';
 
 export default function BuyHistory() {
-  return <div>Lịch sử mua hàng</div>;
+  return (
+    <Box className = "product-list">
+        <Box className = "product-item">
+            
+        </Box>
+    </Box>
+  );;
 }
 
 const buyHistory = [

@@ -8,11 +8,11 @@
   margin-left: 100px;
 }
 .user-tabs {
-  margin-top: 148px;
+  text-align: center;
 }
 .user-tabs__img {
   width: 40px;
-  margin: 20px 0;
+  margin: 150px 0 20px 0;
 }
 .user-tabs__userName {
   font-weight: 600;
@@ -90,4 +90,23 @@
 .add-address--button:hover {
   cursor: pointer;
   opacity: 0.8;
+}
+.tab-buy {
+  display: inline-block;
+  margin: 0 50px 40px 0;
+  font-weight: 500;
+  position: relative;
+}
+.tab-buy::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 1px;
+  top: 27px;
+  left: 4px;
+  background-color: #000;
+}
+.tab-buy:hover {
+  cursor: pointer;
+  color: #ff3300;
 }

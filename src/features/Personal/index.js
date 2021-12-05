@@ -21,7 +21,7 @@ export default function Personal() {
       <Grid item xs={1}>
         <NavBar />
       </Grid>
-      <Grid item className="user-tabs" xs={2}>
+      <Grid item className="user-tabs" xs={3}>
         <img
           className="user-tabs__img"
           srcSet={process.env.PUBLIC_URL + 'user.png'}
@@ -40,7 +40,7 @@ export default function Personal() {
           </div>
         ))}
       </Grid>
-      <Grid item xs={9}>
+      <Grid item xs={8}>
         <img
           className="header__img"
           srcSet={process.env.PUBLIC_URL + 'img/logo.png'}

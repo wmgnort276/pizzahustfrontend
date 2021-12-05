@@ -1,10 +1,10 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-
+import "./styleAddAddress.css"
 export default function Addresses() {
   return (
     <Grid container className="addresses">
-      <Grid item sx={8}>
+      <Grid item xs={8}>
         <h2 className="address-info">Danh sách địa chỉ</h2>
         <h4 className="address-info__text">Địa chỉ mặc định</h4>
         <h6 className="address-info__place">Nhà riêng</h6>
