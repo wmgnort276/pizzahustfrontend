@@ -12,44 +12,52 @@ const useStyles = makeStyles({
     gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
     gridGap: '20px',
   },
+  button: {
+    width: '100%',
+    borderRadius: '20px !important',
+    height: '20px',
+    background: '#ff8000 !important',
+    fontSize: '12px',
+  },
 });
 // console.log(getData());
 
 export default function Pizza() {
   const classes = useStyles();
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(6);
 
   function handleMoreBtn() {
-    if (limit < pizzaList.length) {
+    if (limit < data.length) {
       setLimit(limit + 6);
     }
   }
 
   // API
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   async function getData() {
-  //     const requestUrl = 'http://127.0.0.1:8000/piza/?size=S';
-  //     const response = await fetch(requestUrl);
-  //     const responseJSON = await response.json();
-  //     console.log(responseJSON);
-  //     setData(responseJSON);
-  //   }
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      const requestUrl = 'http://127.0.0.1:8000/piza/?size=S';
+      const response = await fetch(requestUrl);
+      const responseJSON = await response.json();
+      console.log(responseJSON);
+      setData(responseJSON);
+    }
 
-  //   getData();
-  // }, []);
+    getData();
+  }, []);
 
   return (
     <Box className={classes.root}>
       <Box className={classes.body}>
-        {pizzaList.slice(0, limit).map((item) => (
+        {data.slice(0, limit).map((item) => (
           <Item key={item.id} item={item} />
         ))}
       </Box>
       <Button
-        sx={{ display: limit >= pizzaList.length ? 'none' : '' }}
+        sx={{ display: limit >= data.length ? 'none' : '' }}
         variant="contained"
         onClick={handleMoreBtn}
+        className={classes.button}
       >
         Xem thêm
       </Button>
@@ -60,7 +68,7 @@ export default function Pizza() {
 const pizzaList = [
   {
     id: v4(),
-    srcImg: 'pizza.png',
+    srcImg: 'public/img/pizza.png',
     name: 'Pizza Hải Sản Đào',
     quantity: 1,
     rating: 5,

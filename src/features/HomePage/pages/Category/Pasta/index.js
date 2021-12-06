@@ -11,32 +11,106 @@ const useStyles = makeStyles({
     gridGap: '20px',
     
   },
+  button: {
+    width: '100%',
+    borderRadius: '20px',
+    height: '20px',
+    background: '#ff8000',
+    fontSize: '12px',
+  },
 });
 
 export default function Pasta() {
   const classes = useStyles();
   // API
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    async function getData(){
-      const requestUrl = 'http://127.0.0.1:8000/side/?type=Noodle'
-      const response = await fetch(requestUrl)
-      const responseJSON = await response.json();
-      console.log(responseJSON);
-      setData(responseJSON);
-    }
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   async function getData(){
+  //     const requestUrl = 'http://127.0.0.1:8000/side/?type=Noodle'
+  //     const response = await fetch(requestUrl)
+  //     const responseJSON = await response.json();
+  //     console.log(responseJSON);
+  //     setData(responseJSON);
+  //   }
     
-    getData();
-  }, [])
+  //   getData();
+  // }, [])
   //API
 
   return (
     <div className={classes.root}>
       {
-      data.map((item) => (
+      pizzaList.map((item) => (
         <Item key={item.id} item={item} />
       ))
       }
     </div>
   );
 }
+
+
+const pizzaList = [
+  {
+    id: v4(),
+    srcImg: 'pizza.png',
+    name: 'Pizza Hải Sản Đào',
+    quantity: 1,
+    rating: 5,
+    cost: 69000,
+    desc: '',
+  },
+  {
+    id: v4(),
+    srcImg: 'pizza.png',
+    name: 'Pizza Hải Sản Đào',
+    quantity: 1,
+    rating: 5,
+    cost: 69000,
+    desc: '',
+  },
+  {
+    id: v4(),
+    srcImg: 'pizza.png',
+    name: 'Pizza Hải Sản Đào 2',
+    quantity: 1,
+    rating: 5,
+    cost: 69000,
+    desc: '',
+  },
+  {
+    id: v4(),
+    srcImg: 'pizza.png',
+    name: 'Pizza Hải Sản Đào 2',
+    quantity: 1,
+    rating: 5,
+    cost: 69000,
+    desc: '',
+  },
+  {
+    id: v4(),
+    srcImg: 'pizza.png',
+    name: 'Pizza Hải Sản Đào 2',
+    quantity: 1,
+    rating: 5,
+    cost: 69000,
+    desc: '',
+  },
+  {
+    id: v4(),
+    srcImg: 'pizza.png',
+    name: 'Pizza Hải Sản Đào 3',
+    quantity: 1,
+    rating: 5,
+    cost: 69000,
+    desc: '',
+  },
+  {
+    id: v4(),
+    srcImg: 'pizza.png',
+    name: 'Pizza Hải Sản Đào',
+    quantity: 1,
+    rating: 5,
+    cost: 69000,
+    desc: '',
+  },
+];

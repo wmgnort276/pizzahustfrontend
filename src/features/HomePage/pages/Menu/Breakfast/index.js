@@ -12,6 +12,13 @@ const useStyles = makeStyles({
     gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
     gridGap: '20px',
   },
+  button: {
+    width: '100%',
+    borderRadius: '20px !important',
+    height: '20px',
+    background: '#ff8000 !important',
+    fontSize: '12px',
+  },
 });
 
 export default function Pizza() {
@@ -35,6 +42,7 @@ export default function Pizza() {
         sx={{ display: limit >= breakfastList.length ? 'none' : '' }}
         variant="contained"
         onClick={handleMoreBtn}
+        className={classes.button}
       >
         Xem thêm
       </Button>

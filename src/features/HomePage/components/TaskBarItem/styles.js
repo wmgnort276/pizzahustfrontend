@@ -15,11 +15,11 @@ const useStyles = makeStyles({
     textDecoration: 'none',
     boxShadow:
       '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
-    transition: 'transform 0.5s',
     backgroundColor: (p) => (p.isActive ? '#FF8000' : '#fff'),
     color: (p) => (p.isActive ? '#fff' : '#000'),
 
     '& span': {
+      transition: 'transform 0.5s',
       transform: (p) => (p.isActive ? 'rotate(90deg)' : ''),
       '& circle': {
         fill: (p) => (p.isActive ? '#fff' : ''),

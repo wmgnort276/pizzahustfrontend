@@ -58,6 +58,11 @@ const useStyles = makeStyles({
     '& img': {
       width: '100px',
       marginLeft: '-5px',
+      transition: 'all 0.5s',
+      transitionTiming: 'ease-in-out',
+      '&:hover': {
+        transform: 'rotate(45deg)',
+      },
     },
 
     '& p': {

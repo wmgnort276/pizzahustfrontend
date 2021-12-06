@@ -1,9 +1,10 @@
 import AddIcon from '@mui/icons-material/Add';
-import { Fab, Rating } from '@mui/material';
+import { Fab, Rating, Tooltip } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { chooseProduct } from 'features/Slice';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+
 
 const useStyles = makeStyles({
   root: {
@@ -80,13 +81,15 @@ export default function Item({ item }) {
           <Rating readOnly defaultValue={item.rating} size="small" />
           <p>{item.cost}đ</p>
         </div>
-        <Fab
-          size="small"
-          onClick={handleAddClick}
-          style={{ backgroundColor: '#ff8000' }}
-        >
-          <AddIcon style={{ fill: '#fff' }} />
-        </Fab>
+        <Tooltip title="Thêm vào giỏ">
+          <Fab
+            size="small"
+            onClick={handleAddClick}
+            style={{ backgroundColor: '#ff8000' }}
+          >
+            <AddIcon style={{ fill: '#fff' }} />
+          </Fab>
+        </Tooltip>
       </div>
     </div>
   );
