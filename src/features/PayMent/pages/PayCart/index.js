@@ -71,7 +71,7 @@ export default function PayCard() {
             {item.topping !== '' ? `, ${item.topping}` : ''}
           </p>
         </Box>
-        <Box className={classes.price}>
+        <Box className={classes.cost}>
           <HighlightOffIcon
             onClick={() => onDelBtnClick(item.id)}
             sx={{ float: 'right', mb: 2, cursor: 'pointer' }}
@@ -136,44 +136,29 @@ export default function PayCard() {
           {/* Tổng tiền */}
           <Box className={classes.total}>
             <Box className={classes.fee}>
-              {/* <p>
-                Tổng tiền hàng
-                <span>
-                  {total}
-                  <span>đ</span>
-                </span>
-              </p>
-              <p>
-                Phí vận chuyển
-                <span>
-                  {total ? 22000 : 0}
-                  <span>đ</span>
-                </span>
-              </p>
-              <p>
-                Tổng thanh toán
-                <span>
-                  {total + (total ? 22000 : 0)}
-                  <span>đ</span>
-                </span>
-              </p> */}
               <table>
-            <tr>
-              <td style={{paddingRight: '10px'}}>Tổng tiền hàng</td>
-              <td style={{textAlign: 'right'}}>{total}
-                  <span>đ</span></td>
-            </tr>
-            <tr>
-              <td style={{paddingRight: '10px'}}>Phí vận chuyển</td>
-              <td style={{textAlign: 'right'}}>{total ? 22000 : 0}
-                  <span>đ</span></td>
-            </tr>
-            <tr style={{fontWeight: '700', fontSize: '16px'}}>
-              <td style={{paddingRight: '10px'}}>Tổng thanh toán</td>
-              <td style={{textAlign: 'right'}}>{total + (total ? 22000 : 0)}
-                  <span>đ</span></td>
-            </tr>
-          </table>
+                <tr>
+                  <td style={{ paddingRight: '10px' }}>Tổng tiền hàng</td>
+                  <td style={{ textAlign: 'right' }}>
+                    {total}
+                    <span>đ</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ paddingRight: '10px' }}>Phí vận chuyển</td>
+                  <td style={{ textAlign: 'right' }}>
+                    {total ? 22000 : 0}
+                    <span>đ</span>
+                  </td>
+                </tr>
+                <tr style={{ fontWeight: '700', fontSize: '16px' }}>
+                  <td style={{ paddingRight: '10px' }}>Tổng thanh toán</td>
+                  <td style={{ textAlign: 'right' }}>
+                    {total + (total ? 22000 : 0)}
+                    <span>đ</span>
+                  </td>
+                </tr>
+              </table>
             </Box>
             <span onClick={() => navigate('/', { replace: true })}>
               Tiếp tục mua hàng

@@ -79,7 +79,7 @@ const useStyles = makeStyles({
     },
   },
 
-  price: {
+  cost: {
     marginRight: '20px',
     fontWeight: 700,
   },

@@ -2,9 +2,10 @@ import { makeStyles } from '@mui/styles';
 import HomePage from 'features/HomePage';
 import Login from 'features/Login/pages';
 import Pay from 'features/PayMent';
-import Personal from 'features/Personal/pages';
+import Personal from 'features/Personal';
+import Register from 'features/Register';
 import React from 'react';
-import { Route, Routes } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
 
 const useStyles = makeStyles({
   root: {},
@@ -16,10 +17,11 @@ export default function App() {
   return (
     <div className={classes.root}>
       <Routes>
-        {/* <Route path="/" element={<Navigate to="/home" />} /> */}
-        <Route path="/*" element={<HomePage />} />
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/pay" element={<Pay />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/personal" element={<Personal />} />
       </Routes>
     </div>

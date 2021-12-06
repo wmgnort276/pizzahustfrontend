@@ -2,7 +2,6 @@ import { Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import TaskBar from 'features/HomePage/components/TaskBar';
 import React, { useState } from 'react';
-import { Route, Routes } from 'react-router';
 import Breakfast from './Breakfast';
 
 const useStyles = makeStyles({
@@ -19,50 +18,41 @@ export default function Menu() {
 
   return (
     <Box className={classes.root}>
-      <TaskBar
-        categories={categories}
-        activeId={activeId}
-        onTabClick={onTabClick}
-      />
-      {activeId === 1 && <Breakfast />}
-      {/* {activeId === 2 && <Pasta />} */}
-      {/* {activeId === 3 && < />} */}
-      {/* {activeId === 4 && < />} */}
-      {/* {activeId === 5 && < />} */}
-      {/* {activeId === 6 && < />} */}
+      <TaskBar categories={menus} activeId={activeId} onTabClick={onTabClick} />
+      {menus.map((menu) => (menu.id === activeId ? menu.component : null))}
     </Box>
   );
 }
 
-const categories = [
+const menus = [
   {
     id: 1,
     name: 'Sáng',
-    link: 'breakfast',
+    component: <Breakfast />,
   },
   {
     id: 2,
     name: 'Trưa',
-    link: 'lunch',
+    // component:
   },
   {
     id: 3,
     name: 'Chiều',
-    link: 'afternoon',
+    // component:
   },
   {
     id: 4,
     name: 'Tối',
-    link: 'dinner',
+    // component:
   },
   {
     id: 5,
     name: 'Chay',
-    link: 'chay',
+    // component:
   },
   {
     id: 6,
     name: 'Trẻ em',
-    link: 'children',
+    // component:
   },
 ];
