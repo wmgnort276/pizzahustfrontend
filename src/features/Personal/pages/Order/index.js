@@ -6,7 +6,7 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles({
   tabs: {
     display: 'inline-block',
-    margin: '0 50px 40px 0',
+    margin: '20px 50px 40px 0',
     fontWeight: 500,
     position: 'relative',
     '&::before': {
