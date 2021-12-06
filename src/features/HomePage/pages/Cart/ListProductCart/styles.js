@@ -16,9 +16,8 @@ const useStyles = makeStyles({
     marginTop: '18px',
     overflow: 'auto',
     marginBottom: '40px',
-
   },
-  
+
   productList: {
     flex: 1,
     overflow: 'auto',
@@ -27,12 +26,12 @@ const useStyles = makeStyles({
       width: '5px',
       borderRadius: '10px',
     },
-  
+
     /* Track */
     '&::-webkit-scrollbar-track': {
       background: '#fff2e0',
     },
-  
+
     /* Handle */
     '&::-webkit-scrollbar-thumb': {
       background: '#ff8000',
@@ -41,10 +40,9 @@ const useStyles = makeStyles({
   },
 
   text: {
-    '& span:last-child': {
-      float: 'right',
-    },
     marginBottom: '30px',
+    fontSize: '18px',
+    fontWeight: 700,
   },
 
   productItem: {
