@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import "./styleAddAddress.css"
+import './styleAddAddress.css';
 export default function Addresses() {
   return (
     <Grid container className="addresses">
@@ -53,21 +53,21 @@ export default function Addresses() {
   );
 }
 
-const addresses = [
-  {
-    id: 1,
-    name: '',
-    type: '',
-    phone: '',
-    address: '',
-    isDefault: true,
-  },
-  {
-    id: 2,
-    name: '',
-    type: '',
-    phone: '',
-    address: '',
-    isDefault: false,
-  },
-];
+// const addresses = [
+//   {
+//     id: 1,
+//     name: '',
+//     type: '',
+//     phone: '',
+//     address: '',
+//     isDefault: true,
+//   },
+//   {
+//     id: 2,
+//     name: '',
+//     type: '',
+//     phone: '',
+//     address: '',
+//     isDefault: false,
+//   },
+// ];

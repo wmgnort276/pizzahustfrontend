@@ -34,7 +34,11 @@ export default function Slider() {
             key={obj.id}
             className={slideIndex === index + 1 ? 'slide active-anim' : 'slide'}
           >
-            <img src={process.env.PUBLIC_URL + `${obj.srcImg}`} alt="" />
+            <img
+              style={{ width: '100%' }}
+              src={process.env.PUBLIC_URL + `${obj.srcImg}`}
+              alt=""
+            />
           </div>
         );
       })}
@@ -57,22 +61,22 @@ export default function Slider() {
 const dataSlider = [
   {
     id: v4(),
-    srcImg: 'img/Delivery2.png',
+    srcImg: 'banner/banner1.png',
   },
   {
     id: v4(),
-    srcImg: 'img/Delivery2.png',
+    srcImg: 'banner/banner2.png',
   },
   {
     id: v4(),
-    srcImg: 'img/Delivery2.png',
+    srcImg: 'banner/banner3.png',
   },
   {
     id: v4(),
-    srcImg: 'img/Delivery2.png',
+    srcImg: 'banner/banner4.png',
   },
   {
     id: v4(),
-    srcImg: 'img/Delivery2.png',
+    srcImg: 'banner/Delivery2.png',
   },
 ];
