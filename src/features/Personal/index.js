@@ -1,15 +1,12 @@
 import { Grid } from '@mui/material';
-import { Box } from '@mui/system';
 import NavBar from 'components/NavBar';
-import { useStyles } from 'features/HomePage/pages/Header/styles';
 import React, { useState } from 'react';
-import './styles.css';
 import Account from './pages/Account';
-import Order from './pages/Order';
 import Addresses from './pages/Addresses';
+import Order from './pages/Order';
+import './styles.css';
 
 export default function Personal() {
-  const classes = useStyles();
   const [activeId, setActiveId] = useState(1);
 
   const onTabClick = (id) => {

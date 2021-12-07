@@ -81,6 +81,7 @@ export default function NavBar() {
 
       {nav.map((item) => (
         <ListItem
+          key={item.id}
           className={`${classes.navIcon}  ${
             isActive === item.id ? classes.active : ''
           } `}

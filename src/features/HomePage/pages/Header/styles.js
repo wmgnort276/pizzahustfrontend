@@ -3,13 +3,6 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles({
   root: {},
 
-  header: {
-    '& img': {
-      marginTop: '77px',
-      width: '100%',
-    },
-  },
-
   searchBox: {
     position: 'fixed',
     zIndex: 1,

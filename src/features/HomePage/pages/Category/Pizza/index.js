@@ -27,38 +27,37 @@ export default function Pizza() {
   const [limit, setLimit] = useState(6);
 
   function handleMoreBtn() {
-    if (limit < data.length) {
+    if (limit < pizzaList.length) {
       setLimit(limit + 6);
     }
   }
 
   // API
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    async function getData() {
-      const requestUrl = 'http://127.0.0.1:8000/piza/?size=S';
-      const response = await fetch(requestUrl);
-      const responseJSON = await response.json();
-      console.log(responseJSON);
-      setData(responseJSON);
-    }
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   async function getData() {
+  //     const requestUrl = 'http://127.0.0.1:8000/piza/?size=S';
+  //     const response = await fetch(requestUrl);
+  //     const responseJSON = await response.json();
+  //     console.log(responseJSON);
+  //     setData(responseJSON);
+  //   }
 
-    getData();
-  }, []);
+  //   getData();
+  // }, []);
 
   return (
     <Box className={classes.root}>
       <Box className={classes.body}>
-        {data.slice(0, limit).map((item) => (
+        {pizzaList.slice(0, limit).map((item) => (
           <Item key={item.id} item={item} />
         ))}
       </Box>
       <Button
         className={classes.moreBtn}
-        sx={{ display: limit >= data.length ? 'none' : '' }}
+        sx={{ display: limit >= pizzaList.length ? 'none' : '' }}
         variant="contained"
         onClick={handleMoreBtn}
-        // className={classes.button}
       >
         Xem thêm
       </Button>

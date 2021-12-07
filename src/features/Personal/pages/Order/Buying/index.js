@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     gap: '40px',
     overflow: 'auto',
-    height: 'calc(100vh - 200px)',
+    height: 'calc(100vh - 220px)',
     margin: '0 20px',
 
     /* width */
