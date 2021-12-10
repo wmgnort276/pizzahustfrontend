@@ -67,7 +67,7 @@ export default function Item({ item }) {
   function handleAddClick() {
     dispatch(chooseProduct(item));
   }
-
+  console.log(item);
   return (
     <div className={classes.root}>
       <img
@@ -78,7 +78,7 @@ export default function Item({ item }) {
       <p>{item.name}</p>
       <div className={classes.body}>
         <div>
-          <Rating readOnly defaultValue={item.rating} size="small" />
+          <Rating readOnly defaultValue={item.score_fields} size="small" />
           <p>{item.cost}đ</p>
         </div>
         <Tooltip title="Thêm vào giỏ">

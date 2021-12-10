@@ -1,46 +1,56 @@
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { Autocomplete, Box, TextField } from '@mui/material';
-import Button from 'components/Button';
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { Autocomplete, Box, TextField } from "@mui/material";
+import Button from "components/Button";
 import {
   AddBtnClick,
   addOldProduct,
   addProduct,
   BackBtnClick,
-} from 'features/Slice';
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useStyles } from './styles';
-import './styles.css';
+} from "features/Slice";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useStyles } from "./styles";
+import "./styles.css";
 
 export default function AnProductCart({ chooseProduct }) {
   const classes = useStyles();
-  const [size, setSize] = useState('');
-  const [sole, setSole] = useState('');
-  const [topping, setTopping] = useState('');
+  const [size, setSize] = useState("");
+  const [sole, setSole] = useState("");
+  const [topping, setTopping] = useState("");
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
-  console.log(cart)
+  console.log(chooseProduct);
+  console.log(cart);
   function handleBackBtn() {
     dispatch(BackBtnClick());
   }
 
   function handleToCartBtn() {
-    // change cost when choose size, topping
-    const newSize = sizes.find((x) => x.size === size);
-    let toppingCost = 0;
-    if (topping !== '') {
-      toppingCost = toppings.find((x) => x.topping === topping).cost;
-    }
+    let product = {}
+    if(chooseProduct.size){
+      // change cost when choose size, topping
+      const newSize = sizes.find((x) => x.size === size);
+      let toppingCost = 0;
+      if (topping !== "") {
+        toppingCost = toppings.find((x) => x.topping === topping).cost;
+      }
 
-    const product = {
-      ...chooseProduct,
-      cost: newSize.cost + chooseProduct.cost + toppingCost,
-      quantity: 1,
-      size,
-      sole,
-      topping,
-    };
-    console.log('product', product);
+      product = {
+        ...chooseProduct,
+        cost: newSize.cost + chooseProduct.cost + toppingCost,
+        quantity: 1,
+        size,
+        sole,
+        topping,
+      };
+    }
+    else {
+      product = {
+        ...chooseProduct,
+        quantity: 1,
+      }
+    }
+    console.log("product", product);
 
     const idx = cart.findIndex((item) => item.id === product.id);
     if (idx !== -1) {
@@ -63,9 +73,9 @@ export default function AnProductCart({ chooseProduct }) {
     <Box className={classes.root}>
       <Box className={classes.logo}>
         <img
-          srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
+          srcSet={process.env.PUBLIC_URL + "pizzaLogo.png 2x"}
           alt=""
-          style={{ marginLeft: 'auto', display: 'block' }}
+          style={{ marginLeft: "auto", display: "block" }}
         />
       </Box>
       <ArrowBackIosIcon className={classes.back} onClick={handleBackBtn} />
@@ -76,7 +86,7 @@ export default function AnProductCart({ chooseProduct }) {
           <p style={{ fontWeight: 400 }}>{chooseProduct.description}</p>
           <p>
             {chooseProduct.cost}
-            <span style={{ color: '#FF8000' }}>đ</span>
+            <span style={{ color: "#FF8000" }}>đ</span>
           </p>
         </Box>
       </Box>
@@ -85,88 +95,91 @@ export default function AnProductCart({ chooseProduct }) {
         className={classes.choose}
         onSubmit={handleToCartBtn}
       >
-        <Box sx={{ flex: 1 }}>
-          <Autocomplete
-            className={classes.select}
-            disablePortal
-            id="size"
-            inputValue={size}
-            options={sizes}
-            onInputChange={(event, newValue) => {
-              setSize(newValue);
-            }}
-            isOptionEqualToValue={(option, value) =>
-              option.value === value.value
-            }
-            getOptionLabel={(option) => option.size}
-            sx={{ mt: 1, mb: 1, width: '100%' }}
-            renderOption={(props, option) => (
-              <Box component="li" {...props}>
-                {option.size} (+{option.cost}đ)
-              </Box>
-            )}
-            renderInput={(params) => (
-              <TextField
-                name="size"
-                // autoFocus
-                required
-                {...params}
-                label="Chọn size"
-              />
-            )}
-          />
+        {chooseProduct.size ? (
+          <Box sx={{ flex: 1 }}>
+            <Autocomplete
+              className={classes.select}
+              disablePortal
+              id="size"
+              inputValue={size}
+              options={sizes}
+              onInputChange={(event, newValue) => {
+                setSize(newValue);
+              }}
+              isOptionEqualToValue={(option, value) =>
+                option.value === value.value
+              }
+              getOptionLabel={(option) => option.size}
+              sx={{ mt: 1, mb: 1, width: "100%" }}
+              renderOption={(props, option) => (
+                <Box component="li" {...props}>
+                  {option.size} (+{option.cost}đ)
+                </Box>
+              )}
+              renderInput={(params) => (
+                <TextField
+                  name="size"
+                  // autoFocus
+                  required
+                  {...params}
+                  label="Chọn size"
+                />
+              )}
+            />
 
-          <Autocomplete
-            className={classes.select}
-            disablePortal
-            id="sole"
-            inputValue={sole}
-            options={soles}
-            onInputChange={(event, newValue) => {
-              setSole(newValue);
-            }}
-            isOptionEqualToValue={(option, value) =>
-              option.value === value.value
-            }
-            getOptionLabel={(option) => option.sole}
-            sx={{ mt: 1, mb: 1, width: '100%' }}
-            renderOption={(props, option) => (
-              <Box component="li" {...props}>
-                {option.sole} (+{option.cost}đ)
-              </Box>
-            )}
-            renderInput={(params) => (
-              <TextField name="sole" required {...params} label="Chọn đế" />
-            )}
-          />
+            <Autocomplete
+              className={classes.select}
+              disablePortal
+              id="sole"
+              inputValue={sole}
+              options={soles}
+              onInputChange={(event, newValue) => {
+                setSole(newValue);
+              }}
+              isOptionEqualToValue={(option, value) =>
+                option.value === value.value
+              }
+              getOptionLabel={(option) => option.sole}
+              sx={{ mt: 1, mb: 1, width: "100%" }}
+              renderOption={(props, option) => (
+                <Box component="li" {...props}>
+                  {option.sole} (+{option.cost}đ)
+                </Box>
+              )}
+              renderInput={(params) => (
+                <TextField name="sole" required {...params} label="Chọn đế" />
+              )}
+            />
 
-          {/* <span>Chọn topping</span> */}
-          <Autocomplete
-            className={classes.select}
-            disablePortal
-            id="topping"
-            inputValue={topping}
-            options={toppings}
-            onInputChange={(event, newValue) => {
-              setTopping(newValue);
-            }}
-            isOptionEqualToValue={(option, value) =>
-              option.value === value.value
-            }
-            getOptionLabel={(option) => option.topping}
-            sx={{ mt: 1, mb: 1, width: '100%' }}
-            renderOption={(props, option) => (
-              <Box component="li" {...props}>
-                {option.topping} (+{option.cost}đ)
-              </Box>
-            )}
-            renderInput={(params) => (
-              <TextField name="topping" {...params} label="Chọn topping" />
-            )}
-          />
-        </Box>
-
-        <Button type="submit" name={'Thêm vào giỏ'} />
+            {/* <span>Chọn topping</span> */}
+            <Autocomplete
+              className={classes.select}
+              disablePortal
+              id="topping"
+              inputValue={topping}
+              options={toppings}
+              onInputChange={(event, newValue) => {
+                setTopping(newValue);
+              }}
+              isOptionEqualToValue={(option, value) =>
+                option.value === value.value
+              }
+              getOptionLabel={(option) => option.topping}
+              sx={{ mt: 1, mb: 1, width: "100%" }}
+              renderOption={(props, option) => (
+                <Box component="li" {...props}>
+                  {option.topping} (+{option.cost}đ)
+                </Box>
+              )}
+              renderInput={(params) => (
+                <TextField name="topping" {...params} label="Chọn topping" />
+              )}
+            />
+          </Box>
+        ) : (
+          <Box sx={{flex: 1}}></Box>
+        )}
+        <Button type="submit" name={"Thêm vào giỏ"} />
       </Box>
     </Box>
   );
@@ -174,41 +187,41 @@ export default function AnProductCart({ chooseProduct }) {
 
 const sizes = [
   {
-    size: 'Size S',
+    size: "Size S",
     cost: 0,
   },
   {
-    size: 'Size M',
+    size: "Size M",
     cost: 80000,
   },
   {
-    size: 'Size L',
+    size: "Size L",
     cost: 160000,
   },
 ];
 
 const soles = [
   {
-    sole: 'Đế giòn',
+    sole: "Đế giòn",
     cost: 0,
   },
   {
-    sole: 'Đế mềm xốp',
+    sole: "Đế mềm xốp",
     cost: 0,
   },
 ];
 
 const toppings = [
   {
-    topping: 'Thêm phô mai phủ',
+    topping: "Thêm phô mai phủ",
     cost: 10000,
   },
   {
-    topping: 'Thêm phô mai viền',
+    topping: "Thêm phô mai viền",
     cost: 10000,
   },
   {
-    topping: 'Double sốt',
+    topping: "Double sốt",
     cost: 10000,
   },
 ];

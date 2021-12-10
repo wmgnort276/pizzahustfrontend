@@ -34,9 +34,13 @@ export default function Noon() {
   const [data, setData] = useState([]);
   useEffect(() => {
     async function getData() {
+      const requestUrlPizza = 'http://127.0.0.1:8000/piza/?menu=Chieu';
+      const responsePizza = await fetch(requestUrlPizza);
+      const responseJSONPizza = await responsePizza.json();
       const requestUrl = 'http://127.0.0.1:8000/side/?menu=Chieu';
       const response = await fetch(requestUrl);
-      const responseJSON = await response.json();
+      let responseJSON = await response.json();
+      responseJSON = [...responseJSONPizza, ...responseJSON]
       console.log(responseJSON);
       setData(responseJSON);
     }

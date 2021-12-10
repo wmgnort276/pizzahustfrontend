@@ -27,7 +27,7 @@ export default function TaskBar({ categories, onTabClick, activeId }) {
   return (
     <Box className={classes.root}>
       <Box className={classes.body}>
-        <span id="category">Thực đơn</span>
+        <span id="category">Menu</span>
         <Box className={classes.category}>
           {categories.map((item) => (
             <TaskBarItem
