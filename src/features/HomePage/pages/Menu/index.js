@@ -3,6 +3,11 @@ import { makeStyles } from '@mui/styles';
 import TaskBar from 'features/HomePage/components/TaskBar';
 import React, { useState } from 'react';
 import Breakfast from './Breakfast';
+import Lunch from './Lunch';
+import Noon from './Noon';
+import Dinner from './Dinner';
+import Vegetarian from './Vegetarian';
+import Kids from './Kids';
 
 const useStyles = makeStyles({
   root: {},
@@ -33,26 +38,26 @@ const menus = [
   {
     id: 2,
     name: 'Trưa',
-    // component:
+    component: <Lunch />,
   },
   {
     id: 3,
     name: 'Chiều',
-    // component:
+    component: <Noon />,
   },
   {
     id: 4,
     name: 'Tối',
-    // component:
+    component: <Dinner />,
   },
   {
     id: 5,
     name: 'Chay',
-    // component:
+    component: <Vegetarian  />,
   },
   {
     id: 6,
     name: 'Trẻ em',
-    // component:
+    component: <Kids />,
   },
 ];

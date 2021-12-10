@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Breakfast() {
+export default function Kids() {
   const classes = useStyles();
   const [limit, setLimit] = useState(3);
 
@@ -34,7 +34,7 @@ export default function Breakfast() {
   const [data, setData] = useState([]);
   useEffect(() => {
     async function getData() {
-      const requestUrl = 'http://127.0.0.1:8000/side/?menu=Sang';
+      const requestUrl = 'http://127.0.0.1:8000/side/?menu=Treem';
       const response = await fetch(requestUrl);
       const responseJSON = await response.json();
       console.log(responseJSON);

@@ -23,24 +23,24 @@ const useStyles = makeStyles({
 export default function Pasta() {
   const classes = useStyles();
   // API
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   async function getData(){
-  //     const requestUrl = 'http://127.0.0.1:8000/side/?type=Noodle'
-  //     const response = await fetch(requestUrl)
-  //     const responseJSON = await response.json();
-  //     console.log(responseJSON);
-  //     setData(responseJSON);
-  //   }
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function getData(){
+      const requestUrl = 'http://127.0.0.1:8000/side/?type=Noodle'
+      const response = await fetch(requestUrl)
+      const responseJSON = await response.json();
+      console.log(responseJSON);
+      setData(responseJSON);
+    }
     
-  //   getData();
-  // }, [])
+    getData();
+  }, [])
   //API
 
   return (
     <div className={classes.root}>
       {
-      pizzaList.map((item) => (
+      data.map((item) => (
         <Item key={item.id} item={item} />
       ))
       }

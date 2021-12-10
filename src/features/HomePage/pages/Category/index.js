@@ -4,6 +4,10 @@ import TaskBar from 'features/HomePage/components/TaskBar';
 import React, { useState } from 'react';
 import Pasta from './Pasta';
 import Pizza from './Pizza';
+import BBQ from './BBQ';
+import Salad from './Salad';
+import Chips from './Chips';
+import Drink from './Drink';
 
 const useStyles = makeStyles({
   root: {},
@@ -45,21 +49,21 @@ const categories = [
   {
     id: 3,
     name: 'Gà BBQ',
-    // component: </>
+    component: <BBQ />,
   },
   {
     id: 4,
     name: 'Salad',
-    // component: </>
+    component: <Salad />,
   },
   {
     id: 5,
     name: 'Khoai tây chiên',
-    // component: </>
+    component: <Chips />,
   },
   {
     id: 6,
     name: 'Đồ uống',
-    // component: </>
+    component: <Drink />,
   },
 ];

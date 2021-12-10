@@ -15,18 +15,24 @@ function HideOnScroll({ children }) {
 export default function Header() {
   const classes = useStyles();
 
+  function onSearch(e){
+    console.log(e.target.value)
+  }
+
   return (
     <Box className={classes.root}>
       <Box className={classes.header}>
         <HideOnScroll>
           <Box className={classes.searchBox}>
-            <input className={classes.searchBtn} placeholder="Tìm kiếm" />
+            <input className={classes.searchBtn} placeholder="Tìm kiếm" onChange={onSearch}/>
             <svg
               width="14"
               height="14"
               viewBox="0 0 14 14"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              onClick={onSearch}
+              style={{cursor: 'pointer'}}
             >
               <path
                 fillRule="evenodd"
