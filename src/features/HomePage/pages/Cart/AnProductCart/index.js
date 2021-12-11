@@ -76,11 +76,7 @@ export default function AnProductCart({ chooseProduct }) {
         <img
           srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
           alt=""
-<<<<<<< HEAD
-          style={{ marginLeft: "auto", display: "block", cursor: "pointer" }}
-=======
           style={{ marginLeft: 'auto', display: 'block' }}
->>>>>>> cafa94737930e4679ef549898448f0664009cd5f
         />
       </Box>
       <ArrowBackIosIcon className={classes.back} onClick={handleBackBtn} />
