@@ -90,7 +90,7 @@ export default function ListProductCart({ cart }) {
                     <RemoveIcon sx={{ cursor: 'pointer' }} />
                   </Box>
                   <Divider orientation="vertical" variant="middle" flexItem />
-                  <Box sx={{ margin: '0 10px' }}>{item.quantity}</Box>
+                  <Box sx={{ margin: '0 10px', color: '#ff8000' }}>{item.quantity}</Box>
                   <Divider orientation="vertical" variant="middle" flexItem />
                   <Box onClick={() => onAddBtnClick(item.id)}>
                     <AddIcon sx={{ cursor: 'pointer' }} />
@@ -104,7 +104,7 @@ export default function ListProductCart({ cart }) {
                     onClick={() => onDelBtnClick(item.id)}
                   />
                 </Tooltip>
-                <span>{item.cost * item.quantity} đ</span>
+                <span>{item.cost * item.quantity}<span style={{color: '#ff8000'}}>đ</span></span>
               </Box>
             </Box>
           ))}

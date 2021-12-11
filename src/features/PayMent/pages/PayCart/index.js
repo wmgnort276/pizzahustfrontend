@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Divider, Collapse } from '@mui/material';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
-import { useStyles } from './styles';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { AddBtnClick, DelBtnClick, SubBtnClick } from 'features/Slice/index.js';
-import { useNavigate } from 'react-router-dom';
-import { TransitionGroup } from 'react-transition-group';
+import React, { useEffect, useState } from "react";
+import { Box, Divider, Collapse } from "@mui/material";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
+import { useStyles } from "./styles";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { AddBtnClick, DelBtnClick, SubBtnClick } from "features/Slice/index.js";
+import { useNavigate } from "react-router-dom";
+import { TransitionGroup } from "react-transition-group";
 
 export default function PayCard() {
   const classes = useStyles();
@@ -55,30 +55,32 @@ export default function PayCard() {
           <p>{item.name}</p>
           <Box className={classes.quantity}>
             <Box onClick={() => onSubBtnClick(item.id)}>
-              <RemoveIcon sx={{ cursor: 'pointer' }} />
+              <RemoveIcon sx={{ cursor: "pointer" }} />
             </Box>
             <Divider orientation="vertical" flexItem />
             <Box>
-              <span style={{ color: '#ff8000' }}>{item.quantity}</span>
+              <span style={{ color: "#ff8000" }}>{item.quantity}</span>
             </Box>
             <Divider orientation="vertical" flexItem />
             <Box onClick={() => onAddBtnClick(item.id)}>
-              <AddIcon sx={{ cursor: 'pointer' }} />
+              <AddIcon sx={{ cursor: "pointer" }} />
             </Box>
           </Box>
-          <p style={{ fontSize: '10px', lineHeight: 6 / 5 }}>
-            {item.size}, {item.sole}
-            {item.topping !== '' ? `, ${item.topping}` : ''}
-          </p>
+          {item.size ? (
+            <p style={{ fontSize: "10px", lineHeight: 6 / 5 }}>
+              {item.size}, {item.sole}
+              {item.topping !== "" ? `, ${item.topping}` : ""}
+            </p>
+          ) : null}
         </Box>
         <Box className={classes.cost}>
           <HighlightOffIcon
             onClick={() => onDelBtnClick(item.id)}
-            sx={{ float: 'right', mb: 2, cursor: 'pointer' }}
+            sx={{ float: "right", mb: 2, cursor: "pointer" }}
           />
           <p>
             {item.cost * item.quantity}
-            <span style={{ color: '#ff8000' }}>đ</span>
+            <span style={{ color: "#ff8000" }}>đ</span>
           </p>
         </Box>
       </Box>
@@ -138,29 +140,29 @@ export default function PayCard() {
             <Box className={classes.fee}>
               <table>
                 <tr>
-                  <td style={{ paddingRight: '10px' }}>Tổng tiền hàng</td>
-                  <td style={{ textAlign: 'right' }}>
+                  <td style={{ paddingRight: "10px" }}>Tổng tiền hàng</td>
+                  <td style={{ textAlign: "right" }}>
                     {total}
                     <span>đ</span>
                   </td>
                 </tr>
                 <tr>
-                  <td style={{ paddingRight: '10px' }}>Phí vận chuyển</td>
-                  <td style={{ textAlign: 'right' }}>
+                  <td style={{ paddingRight: "10px" }}>Phí vận chuyển</td>
+                  <td style={{ textAlign: "right" }}>
                     {total ? 22000 : 0}
                     <span>đ</span>
                   </td>
                 </tr>
-                <tr style={{ fontWeight: '700', fontSize: '16px' }}>
-                  <td style={{ paddingRight: '10px' }}>Tổng thanh toán</td>
-                  <td style={{ textAlign: 'right' }}>
+                <tr style={{ fontWeight: "700", fontSize: "16px" }}>
+                  <td style={{ paddingRight: "10px" }}>Tổng thanh toán</td>
+                  <td style={{ textAlign: "right" }}>
                     {total + (total ? 22000 : 0)}
                     <span>đ</span>
                   </td>
                 </tr>
               </table>
             </Box>
-            <span onClick={() => navigate('/', { replace: true })}>
+            <span onClick={() => navigate("/", { replace: true })}>
               Tiếp tục mua hàng
             </span>
           </Box>

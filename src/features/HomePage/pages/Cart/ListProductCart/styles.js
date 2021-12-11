@@ -2,7 +2,7 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   root: {
-    padding: '12px 28px 34px 32px',
+    padding: '21px 28px 34px 32px',
     boxSizing: 'border-box',
     display: 'flex',
     flexDirection: 'column',
