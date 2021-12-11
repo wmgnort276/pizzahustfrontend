@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Box } from '@mui/material';
 import { v4 } from 'uuid';
 import { makeStyles } from '@mui/styles';
@@ -30,7 +30,13 @@ const useStyles = makeStyles({
 
 export default function Combo() {
   const classes = useStyles();
+  const [limit, setLimit] = useState(3);
 
+  function handleMoreBtn() {
+    if (limit < comboList.length) {
+      setLimit(limit + 6);
+    }
+  }
   return (
     <div>
       <Box className={classes.root}>
@@ -42,9 +48,9 @@ export default function Combo() {
         </Box>
         <Button
           className={classes.moreBtn}
-          // sx={{ display: limit >= pizzaList.length ? 'none' : '' }}
+          sx={{ display: limit >= comboList.length ? 'none' : '' }}
           variant="contained"
-          // onClick={handleMoreBtn}
+          onClick={handleMoreBtn}
         >
           Xem thêm
         </Button>
@@ -60,7 +66,7 @@ const comboList = [
     name: 'Combo Pizza Puff',
     type: 'combo',
     quantity: 1,
-    rating: 5,
+    score_fields: 5,
     cost: 89000,
     desc: '',
     product: [

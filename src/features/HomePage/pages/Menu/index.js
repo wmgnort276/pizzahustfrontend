@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import ListItem from 'features/HomePage/components/ListItem';
 import TaskBar from 'features/HomePage/components/TaskBar';
 import React, { useState } from 'react';
-import Breakfast from './Breakfast';
 
 const useStyles = makeStyles({
   root: {},
@@ -19,7 +19,13 @@ export default function Menu() {
   return (
     <Box className={classes.root}>
       <TaskBar categories={menus} activeId={activeId} onTabClick={onTabClick} />
-      {menus.map((menu) => (menu.id === activeId ? menu.component : null))}
+      {menus.map(
+        (menu) =>
+          menu.id === activeId &&
+          menu.listItem !== undefined && (
+            <ListItem listItem={menu.listItem} api={menu.api} title="Menu" />
+          )
+      )}
     </Box>
   );
 }
@@ -28,31 +34,37 @@ const menus = [
   {
     id: 1,
     name: 'Sáng',
-    component: <Breakfast />,
+    listItem: undefined,
+    api: '',
   },
   {
     id: 2,
     name: 'Trưa',
-    // component:
+    listItem: undefined,
+    api: '',
   },
   {
     id: 3,
     name: 'Chiều',
-    // component:
+    listItem: undefined,
+    api: '',
   },
   {
     id: 4,
     name: 'Tối',
-    // component:
+    listItem: undefined,
+    api: '',
   },
   {
     id: 5,
     name: 'Chay',
-    // component:
+    listItem: undefined,
+    api: '',
   },
   {
     id: 6,
     name: 'Trẻ em',
-    // component:
+    listItem: undefined,
+    api: '',
   },
 ];

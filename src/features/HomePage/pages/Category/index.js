@@ -1,9 +1,10 @@
 import { Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import drinkList from 'constants/Category/drinkList';
+import pizzaList from 'constants/Category/pizzaList';
 import TaskBar from 'features/HomePage/components/TaskBar';
 import React, { useState } from 'react';
-import Pasta from './Pasta';
-import Pizza from './Pizza';
+import ListItem from '../../components/ListItem';
 
 const useStyles = makeStyles({
   root: {},
@@ -24,8 +25,16 @@ export default function Category() {
         activeId={activeId}
         onTabClick={onTabClick}
       />
-      {categories.map((category) =>
-        category.id === activeId ? category.component : null
+      {categories.map(
+        (category) =>
+          category.id === activeId &&
+          category.listItem !== undefined && (
+            <ListItem
+              listItem={category.listItem}
+              api={category.api}
+              title="Thực đơn"
+            />
+          )
       )}
     </Box>
   );
@@ -35,31 +44,37 @@ const categories = [
   {
     id: 1,
     name: 'Pizza',
-    component: <Pizza />,
+    listItem: pizzaList,
+    api: '',
   },
   {
     id: 2,
     name: 'Mỳ Ý',
-    component: <Pasta />,
+    listItem: pizzaList,
+    api: '',
   },
   {
     id: 3,
     name: 'Gà BBQ',
-    // component: </>
+    listItem: undefined,
+    api: '',
   },
   {
     id: 4,
     name: 'Salad',
-    // component: </>
+    listItem: pizzaList,
+    api: '',
   },
   {
     id: 5,
     name: 'Khoai tây chiên',
-    // component: </>
+    listItem: pizzaList,
+    api: '',
   },
   {
     id: 6,
     name: 'Đồ uống',
-    // component: </>
+    listItem: drinkList,
+    api: '',
   },
 ];
