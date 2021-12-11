@@ -69,7 +69,7 @@ export default function AnProductCart({ chooseProduct }) {
       const idx = cart.findIndex((item) => item.id === chooseProduct.id);
     }
   }
-  console.log('chooseProduct', chooseProduct);
+  // console.log('chooseProduct', chooseProduct);
 
   return (
     <Box component="form" onSubmit={handleToCartBtn} className={classes.root}>
