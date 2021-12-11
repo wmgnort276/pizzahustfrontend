@@ -4,6 +4,7 @@ import NavBar from 'components/NavBar';
 import React from 'react';
 import Cart from './pages/Cart';
 import Category from './pages/Category';
+import Combo from './pages/Combo';
 import Header from './pages/Header';
 import Menu from './pages/Menu';
 
@@ -51,6 +52,7 @@ export default function HomePage() {
         </Grid>
         <Grid className={classes.main} item xs={7}>
           <Header />
+          <Combo />
           <Category />
           <Menu />
         </Grid>

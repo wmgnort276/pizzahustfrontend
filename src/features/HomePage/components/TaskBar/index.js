@@ -21,13 +21,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function TaskBar({ categories, onTabClick, activeId }) {
+export default function TaskBar({ categories, onTabClick, activeId, title }) {
   const classes = useStyles();
 
   return (
     <Box className={classes.root}>
       <Box className={classes.body}>
-        <span id="category">Menu</span>
+        <span id="category">{title}</span>
         <Box className={classes.category}>
           {categories.map((item) => (
             <TaskBarItem

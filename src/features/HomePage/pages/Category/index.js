@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import TaskBar from "features/HomePage/components/TaskBar";
@@ -8,6 +9,15 @@ import BBQ from "./BBQ";
 import Salad from "./Salad";
 import Chips from "./Chips";
 import Drink from "./Drink";
+=======
+import { Box } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import drinkList from 'constants/Category/drinkList';
+import pizzaList from 'constants/Category/pizzaList';
+import TaskBar from 'features/HomePage/components/TaskBar';
+import React, { useState } from 'react';
+import ListItem from '../../components/ListItem';
+>>>>>>> cafa94737930e4679ef549898448f0664009cd5f
 
 const useStyles = makeStyles({
   root: {},
@@ -28,8 +38,16 @@ export default function Category() {
         activeId={activeId}
         onTabClick={onTabClick}
       />
-      {categories.map((category) =>
-        category.id === activeId ? category.component : null
+      {categories.map(
+        (category) =>
+          category.id === activeId &&
+          category.listItem !== undefined && (
+            <ListItem
+              listItem={category.listItem}
+              api={category.api}
+              title="Thực đơn"
+            />
+          )
       )}
     </Box>
   );
@@ -38,6 +56,7 @@ export default function Category() {
 const categories = [
   {
     id: 1,
+<<<<<<< HEAD
     name: "Pizza",
     img: (
       <svg
@@ -215,5 +234,40 @@ const categories = [
       </svg>
     ),
     component: <Drink />,
+=======
+    name: 'Pizza',
+    listItem: pizzaList,
+    api: '',
+  },
+  {
+    id: 2,
+    name: 'Mỳ Ý',
+    listItem: pizzaList,
+    api: '',
+  },
+  {
+    id: 3,
+    name: 'Gà BBQ',
+    listItem: undefined,
+    api: '',
+  },
+  {
+    id: 4,
+    name: 'Salad',
+    listItem: pizzaList,
+    api: '',
+  },
+  {
+    id: 5,
+    name: 'Khoai tây chiên',
+    listItem: pizzaList,
+    api: '',
+  },
+  {
+    id: 6,
+    name: 'Đồ uống',
+    listItem: drinkList,
+    api: '',
+>>>>>>> cafa94737930e4679ef549898448f0664009cd5f
   },
 ];

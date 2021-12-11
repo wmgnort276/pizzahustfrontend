@@ -2,7 +2,6 @@ import React from 'react';
 import './styleAccount.css';
 
 export default function Account() {
-  const linkChangPassword = '';
   return (
     <div className="account-info">
       <h2 className="address-info">Thông tin tài khoản</h2>

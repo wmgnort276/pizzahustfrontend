@@ -57,7 +57,11 @@ export default function ListProductCart({ cart }) {
         <Box className={classes.productList}>
           {cart.map((item) => (
             <Box key={item.id} className={classes.productItem}>
-              <img src={item.image} alt="" />
+              <img
+                // src={item.image}
+                src={process.env.PUBLIC_URL + `${item.srcImg}`}
+                alt=""
+              />
               <Box className={classes.itemInfo}>
                 <p
                   onMouseEnter={(event) => handlePopoverOpen(item.id, event)}
@@ -104,7 +108,14 @@ export default function ListProductCart({ cart }) {
                     onClick={() => onDelBtnClick(item.id)}
                   />
                 </Tooltip>
+<<<<<<< HEAD
                 <span>{item.cost * item.quantity}<span style={{color: '#ff8000'}}>đ</span></span>
+=======
+                <span>
+                  {item.cost * item.quantity}
+                  <span style={{ color: '#ff8000' }}> đ</span>
+                </span>
+>>>>>>> cafa94737930e4679ef549898448f0664009cd5f
               </Box>
             </Box>
           ))}

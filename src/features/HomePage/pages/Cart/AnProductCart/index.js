@@ -1,227 +1,253 @@
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { Autocomplete, Box, TextField } from "@mui/material";
-import Button from "components/Button";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { Autocomplete, Box, TextField } from '@mui/material';
+import Button from 'components/Button';
 import {
   AddBtnClick,
   addOldProduct,
   addProduct,
   BackBtnClick,
-} from "features/Slice";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useStyles } from "./styles";
-import "./styles.css";
+} from 'features/Slice';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useStyles } from './styles';
+import './styles.css';
 
 export default function AnProductCart({ chooseProduct }) {
   const classes = useStyles();
-  const [size, setSize] = useState("");
-  const [sole, setSole] = useState("");
-  const [topping, setTopping] = useState("");
+  const [size, setSize] = useState(null);
+  const [sole, setSole] = useState(null);
+  const [topping, setTopping] = useState(null);
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
-  console.log(chooseProduct);
-  console.log(cart);
+
   function handleBackBtn() {
     dispatch(BackBtnClick());
   }
 
-  function handleToCartBtn() {
-    let product = {}
-    if(chooseProduct.size){
-      // change cost when choose size, topping
-      const newSize = sizes.find((x) => x.size === size);
-      let toppingCost = 0;
-      if (topping !== "") {
-        toppingCost = toppings.find((x) => x.topping === topping).cost;
-      }
-
-      product = {
-        ...chooseProduct,
-        cost: newSize.cost + chooseProduct.cost + toppingCost,
-        quantity: 1,
-        size,
-        sole,
-        topping,
-      };
-    }
-    else {
-      product = {
-        ...chooseProduct,
-        quantity: 1,
-      }
-    }
-    console.log("product", product);
-
-    const idx = cart.findIndex((item) => item.id === product.id);
-    if (idx !== -1) {
-      // Nếu sản phẩm mới trùng sản phẩm đã chọn, quantity + 1
-      if (
-        cart[idx].size === product.size &&
-        cart[idx].sole === product.sole &&
-        cart[idx].topping === product.topping
-      ) {
-        dispatch(AddBtnClick(idx));
+  function handleToCartBtn(e) {
+    e.preventDefault();
+    // Mua lẻ
+    if (chooseProduct.type === 'one1') {
+      let product = {};
+      if (chooseProduct.hasOwnProperty('size')) {
+        // change cost when choose size, topping
+        const toppingCost = topping !== null ? topping.addCost : 0;
+        product = {
+          ...chooseProduct,
+          cost: chooseProduct.cost + size.addCost + toppingCost,
+          quantity: 1,
+          size: size.size,
+          sole: sole.sole,
+          topping: topping.topping,
+        };
       } else {
-        dispatch(addOldProduct(product));
+        product = {
+          ...chooseProduct,
+          quantity: 1,
+        };
       }
-    } else {
-      dispatch(addProduct(product));
+
+      const idx = cart.findIndex((item) => item.id === product.id);
+      if (idx !== -1) {
+        // Nếu sản phẩm mới trùng sản phẩm đã chọn, quantity + 1
+        if (
+          cart[idx].size === product.size &&
+          cart[idx].sole === product.sole &&
+          cart[idx].topping === product.topping
+        ) {
+          dispatch(AddBtnClick(idx));
+        } else {
+          dispatch(addOldProduct(product));
+        }
+      } else {
+        dispatch(addProduct(product));
+      }
+    }
+
+    // Mua combo
+    else if (chooseProduct.type === 'combo') {
+      const idx = cart.findIndex((item) => item.id === chooseProduct.id);
     }
   }
 
   return (
-    <Box className={classes.root}>
+    <Box component="form" onSubmit={handleToCartBtn} className={classes.root}>
       <Box className={classes.logo}>
         <img
-          srcSet={process.env.PUBLIC_URL + "pizzaLogo.png 2x"}
+          srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
           alt=""
+<<<<<<< HEAD
           style={{ marginLeft: "auto", display: "block", cursor: "pointer" }}
+=======
+          style={{ marginLeft: 'auto', display: 'block' }}
+>>>>>>> cafa94737930e4679ef549898448f0664009cd5f
         />
       </Box>
       <ArrowBackIosIcon className={classes.back} onClick={handleBackBtn} />
       <Box className={classes.product}>
-        <img src={chooseProduct.image} alt="" />
+        <img
+          // src={chooseProduct.image}
+          src={process.env.PUBLIC_URL + `${chooseProduct.srcImg}`}
+          alt=""
+        />
         <Box>
-          <p style={{}}>{chooseProduct.name}</p>
+          <p>{chooseProduct.name}</p>
           <p style={{ fontWeight: 400 }}>{chooseProduct.description}</p>
           <p>
-            {chooseProduct.cost}
-            <span style={{ color: "#FF8000" }}>đ</span>
+            {chooseProduct.cost +
+              (size !== null ? size.addCost : 0) +
+              (topping !== null ? topping.addCost : 0)}
+            <span style={{ color: '#FF8000' }}> đ</span>
           </p>
         </Box>
       </Box>
-      <Box
-        component="form"
-        className={classes.choose}
-        onSubmit={handleToCartBtn}
-      >
-        {chooseProduct.size ? (
-          <Box sx={{ flex: 1 }}>
-            <Autocomplete
-              className={classes.select}
-              disablePortal
-              id="size"
-              inputValue={size}
-              options={sizes}
-              onInputChange={(event, newValue) => {
-                setSize(newValue);
-              }}
-              isOptionEqualToValue={(option, value) =>
-                option.value === value.value
-              }
-              getOptionLabel={(option) => option.size}
-              sx={{ mt: 1, mb: 1, width: "100%" }}
-              renderOption={(props, option) => (
-                <Box component="li" {...props}>
-                  {option.size} (+{option.cost}đ)
-                </Box>
-              )}
-              renderInput={(params) => (
-                <TextField
-                  name="size"
-                  // autoFocus
-                  required
-                  {...params}
-                  label="Chọn size"
-                />
-              )}
-            />
 
-            <Autocomplete
-              className={classes.select}
-              disablePortal
-              id="sole"
-              inputValue={sole}
-              options={soles}
-              onInputChange={(event, newValue) => {
-                setSole(newValue);
-              }}
-              isOptionEqualToValue={(option, value) =>
-                option.value === value.value
-              }
-              getOptionLabel={(option) => option.sole}
-              sx={{ mt: 1, mb: 1, width: "100%" }}
-              renderOption={(props, option) => (
-                <Box component="li" {...props}>
-                  {option.sole} (+{option.cost}đ)
-                </Box>
-              )}
-              renderInput={(params) => (
-                <TextField name="sole" required {...params} label="Chọn đế" />
-              )}
-            />
+      {/* MUA MỘT SẢN PHẨM */}
+      {chooseProduct.type === 'one1' && (
+        <Box className={classes.choose}>
+          {chooseProduct.hasOwnProperty('size') && (
+            <Box>
+              <Autocomplete
+                className={classes.select}
+                disablePortal
+                id="size"
+                value={size}
+                options={sizes}
+                onChange={(event, newValue) => {
+                  setSize(newValue);
+                }}
+                isOptionEqualToValue={(option, value) =>
+                  option.value === value.value
+                }
+                getOptionLabel={(option) => option.size}
+                sx={{ mt: 1, mb: 1, width: '100%' }}
+                renderOption={(props, option) => (
+                  <Box component="li" {...props}>
+                    {option.size} (+{option.addCost}đ)
+                  </Box>
+                )}
+                renderInput={(params) => (
+                  <TextField
+                    name="size"
+                    autoFocus
+                    required
+                    {...params}
+                    label="Chọn size"
+                  />
+                )}
+              />
 
-            {/* <span>Chọn topping</span> */}
-            <Autocomplete
-              className={classes.select}
-              disablePortal
-              id="topping"
-              inputValue={topping}
-              options={toppings}
-              onInputChange={(event, newValue) => {
-                setTopping(newValue);
-              }}
-              isOptionEqualToValue={(option, value) =>
-                option.value === value.value
-              }
-              getOptionLabel={(option) => option.topping}
-              sx={{ mt: 1, mb: 1, width: "100%" }}
-              renderOption={(props, option) => (
-                <Box component="li" {...props}>
-                  {option.topping} (+{option.cost}đ)
-                </Box>
-              )}
-              renderInput={(params) => (
-                <TextField name="topping" {...params} label="Chọn topping" />
-              )}
-            />
+              <Autocomplete
+                className={classes.select}
+                disablePortal
+                id="sole"
+                value={sole}
+                options={soles}
+                onChange={(event, newValue) => {
+                  setSole(newValue);
+                }}
+                isOptionEqualToValue={(option, value) =>
+                  option.value === value.value
+                }
+                getOptionLabel={(option) => option.sole}
+                sx={{ mt: 1, mb: 1, width: '100%' }}
+                renderOption={(props, option) => (
+                  <Box component="li" {...props}>
+                    {option.sole} (+{option.addCost}đ)
+                  </Box>
+                )}
+                renderInput={(params) => (
+                  <TextField name="sole" required {...params} label="Chọn đế" />
+                )}
+              />
+
+              {/* <span>Chọn topping</span> */}
+              <Autocomplete
+                className={classes.select}
+                disablePortal
+                id="topping"
+                options={toppings}
+                value={topping}
+                onChange={(event, newValue) => {
+                  setTopping(newValue);
+                }}
+                isOptionEqualToValue={(option, value) =>
+                  option.value === value.value
+                }
+                getOptionLabel={(option) => option.topping}
+                sx={{ mt: 1, mb: 1, width: '100%' }}
+                renderOption={(props, option) => (
+                  <Box component="li" {...props}>
+                    {option.topping} (+{option.addCost}đ)
+                  </Box>
+                )}
+                renderInput={(params) => (
+                  <TextField name="topping" {...params} label="Chọn topping" />
+                )}
+              />
+            </Box>
+          )}
+        </Box>
+      )}
+
+      {/* MUA THEO COMBO */}
+      {chooseProduct.type === 'combo' && (
+        <Box className={classes.combo}>
+          <Box>
+            {chooseProduct.product.map((item) => (
+              <Box className={classes.comboItem} key={item.id}>
+                <img src={process.env.PUBLIC_URL + `${item.srcImg}`} alt="" />
+                <span>
+                  {item.quantity} {item.name}
+                </span>
+                <div>Mua lẻ</div>
+              </Box>
+            ))}
           </Box>
-        ) : (
-          <Box sx={{flex: 1}}></Box>
-        )}
-        <Button type="submit" name={"Thêm vào giỏ"} />
-      </Box>
+        </Box>
+      )}
+      <Button type="submit" name={'Thêm vào giỏ'} />
     </Box>
   );
 }
 
 const sizes = [
   {
-    size: "Size S",
-    cost: 0,
+    size: 'Size S',
+    addCost: 0,
   },
   {
-    size: "Size M",
-    cost: 80000,
+    size: 'Size M',
+    addCost: 80000,
   },
   {
-    size: "Size L",
-    cost: 160000,
+    size: 'Size L',
+    addCost: 160000,
   },
 ];
 
 const soles = [
   {
-    sole: "Đế giòn",
-    cost: 0,
+    sole: 'Đế giòn',
+    addCost: 0,
   },
   {
-    sole: "Đế mềm xốp",
-    cost: 0,
+    sole: 'Đế mềm xốp',
+    addCost: 0,
   },
 ];
 
 const toppings = [
   {
-    topping: "Thêm phô mai phủ",
-    cost: 10000,
+    topping: 'Thêm phô mai phủ',
+    addCost: 10000,
   },
   {
-    topping: "Thêm phô mai viền",
-    cost: 10000,
+    topping: 'Thêm phô mai viền',
+    addCost: 10000,
   },
   {
-    topping: "Double sốt",
-    cost: 10000,
+    topping: 'Double sốt',
+    addCost: 10000,
   },
 ];

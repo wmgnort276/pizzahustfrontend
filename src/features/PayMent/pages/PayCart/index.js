@@ -50,7 +50,11 @@ export default function PayCard() {
   function renderItem({ item }) {
     return (
       <Box key={item.id} className={classes.productItem}>
-        <img src={item.image} alt="" />
+        <img
+          // src={item.image}
+          src={process.env.PUBLIC_URL + `${item.srcImg}`}
+          alt=""
+        />
         <Box className={classes.itemInfo}>
           <p>{item.name}</p>
           <Box className={classes.quantity}>
