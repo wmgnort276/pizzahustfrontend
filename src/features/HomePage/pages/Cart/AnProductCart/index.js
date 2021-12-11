@@ -27,7 +27,7 @@ export default function AnProductCart({ chooseProduct }) {
   function handleToCartBtn(e) {
     e.preventDefault();
     // Mua lẻ
-    if (chooseProduct.type === 'one1') {
+    if (!chooseProduct.numberperson) {
       let product = {};
       if (chooseProduct.hasOwnProperty('size')) {
         // change cost when choose size, topping
@@ -38,7 +38,7 @@ export default function AnProductCart({ chooseProduct }) {
           quantity: 1,
           size: size.size,
           sole: sole.sole,
-          topping: topping.topping,
+          topping: topping !== null ? topping.topping : '',
         };
       } else {
         product = {
@@ -47,7 +47,7 @@ export default function AnProductCart({ chooseProduct }) {
         };
       }
 
-      const idx = cart.findIndex((item) => item.id === product.id);
+      const idx = cart.findIndex((item) => item.pk === product.pk);
       if (idx !== -1) {
         // Nếu sản phẩm mới trùng sản phẩm đã chọn, quantity + 1
         if (
@@ -65,10 +65,11 @@ export default function AnProductCart({ chooseProduct }) {
     }
 
     // Mua combo
-    else if (chooseProduct.type === 'combo') {
+    else {
       const idx = cart.findIndex((item) => item.id === chooseProduct.id);
     }
   }
+  console.log('chooseProduct', chooseProduct);
 
   return (
     <Box component="form" onSubmit={handleToCartBtn} className={classes.root}>
@@ -76,7 +77,7 @@ export default function AnProductCart({ chooseProduct }) {
         <img
           srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
           alt=""
-          style={{ marginLeft: 'auto', display: 'block' }}
+          style={{ marginLeft: 'auto', display: 'block', cursor: 'pointer' }}
         />
       </Box>
       <ArrowBackIosIcon className={classes.back} onClick={handleBackBtn} />
@@ -99,7 +100,7 @@ export default function AnProductCart({ chooseProduct }) {
       </Box>
 
       {/* MUA MỘT SẢN PHẨM */}
-      {chooseProduct.type === 'one1' && (
+      {!chooseProduct.numberperson && (
         <Box className={classes.choose}>
           {chooseProduct.hasOwnProperty('size') && (
             <Box>

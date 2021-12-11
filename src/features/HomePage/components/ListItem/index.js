@@ -25,36 +25,35 @@ export default function ListItem({ listItem, api }) {
   const classes = useStyles();
   const [limit, setLimit] = useState(3);
 
+  // API
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch(api);
+      const responseJSON = await response.json();
+      console.log(responseJSON);
+      setData(responseJSON);
+    }
+
+    getData();
+  }, []);
+
   function handleMoreBtn() {
-    if (limit < listItem.length) {
+    if (limit < data.length) {
       setLimit(limit + 6);
     }
   }
 
-  // API
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   async function getData() {
-  //     const requestUrl = 'http://127.0.0.1:8000/piza/?size=S';
-  //     const response = await fetch(requestUrl);
-  //     const responseJSON = await response.json();
-  //     console.log(responseJSON);
-  //     setData(responseJSON);
-  //   }
-
-  //   getData();
-  // }, []);
-
   return (
     <Box className={classes.root}>
       <Box className={classes.body}>
-        {listItem.slice(0, limit).map((item) => (
+        {data.slice(0, limit).map((item) => (
           <Item key={item.id} item={item} />
         ))}
       </Box>
       <Button
         className={classes.moreBtn}
-        sx={{ display: limit >= listItem.length ? 'none' : '' }}
+        sx={{ display: limit >= data.length ? 'none' : '' }}
         variant="contained"
         onClick={handleMoreBtn}
       >
