@@ -38,7 +38,6 @@ export default function Header() {
             </svg>
           </Box>
         </HideOnScroll>
-        {/* <img srcSet={process.env.PUBLIC_URL + 'img/Delivery2.png'} alt="" /> */}
         <Slider />
       </Box>
     </Box>

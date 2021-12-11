@@ -38,7 +38,7 @@ const useStyles = makeStyles({
 
 export default function ProductList({ list, fee }) {
   const classes = useStyles();
-  console.log(list);
+  // console.log(list);
   return (
     <Box className={classes.root}>
       <Box className={classes.list}>

@@ -7,17 +7,15 @@ const useStyles = makeStyles({
     boxSizing: 'border-box',
     padding: '21px 28px 34px 32px',
     height: '100vh',
-
   },
-  
-  back:{
-    cursor: 'pointer' ,
-    
+
+  back: {
+    cursor: 'pointer',
+
     '&:hover': {
       fill: '#ff8000',
     },
   },
-
 
   logo: {
     display: 'flex',
@@ -44,11 +42,10 @@ const useStyles = makeStyles({
   choose: {
     margin: '0 16px',
     flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    '& .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#ff8000',
-    },
+    '& .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+      {
+        borderColor: '#ff8000',
+      },
     '& .css-1kty9di-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
       color: '#ff8000',
     },
@@ -77,6 +74,34 @@ const useStyles = makeStyles({
       '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
     borderRadius: '8px',
     marginBottom: '20px !important',
+  },
+
+  combo: {
+    flex: 1,
+  },
+
+  comboItem: {
+    display: 'flex',
+    margin: '30px 0',
+    position: 'relative',
+
+    '& img': {
+      width: '30%',
+    },
+    '& span': {
+      alignSelf: 'center',
+      fontSize: '16px',
+      fontWeight: 600,
+      color: '#006a31',
+      marginLeft: '10px',
+    },
+    '& > div': {
+      position: 'absolute',
+      right: '10px',
+      bottom: 0,
+      fontWeight: 600,
+      cursor: 'pointer',
+    },
   },
 });
 

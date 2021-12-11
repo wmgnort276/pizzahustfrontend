@@ -5,7 +5,6 @@ import { chooseProduct } from 'features/Slice';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-
 const useStyles = makeStyles({
   root: {
     padding: '0 15px',
@@ -27,7 +26,7 @@ const useStyles = makeStyles({
 
     '&:hover': {
       '& img': {
-        transform: 'scale(1.2) rotate(20deg)',
+        transform: 'rotate(20deg)',
         transition: '0.5s',
       },
       '& p': {
@@ -38,7 +37,7 @@ const useStyles = makeStyles({
     '& p': {
       margin: 0,
       fontSize: '16px',
-      display: 'WebkitBox',
+      display: '-webkit-box',
       WebkitBoxOrient: 'vertical',
       WebkitLineClamp: '2',
       maxHeight: '4rem',
@@ -71,9 +70,10 @@ export default function Item({ item }) {
   return (
     <div className={classes.root}>
       <img
-        src={item.image}
+        // src={item.image}
+        src={process.env.PUBLIC_URL + `${item.srcImg}`}
         alt=""
-        style={{width:'100%'}}
+        style={{ width: '100%' }}
       />
       <p>{item.name}</p>
       <div className={classes.body}>

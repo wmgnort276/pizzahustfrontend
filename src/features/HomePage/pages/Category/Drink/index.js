@@ -1,9 +1,9 @@
-import { Button, Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Item from 'features/HomePage/components/Item';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { v4 } from 'uuid';
-// import Data from 'API/Category/Pizza';
+
 const useStyles = makeStyles({
   root: {},
   body: {
@@ -20,42 +20,27 @@ const useStyles = makeStyles({
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
 });
-// console.log(getData());
 
 export default function Pizza() {
   const classes = useStyles();
   const [limit, setLimit] = useState(6);
 
   function handleMoreBtn() {
-    if (limit < pizzaList.length) {
+    if (limit < drinkList.length) {
       setLimit(limit + 6);
     }
   }
 
-  // API
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   async function getData() {
-  //     const requestUrl = 'http://127.0.0.1:8000/piza/?size=S';
-  //     const response = await fetch(requestUrl);
-  //     const responseJSON = await response.json();
-  //     console.log(responseJSON);
-  //     setData(responseJSON);
-  //   }
-
-  //   getData();
-  // }, []);
-
   return (
     <Box className={classes.root}>
       <Box className={classes.body}>
-        {pizzaList.slice(0, limit).map((item) => (
+        {drinkList.slice(0, limit).map((item) => (
           <Item key={item.id} item={item} />
         ))}
       </Box>
       <Button
         className={classes.moreBtn}
-        sx={{ display: limit >= pizzaList.length ? 'none' : '' }}
+        sx={{ display: limit >= drinkList.length ? 'none' : '' }}
         variant="contained"
         onClick={handleMoreBtn}
       >
@@ -65,11 +50,31 @@ export default function Pizza() {
   );
 }
 
-const pizzaList = [
+const drinkList = [
   {
     id: v4(),
-    srcImg: 'pizza.png',
-    name: 'Pizza Hải Sản Đào',
+    srcImg: 'drink1.png',
+    name: 'Bia 333',
+    type: 'one1',
+    quantity: 1,
+    rating: 5,
+    cost: 49000,
+    desc: '',
+  },
+  {
+    id: v4(),
+    srcImg: 'drink2.png',
+    name: '7Up Lon',
+    type: 'one1',
+    quantity: 1,
+    rating: 5,
+    cost: 29000,
+    desc: '',
+  },
+  {
+    id: v4(),
+    srcImg: 'drink3.png',
+    name: 'Bia Tiger',
     type: 'one1',
     quantity: 1,
     rating: 5,
@@ -78,8 +83,28 @@ const pizzaList = [
   },
   {
     id: v4(),
-    srcImg: 'pizza.png',
-    name: 'Pizza Hải Sản Đào',
+    srcImg: 'drink1.png',
+    name: 'Bia 333',
+    type: 'one1',
+    quantity: 1,
+    rating: 5,
+    cost: 49000,
+    desc: '',
+  },
+  {
+    id: v4(),
+    srcImg: 'drink2.png',
+    name: '7Up Lon 2',
+    type: 'one1',
+    quantity: 1,
+    rating: 5,
+    cost: 29000,
+    desc: '',
+  },
+  {
+    id: v4(),
+    srcImg: 'drink3.png',
+    name: 'Bia Tiger',
     type: 'one1',
     quantity: 1,
     rating: 5,
@@ -88,52 +113,12 @@ const pizzaList = [
   },
   {
     id: v4(),
-    srcImg: 'pizza.png',
-    name: 'Pizza Hải Sản Đào 2',
+    srcImg: 'drink1.png',
+    name: 'Bia 333',
     type: 'one1',
     quantity: 1,
     rating: 5,
-    cost: 69000,
-    desc: '',
-  },
-  {
-    id: v4(),
-    srcImg: 'pizza.png',
-    name: 'Pizza Hải Sản Đào 2',
-    type: 'one1',
-    quantity: 1,
-    rating: 5,
-    cost: 69000,
-    desc: '',
-  },
-  {
-    id: v4(),
-    srcImg: 'pizza.png',
-    name: 'Pizza Hải Sản Đào 2',
-    type: 'one1',
-    quantity: 1,
-    rating: 5,
-    cost: 69000,
-    desc: '',
-  },
-  {
-    id: v4(),
-    srcImg: 'pizza.png',
-    name: 'Pizza Hải Sản Đào 3',
-    type: 'one1',
-    quantity: 1,
-    rating: 5,
-    cost: 69000,
-    desc: '',
-  },
-  {
-    id: v4(),
-    srcImg: 'pizza.png',
-    name: 'Pizza Hải Sản Đào',
-    type: 'one1',
-    quantity: 1,
-    rating: 5,
-    cost: 69000,
+    cost: 49000,
     desc: '',
   },
 ];
