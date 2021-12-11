@@ -27,7 +27,7 @@ export default function AnProductCart({ chooseProduct }) {
   function handleToCartBtn(e) {
     e.preventDefault();
     // Mua lẻ
-    if (chooseProduct.type === 'one1') {
+    if (!chooseProduct.numberperson) {
       let product = {};
       if (chooseProduct.hasOwnProperty('size')) {
         // change cost when choose size, topping
@@ -65,10 +65,11 @@ export default function AnProductCart({ chooseProduct }) {
     }
 
     // Mua combo
-    else if (chooseProduct.type === 'combo') {
+    else {
       const idx = cart.findIndex((item) => item.id === chooseProduct.id);
     }
   }
+  console.log(chooseProduct)
 
   return (
     <Box component="form" onSubmit={handleToCartBtn} className={classes.root}>
@@ -76,11 +77,7 @@ export default function AnProductCart({ chooseProduct }) {
         <img
           srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
           alt=""
-<<<<<<< HEAD
           style={{ marginLeft: "auto", display: "block", cursor: "pointer" }}
-=======
-          style={{ marginLeft: 'auto', display: 'block' }}
->>>>>>> cafa94737930e4679ef549898448f0664009cd5f
         />
       </Box>
       <ArrowBackIosIcon className={classes.back} onClick={handleBackBtn} />
@@ -103,7 +100,7 @@ export default function AnProductCart({ chooseProduct }) {
       </Box>
 
       {/* MUA MỘT SẢN PHẨM */}
-      {chooseProduct.type === 'one1' && (
+      {!chooseProduct.numberperson && (
         <Box className={classes.choose}>
           {chooseProduct.hasOwnProperty('size') && (
             <Box>

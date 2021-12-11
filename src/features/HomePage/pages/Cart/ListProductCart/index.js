@@ -108,14 +108,10 @@ export default function ListProductCart({ cart }) {
                     onClick={() => onDelBtnClick(item.id)}
                   />
                 </Tooltip>
-<<<<<<< HEAD
-                <span>{item.cost * item.quantity}<span style={{color: '#ff8000'}}>đ</span></span>
-=======
                 <span>
                   {item.cost * item.quantity}
                   <span style={{ color: '#ff8000' }}> đ</span>
                 </span>
->>>>>>> cafa94737930e4679ef549898448f0664009cd5f
               </Box>
             </Box>
           ))}
