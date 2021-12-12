@@ -67,6 +67,12 @@ export default function AnProductCart({ chooseProduct }) {
     // Mua combo
     else {
       const idx = cart.findIndex((item) => item.id === chooseProduct.id);
+      if (idx !== -1) {
+        // Nếu sản phẩm mới trùng sản phẩm đã chọn, quantity + 1
+        dispatch(AddBtnClick(idx));
+      } else {
+        dispatch(addProduct(chooseProduct));
+      }
     }
   }
   // console.log('chooseProduct', chooseProduct);
