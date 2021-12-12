@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles';
+import BuySuccess from 'features/BuySuccess';
 import HomePage from 'features/HomePage';
 import Login from 'features/Login/pages';
 import Pay from 'features/PayMent';
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/personal" element={<Personal />} />
+        <Route path="/success" element={<BuySuccess />} />
       </Routes>
     </div>
   );
