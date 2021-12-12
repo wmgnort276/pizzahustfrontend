@@ -25,7 +25,6 @@ export default function ListItem({ listItem, api }) {
   const classes = useStyles();
   const [limit, setLimit] = useState(6);
 
-  
   // API
   const [data, setData] = useState([]);
   useEffect(() => {

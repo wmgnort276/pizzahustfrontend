@@ -94,7 +94,9 @@ export default function ListProductCart({ cart }) {
                     <RemoveIcon sx={{ cursor: 'pointer' }} />
                   </Box>
                   <Divider orientation="vertical" variant="middle" flexItem />
-                  <Box sx={{ margin: '0 10px', color: '#ff8000' }}>{item.quantity}</Box>
+                  <Box sx={{ margin: '0 10px', color: '#ff8000' }}>
+                    {item.quantity}
+                  </Box>
                   <Divider orientation="vertical" variant="middle" flexItem />
                   <Box onClick={() => onAddBtnClick(item.id)}>
                     <AddIcon sx={{ cursor: 'pointer' }} />

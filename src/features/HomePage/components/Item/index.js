@@ -66,7 +66,7 @@ export default function Item({ item }) {
   function handleAddClick() {
     dispatch(chooseProduct(item));
   }
-  console.log(item);
+
   return (
     <div className={classes.root}>
       <img
