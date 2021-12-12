@@ -43,6 +43,8 @@ const useStyles = makeStyles({
     marginBottom: '30px',
     fontSize: '18px',
     fontWeight: 700,
+    display: 'flex',
+    justifyContent: 'space-between',
   },
 
   productItem: {

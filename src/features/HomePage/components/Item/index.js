@@ -70,10 +70,10 @@ export default function Item({ item }) {
   return (
     <div className={classes.root}>
       <img
-        // src={item.image}
-        src={process.env.PUBLIC_URL + `${item.srcImg}`}
+        src={item.image}
+        // src={process.env.PUBLIC_URL + `${item.srcImg}`}
         alt=""
-        style={{ width: '100%' }}
+        style={{ width: '80%' }}
       />
       <p>{item.name}</p>
       <div className={classes.body}>

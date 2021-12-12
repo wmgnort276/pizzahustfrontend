@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Box } from '@mui/material';
 import { v4 } from 'uuid';
 import { makeStyles } from '@mui/styles';
@@ -37,18 +37,31 @@ export default function Combo() {
       setLimit(limit + 6);
     }
   }
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch('http://127.0.0.1:8000/combo/');
+      const responseJSON = await response.json();
+      // console.log(responseJSON);
+      setData(responseJSON);
+    }
+
+    getData();
+  }, []);
+
   return (
     <div>
       <Box className={classes.root}>
         <Box className={classes.title}>Combo khuyến mãi</Box>
         <Box className={classes.body}>
-          {comboList.map((item) => (
-            <Item key={item.id} item={item} type={item.type} />
+          {data.map((item) => (
+            <Item key={item.pk} item={item} type={item.type} />
           ))}
         </Box>
         <Button
           className={classes.moreBtn}
-          sx={{ display: limit >= comboList.length ? 'none' : '' }}
+          sx={{ display: limit >= data.length ? 'none' : '' }}
           variant="contained"
           onClick={handleMoreBtn}
         >
@@ -68,10 +81,11 @@ const comboList = [
     quantity: 1,
     score_fields: 5,
     cost: 89000,
+    numberperson: 2,
     desc: '',
     product: [
       {
-        id: 1,
+        id: 10,
         name: 'Pizza Puff_Giăm Bông & Thịt Xông Khói',
         srcImg: 'combo/1_item1-1.png',
         quantity: 1,

@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles';
+import BuySuccess from 'features/BuySuccess';
 import HomePage from 'features/HomePage';
 import Login from 'features/Login/pages';
 import Pay from 'features/PayMent';
@@ -8,7 +9,9 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router';
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    width: 'calc(100vw - 17px)',
+  },
 });
 
 export default function App() {
@@ -23,6 +26,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/personal" element={<Personal />} />
+        <Route path="/success" element={<BuySuccess />} />
       </Routes>
     </div>
   );

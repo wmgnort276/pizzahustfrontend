@@ -18,7 +18,12 @@ export default function Menu() {
 
   return (
     <Box className={classes.root}>
-      <TaskBar categories={menus} activeId={activeId} onTabClick={onTabClick} title="Menu" />
+      <TaskBar
+        categories={menus}
+        activeId={activeId}
+        onTabClick={onTabClick}
+        title="Menu"
+      />
       {menus.map(
         (menu) =>
           menu.id === activeId &&

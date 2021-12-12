@@ -87,6 +87,7 @@ const useStyles = makeStyles({
 
     '& img': {
       width: '30%',
+      cursor: 'pointer',
     },
     '& span': {
       alignSelf: 'center',

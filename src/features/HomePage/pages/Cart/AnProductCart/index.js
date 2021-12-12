@@ -1,5 +1,5 @@
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { Autocomplete, Box, TextField } from '@mui/material';
+import { Autocomplete, Box, Popover, TextField } from '@mui/material';
 import Button from 'components/Button';
 import {
   AddBtnClick,
@@ -8,6 +8,7 @@ import {
   BackBtnClick,
 } from 'features/Slice';
 import React, { useState } from 'react';
+import ChangeCombo from '../ChangeCombo';
 import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from './styles';
 import './styles.css';
@@ -17,11 +18,24 @@ export default function AnProductCart({ chooseProduct }) {
   const [size, setSize] = useState(null);
   const [sole, setSole] = useState(null);
   const [topping, setTopping] = useState(null);
+  const [openId, setOpenId] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
 
+  // Cancel choose product
   function handleBackBtn() {
     dispatch(BackBtnClick());
+  }
+
+  // Change product in combo
+  function handleChangeCombo(id, event) {
+    setOpenId(id);
+    setAnchorEl(event.currentTarget);
+  }
+  function handleCloseChange(event) {
+    setOpenId(0);
+    setAnchorEl(null);
   }
 
   function handleToCartBtn(e) {
@@ -67,9 +81,15 @@ export default function AnProductCart({ chooseProduct }) {
     // Mua combo
     else {
       const idx = cart.findIndex((item) => item.id === chooseProduct.id);
+      if (idx !== -1) {
+        // Nếu sản phẩm mới trùng sản phẩm đã chọn, quantity + 1
+        dispatch(AddBtnClick(idx));
+      } else {
+        dispatch(addProduct(chooseProduct));
+      }
     }
   }
-  console.log('chooseProduct', chooseProduct);
+  // console.log('chooseProduct', chooseProduct);
 
   return (
     <Box component="form" onSubmit={handleToCartBtn} className={classes.root}>
@@ -83,8 +103,8 @@ export default function AnProductCart({ chooseProduct }) {
       <ArrowBackIosIcon className={classes.back} onClick={handleBackBtn} />
       <Box className={classes.product}>
         <img
-          // src={chooseProduct.image}
-          src={process.env.PUBLIC_URL + `${chooseProduct.srcImg}`}
+          src={chooseProduct.image}
+          // src={process.env.PUBLIC_URL + `${chooseProduct.srcImg}`}
           alt=""
         />
         <Box>
@@ -99,8 +119,41 @@ export default function AnProductCart({ chooseProduct }) {
         </Box>
       </Box>
 
+      {/* MUA THEO COMBO */}
+      {chooseProduct.hasOwnProperty('numberperson') && (
+        <Box className={classes.combo}>
+          <Box>
+            {chooseProduct.combo.map((item) => (
+              <Box className={classes.comboItem} key={item.pk}>
+                <img
+                  src={item.image}
+                  onClick={(event) => handleChangeCombo(item.pk, event)}
+                  alt=""
+                />
+                <Popover
+                  open={item.pk === openId}
+                  anchorEl={anchorEl}
+                  onClose={handleCloseChange}
+                  transformOrigin={{
+                    vertical: 'center',
+                    horizontal: 'right',
+                  }}
+                >
+                  {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
+                  <ChangeCombo product={item} />
+                </Popover>
+                <span>
+                  {item.quantity} {item.name}
+                </span>
+                <div>Mua lẻ</div>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      )}
+
       {/* MUA MỘT SẢN PHẨM */}
-      {!chooseProduct.numberperson && (
+      {!chooseProduct.hasOwnProperty('numberperson') && (
         <Box className={classes.choose}>
           {chooseProduct.hasOwnProperty('size') && (
             <Box>
@@ -187,22 +240,6 @@ export default function AnProductCart({ chooseProduct }) {
         </Box>
       )}
 
-      {/* MUA THEO COMBO */}
-      {chooseProduct.type === 'combo' && (
-        <Box className={classes.combo}>
-          <Box>
-            {chooseProduct.product.map((item) => (
-              <Box className={classes.comboItem} key={item.id}>
-                <img src={process.env.PUBLIC_URL + `${item.srcImg}`} alt="" />
-                <span>
-                  {item.quantity} {item.name}
-                </span>
-                <div>Mua lẻ</div>
-              </Box>
-            ))}
-          </Box>
-        </Box>
-      )}
       <Button type="submit" name={'Thêm vào giỏ'} />
     </Box>
   );

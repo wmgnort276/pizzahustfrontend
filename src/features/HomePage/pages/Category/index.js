@@ -30,10 +30,7 @@ export default function Category() {
         (category) =>
           category.id === activeId && (
             /* category.listItem &&  */
-            <ListItem
-              listItem={category.listItem}
-              api={category.api}
-            />
+            <ListItem listItem={category.listItem} api={category.api} />
           )
       )}
     </Box>

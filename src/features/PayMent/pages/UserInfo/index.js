@@ -18,7 +18,7 @@ export default function UserInfo() {
     dispatch(buyAllRequest());
     setBuySuccess(true);
     setTimeout(() => {
-      navigate('/', { replace: true });
+      navigate('/success', { replace: true });
     }, 1000);
   }
 
