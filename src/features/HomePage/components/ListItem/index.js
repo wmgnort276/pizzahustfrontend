@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 
   moreBtn: {
     width: '100%',
-    background: 'linear-gradient(45deg, #f59838  30%, #ffca53 90%)',
+    backgroundColor: '#ff8000 !important',
     borderRadius: '30px !important',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 
 export default function ListItem({ listItem, api }) {
   const classes = useStyles();
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(6);
 
   // API
   const [data, setData] = useState([]);

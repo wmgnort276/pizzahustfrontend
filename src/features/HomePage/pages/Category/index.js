@@ -24,6 +24,7 @@ export default function Category() {
         categories={categories}
         activeId={activeId}
         onTabClick={onTabClick}
+        title="Thực đơn"
       />
       {categories.map(
         (category) =>
@@ -32,7 +33,6 @@ export default function Category() {
             <ListItem
               listItem={category.listItem}
               api={category.api}
-              title="Thực đơn"
             />
           )
       )}
