@@ -99,12 +99,26 @@ export default function AnProductCart({ chooseProduct }) {
         </Box>
       </Box>
 
+      {/* MUA THEO COMBO */}
+      {chooseProduct.type === 'combo' && (
+        <Box className={classes.combo}>
+          <Box>
+            {chooseProduct.product.map((item) => (
+              <Box className={classes.comboItem} key={item.id}>
+                <img src={process.env.PUBLIC_URL + `${item.srcImg}`} alt="" />
+                <span>
+                  {item.quantity} {item.name}
+                </span>
+                <div>Mua lẻ</div>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      )}
+
       {/* MUA MỘT SẢN PHẨM */}
       {!chooseProduct.hasOwnProperty('numberperson') && (
-        <Box
-          sx={{ display: chooseProduct.numberperson ? 'block' : 'none' }}
-          className={classes.choose}
-        >
+        <Box className={classes.choose}>
           {chooseProduct.hasOwnProperty('size') && (
             <Box>
               <Autocomplete
@@ -190,22 +204,6 @@ export default function AnProductCart({ chooseProduct }) {
         </Box>
       )}
 
-      {/* MUA THEO COMBO */}
-      {chooseProduct.type === 'combo' && (
-        <Box className={classes.combo}>
-          <Box>
-            {chooseProduct.product.map((item) => (
-              <Box className={classes.comboItem} key={item.id}>
-                <img src={process.env.PUBLIC_URL + `${item.srcImg}`} alt="" />
-                <span>
-                  {item.quantity} {item.name}
-                </span>
-                <div>Mua lẻ</div>
-              </Box>
-            ))}
-          </Box>
-        </Box>
-      )}
       <Button type="submit" name={'Thêm vào giỏ'} />
     </Box>
   );

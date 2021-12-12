@@ -69,26 +69,28 @@ export default function ListProductCart({ cart }) {
                 >
                   {item.name}
                 </p>
-                <Popover
-                  sx={{
-                    pointerEvents: 'none',
-                  }}
-                  open={item.id === openId}
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                >
-                  <Typography sx={{ p: 1 }}>
-                    {item.size}, {item.sole},{' '}
-                    {item.topping ? item.topping : 'Không topping'}
-                  </Typography>
-                </Popover>
+                {item.hasOwnProperty('size') && (
+                  <Popover
+                    sx={{
+                      pointerEvents: 'none',
+                    }}
+                    open={item.id === openId}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'left',
+                    }}
+                  >
+                    <Typography sx={{ p: 1 }}>
+                      {item.size}, {item.sole},{' '}
+                      {item.topping ? item.topping : 'Không topping'}
+                    </Typography>
+                  </Popover>
+                )}
                 <Box className={classes.quantity}>
                   <Box onClick={() => onSubBtnClick(item.id)}>
                     <RemoveIcon sx={{ cursor: 'pointer' }} />
