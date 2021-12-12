@@ -100,8 +100,11 @@ export default function AnProductCart({ chooseProduct }) {
       </Box>
 
       {/* MUA MỘT SẢN PHẨM */}
-      {!chooseProduct.numberperson && (
-        <Box className={classes.choose}>
+      {!chooseProduct.hasOwnProperty('numberperson') && (
+        <Box
+          sx={{ display: chooseProduct.numberperson ? 'block' : 'none' }}
+          className={classes.choose}
+        >
           {chooseProduct.hasOwnProperty('size') && (
             <Box>
               <Autocomplete
