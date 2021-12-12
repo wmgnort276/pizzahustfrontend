@@ -18,12 +18,12 @@ export default function Menu() {
 
   return (
     <Box className={classes.root}>
-      <TaskBar categories={menus} activeId={activeId} onTabClick={onTabClick} />
+      <TaskBar categories={menus} activeId={activeId} onTabClick={onTabClick} title="Menu" />
       {menus.map(
         (menu) =>
           menu.id === activeId &&
           (
-            <ListItem listItem={menu.listItem} api={menu.api} title="Menu" />
+            <ListItem listItem={menu.listItem} api={menu.api} />
           )
       )}
     </Box>
