@@ -18,24 +18,6 @@ const useStyles = makeStyles({
 
   main: {
     padding: '0 40px 40px',
-    flex: 1,
-    overflow: 'auto',
-    /* width */
-    '&::-webkit-scrollbar': {
-      width: '5px',
-      borderRadius: '10px',
-    },
-
-    /* Track */
-    '&::-webkit-scrollbar-track': {
-      background: '#fff2e0',
-    },
-
-    /* Handle */
-    '&::-webkit-scrollbar-thumb': {
-      background: '#ff8000',
-      borderRadius: '10px',
-    },
   },
 
   cart: {},

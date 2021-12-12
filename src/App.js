@@ -8,7 +8,9 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router';
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    width: 'calc(100vw - 17px)',
+  },
 });
 
 export default function App() {

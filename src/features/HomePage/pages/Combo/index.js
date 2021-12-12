@@ -68,10 +68,11 @@ const comboList = [
     quantity: 1,
     score_fields: 5,
     cost: 89000,
+    numberperson: 2,
     desc: '',
     product: [
       {
-        id: 1,
+        id: 10,
         name: 'Pizza Puff_Giăm Bông & Thịt Xông Khói',
         srcImg: 'combo/1_item1-1.png',
         quantity: 1,

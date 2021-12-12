@@ -1,5 +1,5 @@
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { Autocomplete, Box, TextField } from '@mui/material';
+import { Autocomplete, Box, Popover, TextField } from '@mui/material';
 import Button from 'components/Button';
 import {
   AddBtnClick,
@@ -8,6 +8,7 @@ import {
   BackBtnClick,
 } from 'features/Slice';
 import React, { useState } from 'react';
+import ChangeCombo from '../ChangeCombo';
 import { useDispatch, useSelector } from 'react-redux';
 import { useStyles } from './styles';
 import './styles.css';
@@ -17,11 +18,24 @@ export default function AnProductCart({ chooseProduct }) {
   const [size, setSize] = useState(null);
   const [sole, setSole] = useState(null);
   const [topping, setTopping] = useState(null);
+  const [openId, setOpenId] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
 
+  // Cancel choose product
   function handleBackBtn() {
     dispatch(BackBtnClick());
+  }
+
+  // Change product in combo
+  function handleChangeCombo(id, event) {
+    setOpenId(id);
+    setAnchorEl(event.currentTarget);
+  }
+  function handleCloseChange(event) {
+    setOpenId(0);
+    setAnchorEl(null);
   }
 
   function handleToCartBtn(e) {
@@ -106,12 +120,28 @@ export default function AnProductCart({ chooseProduct }) {
       </Box>
 
       {/* MUA THEO COMBO */}
-      {chooseProduct.type === 'combo' && (
+      {chooseProduct.hasOwnProperty('numberperson') && (
         <Box className={classes.combo}>
           <Box>
             {chooseProduct.product.map((item) => (
               <Box className={classes.comboItem} key={item.id}>
-                <img src={process.env.PUBLIC_URL + `${item.srcImg}`} alt="" />
+                <img
+                  src={process.env.PUBLIC_URL + `${item.srcImg}`}
+                  onClick={(event) => handleChangeCombo(item.id, event)}
+                  alt=""
+                />
+                <Popover
+                  open={item.id === openId}
+                  anchorEl={anchorEl}
+                  onClose={handleCloseChange}
+                  transformOrigin={{
+                    vertical: 'center',
+                    horizontal: 'right',
+                  }}
+                >
+                  {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
+                  <ChangeCombo product={item} />
+                </Popover>
                 <span>
                   {item.quantity} {item.name}
                 </span>
