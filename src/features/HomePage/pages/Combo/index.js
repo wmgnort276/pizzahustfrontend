@@ -61,7 +61,7 @@ export default function Combo() {
         </Box>
         <Button
           className={classes.moreBtn}
-          sx={{ display: limit >= comboList.length ? 'none' : '' }}
+          sx={{ display: limit >= data.length ? 'none' : '' }}
           variant="contained"
           onClick={handleMoreBtn}
         >

@@ -43,7 +43,7 @@ const useStyles = makeStyles({
 
 export default function ChangeCombo({ product, changeTo }) {
   const classes = useStyles();
-
+  console.log(changeTo)
   const changeItem = (item) => {
     console.log("item change", item);
     console.log("product", product);
