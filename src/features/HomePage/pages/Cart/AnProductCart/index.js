@@ -124,6 +124,7 @@ export default function AnProductCart({ chooseProduct }) {
       {chooseProduct.hasOwnProperty('numberperson') && (
         <Box className={classes.combo}>
           <Box>
+<<<<<<< HEAD
             {
               Array.apply(null, { length: chooseProduct.combo[0].amountPizza }).map(() => 
                 <Box className={classes.comboItem} key={chooseProduct.combo[0].pk}>
@@ -181,6 +182,33 @@ export default function AnProductCart({ chooseProduct }) {
                 </Box>
               ) 
             }
+=======
+            {chooseProduct.product.map((item) => (
+              <Box className={classes.comboItem} key={item.pk}>
+                <img
+                  src={item.image}
+                  onClick={(event) => handleChangeCombo(item.pk, event)}
+                  alt=""
+                />
+                <Popover
+                  open={item.pk === openId}
+                  anchorEl={anchorEl}
+                  onClose={handleCloseChange}
+                  transformOrigin={{
+                    vertical: 'center',
+                    horizontal: 'right',
+                  }}
+                >
+                  {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
+                  <ChangeCombo product={item} />
+                </Popover>
+                <span>
+                  {item.quantity} {item.name}
+                </span>
+                <div>Mua lẻ</div>
+              </Box>
+            ))}
+>>>>>>> 67efa099f13fc66bc44bbb3c99a7cc52fc3b4796
           </Box>
         </Box>
       )}

@@ -5,6 +5,7 @@ import React from 'react';
 import Cart from './pages/Cart';
 import Category from './pages/Category';
 import Combo from './pages/Combo';
+import Footer from './pages/Footer';
 import Header from './pages/Header';
 import Menu from './pages/Menu';
 
@@ -37,6 +38,7 @@ export default function HomePage() {
           <Combo />
           <Category />
           <Menu />
+          <Footer />
         </Grid>
         <Grid className={classes.cart} item xs={4}>
           <Cart />
