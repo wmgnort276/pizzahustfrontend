@@ -8,10 +8,12 @@ import {
   BackBtnClick,
 } from 'features/Slice';
 import React, { useState } from 'react';
-import ChangeCombo from '../ChangeCombo';
 import { useDispatch, useSelector } from 'react-redux';
+import { v4 } from 'uuid';
+import ChangeCombo from '../ChangeCombo';
 import { useStyles } from './styles';
 import './styles.css';
+import { ChooseProduct } from 'features/Slice';
 
 export default function AnProductCart({ chooseProduct }) {
   const classes = useStyles();
@@ -28,26 +30,41 @@ export default function AnProductCart({ chooseProduct }) {
     dispatch(BackBtnClick());
   }
 
-  // Change product in combo
+  // CHANGE PRODUCT IN COMBO
+  // Mở list các item thay thế
   function handleChangeCombo(id, event) {
     setOpenId(id);
     setAnchorEl(event.currentTarget);
   }
+  // Đóng list các item thay thế
   function handleCloseChange(event) {
     setOpenId(0);
     setAnchorEl(null);
   }
+  function changeItem(item) {
+    const newProductDefault = chooseProduct.productDefault.map((i) =>
+      i.id === openId ? { ...item } : i
+    );
+    chooseProduct = {
+      ...chooseProduct,
+      productDefault: newProductDefault,
+    };
+    dispatch(ChooseProduct(chooseProduct));
+  }
 
+  // KHI NHẤN THÊM VÀO GIỎ
   function handleToCartBtn(e) {
     e.preventDefault();
     // Mua lẻ
     if (!chooseProduct.numberperson) {
       let product = {};
+      // Nếu sản phẩm là pizza
       if (chooseProduct.hasOwnProperty('size')) {
         // change cost when choose size, topping
         const toppingCost = topping !== null ? topping.addCost : 0;
         product = {
           ...chooseProduct,
+          id: v4(),
           cost: chooseProduct.cost + size.addCost + toppingCost,
           quantity: 1,
           size: size.size,
@@ -55,13 +72,15 @@ export default function AnProductCart({ chooseProduct }) {
           topping: topping !== null ? topping.topping : '',
         };
       } else {
+        // Nếu sản phẩm không là pizza
         product = {
           ...chooseProduct,
+          id: v4(),
           quantity: 1,
         };
       }
 
-      const idx = cart.findIndex((item) => item.pk === product.pk);
+      const idx = cart.findIndex((item) => item.id === product.id);
       if (idx !== -1) {
         // Nếu sản phẩm mới trùng sản phẩm đã chọn, quantity + 1
         if (
@@ -83,12 +102,14 @@ export default function AnProductCart({ chooseProduct }) {
       const idx = cart.findIndex((item) => item.id === chooseProduct.id);
       if (idx !== -1) {
         // Nếu sản phẩm mới trùng sản phẩm đã chọn, quantity + 1
-        dispatch(AddBtnClick(idx));
+        if (cart[idx].productDefault === chooseProduct.productDefault) {
+          dispatch(AddBtnClick(idx));
+        } else {
+          dispatch(addOldProduct(chooseProduct));
+        }
       } else {
         dispatch(addProduct(chooseProduct));
       }
-      console.log("pizza", chooseProduct.pizzas);
-      console.log("dishes", chooseProduct.dishes);
     }
   }
 
@@ -124,65 +145,32 @@ export default function AnProductCart({ chooseProduct }) {
       {chooseProduct.hasOwnProperty('numberperson') && (
         <Box className={classes.combo}>
           <Box>
-            {
-              // Pizza render
-              Array.apply(null, { length: chooseProduct.combo[0].amountPizza }).map(() => 
-                <Box className={classes.comboItem} key={chooseProduct.combo[0].pk}>
-                  <img
-                    src={chooseProduct.combo[0].pizza.image}
-                    onClick={(event) => handleChangeCombo(chooseProduct.combo[0].pizza.pk, event)}
-                    alt=""
-                    />
-                  <Popover
-                    open={chooseProduct.combo[0].pizza.pk === openId}
-                    anchorEl={anchorEl}
-                    onClose={handleCloseChange}
-                    transformOrigin={{
-                      vertical: 'center',
-                      horizontal: 'right',
-                    }}
-                  >
-                    {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
-                    <ChangeCombo product={chooseProduct.combo[0]} changeTo={chooseProduct.pizzas}/>
-                  </Popover>
-                  <span>
-                    {chooseProduct.combo[0].pizza.name}
-                  </span>
-                  <div>Mua lẻ</div>
-                </Box>
-              ) 
-            }
-          </Box>
-
-          <Box>
-            {
-              // Side render
-              Array.apply(null, { length: chooseProduct.combo[0].amount }).map(() => 
-                <Box className={classes.comboItem} key={chooseProduct.combo[0].pk}>
-                  <img
-                    src={chooseProduct.combo[0].dishes.image}
-                    onClick={(event) => handleChangeCombo(chooseProduct.combo[0].dishes.pk, event)}
-                    alt=""
-                    />
-                  <Popover
-                    open={chooseProduct.combo[0].dishes.pk === openId}
-                    anchorEl={anchorEl}
-                    onClose={handleCloseChange}
-                    transformOrigin={{
-                      vertical: 'center',
-                      horizontal: 'right',
-                    }}
-                  >
-                    {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
-                    <ChangeCombo product={chooseProduct.combo[0]} changeTo={chooseProduct.sides} />
-                  </Popover>
-                  <span>
-                    {chooseProduct.combo[0].dishes.name}
-                  </span>
-                  <div>Mua lẻ</div>
-                </Box>
-              ) 
-            }
+            {chooseProduct.productDefault.map((item) => (
+              <Box className={classes.comboItem} key={item.id}>
+                <img
+                  src={item.image}
+                  onClick={(event) => handleChangeCombo(item.id, event)}
+                  alt=""
+                />
+                <Popover
+                  open={item.id === openId}
+                  anchorEl={anchorEl}
+                  onClose={handleCloseChange}
+                  transformOrigin={{
+                    vertical: 'center',
+                    horizontal: 'right',
+                  }}
+                >
+                  {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
+                  <ChangeCombo
+                    changeItem={changeItem}
+                    changeTo={item.itemChange}
+                  />
+                </Popover>
+                <span>{item.name}</span>
+                <div>Mua lẻ</div>
+              </Box>
+            ))}
           </Box>
         </Box>
       )}

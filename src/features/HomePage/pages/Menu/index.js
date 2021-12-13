@@ -26,9 +26,8 @@ export default function Menu() {
       />
       {menus.map(
         (menu) =>
-          menu.id === activeId &&
-          (
-            <ListItem listItem={menu.listItem} api={menu.api} />
+          menu.id === activeId && (
+            <ListItem key={menu.id} listItem={menu.listItem} api={menu.api} />
           )
       )}
     </Box>

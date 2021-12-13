@@ -48,7 +48,7 @@ export default function ListItem({ listItem, api }) {
     <Box className={classes.root}>
       <Box className={classes.body}>
         {data.slice(0, limit).map((item) => (
-          <Item key={item.id} item={item} />
+          <Item key={item.pk} item={item} />
         ))}
       </Box>
       <Button

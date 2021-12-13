@@ -1,9 +1,11 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Fab, Rating, Tooltip } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { chooseProduct } from 'features/Slice';
-import React from 'react';
+import { ChooseProduct } from 'features/Slice';
+import React, { useEffect, useState } from 'react';
+import { v4 } from 'uuid';
 import { useDispatch } from 'react-redux';
+import ListItem from '../ListItem';
 
 const useStyles = makeStyles({
   root: {
@@ -62,9 +64,42 @@ const useStyles = makeStyles({
 export default function Item({ item }) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [newItem, setNewItem] = useState({});
+
+  useEffect(() => {
+    // Nếu sản phẩm được chọn là Combo
+
+    if (item.hasOwnProperty('numberperson')) {
+      // Lấy item mặc định trong combo
+      const productDefault = [];
+      const numberPizza = item.combo[0].amountPizza;
+      const numberSide = item.combo[0].amount;
+      for (let i = 0; i < numberPizza; i++) {
+        const newItem = {
+          ...item.combo[0].pizza,
+          id: v4(),
+          itemChange: item.pizzas,
+        };
+        productDefault.push(newItem);
+      }
+      for (let i = 0; i < numberSide; i++) {
+        const newItem = {
+          ...item.combo[0].dishes,
+          id: v4(),
+          itemChange: item.sides,
+        };
+        productDefault.push(newItem);
+      }
+      setNewItem({ ...item, id: v4(), quantity: 1, productDefault });
+    }
+  }, [item]);
 
   function handleAddClick() {
-    dispatch(chooseProduct(item));
+    if (item.hasOwnProperty('numberperson')) {
+      dispatch(ChooseProduct(newItem));
+    } else {
+      dispatch(ChooseProduct(item));
+    }
   }
 
   return (

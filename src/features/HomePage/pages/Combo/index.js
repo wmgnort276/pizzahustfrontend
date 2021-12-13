@@ -56,7 +56,7 @@ export default function Combo() {
         <Box className={classes.title}>Combo khuyến mãi</Box>
         <Box className={classes.body}>
           {data.map((item) => (
-            <Item key={item.id} item={item} />
+            <Item key={item.pk} item={item} />
           ))}
         </Box>
         <Button

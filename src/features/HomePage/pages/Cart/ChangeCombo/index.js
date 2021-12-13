@@ -1,59 +1,59 @@
-import { Box } from "@mui/material";
-import React from "react";
-import { makeStyles } from "@mui/styles";
+import { Box } from '@mui/material';
+import React from 'react';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   root: {},
 
   listChange: {
-    margin: "20px",
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 160px)",
-    gridGap: "20px",
+    margin: '20px',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 160px)',
+    gridGap: '20px',
   },
 
   itemChange: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
 
-    "& span": {
-      textAlign: "center",
-      color: "#006a31",
-      fontSize: "14px",
+    '& span': {
+      textAlign: 'center',
+      color: '#006a31',
+      fontSize: '14px',
       fontWeight: 600,
     },
   },
 
   wrapImg: {
-    border: "1px solid #ccc",
+    border: '1px solid #ccc',
   },
 
   itemImg: {
-    width: "100%",
-    boxSizing: "border-box",
-    margin: "20px auto",
-    cursor: "pointer",
+    width: '100%',
+    boxSizing: 'border-box',
+    margin: '20px auto',
+    cursor: 'pointer',
 
-    "& img": {
-      width: "100%",
+    '& img': {
+      width: '100%',
     },
   },
 });
 
-export default function ChangeCombo({ product, changeTo }) {
+export default function ChangeCombo({ product, changeTo, changeItem }) {
   const classes = useStyles();
-  console.log(changeTo)
-  const changeItem = (item) => {
-    console.log("item change", item);
-    console.log("product", product);
-  };
+  // console.log(changeTo);
+  // const changeItem = (item) => {
+  //   console.log('item change', item);
+
+  // };
 
   return (
     <Box className={classes.root}>
       <Box className={classes.listChange}>
         {changeTo.map((item) => (
-          <Box className={classes.itemChange}>
+          <Box key={item.pk} className={classes.itemChange}>
             <Box className={classes.wrapImg} onClick={() => changeItem(item)}>
               <Box className={classes.itemImg}>
                 <img src={item.image} alt="" />
@@ -70,17 +70,17 @@ export default function ChangeCombo({ product, changeTo }) {
 const listChange = [
   {
     pk: 1,
-    srcImg: "combo/1_item1-1.png",
-    name: "Pizza Puff_Giăm Bông & Thịt Xông Khói",
+    srcImg: 'combo/1_item1-1.png',
+    name: 'Pizza Puff_Giăm Bông & Thịt Xông Khói',
   },
   {
     pk: 2,
-    srcImg: "combo/1_item1-2.png",
-    name: "Pizza Puff_Thanh Cua & Xúc Xích Cocktail",
+    srcImg: 'combo/1_item1-2.png',
+    name: 'Pizza Puff_Thanh Cua & Xúc Xích Cocktail',
   },
   {
     pk: 3,
-    srcImg: "combo/1_item1-3.png",
-    name: "Pizza Puff_Gà BBQ Nướng Dứa",
+    srcImg: 'combo/1_item1-3.png',
+    name: 'Pizza Puff_Gà BBQ Nướng Dứa',
   },
 ];

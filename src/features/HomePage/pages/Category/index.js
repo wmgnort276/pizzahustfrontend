@@ -30,7 +30,11 @@ export default function Category() {
         (category) =>
           category.id === activeId && (
             /* category.listItem &&  */
-            <ListItem listItem={category.listItem} api={category.api} />
+            <ListItem
+              key={category.id}
+              listItem={category.listItem}
+              api={category.api}
+            />
           )
       )}
     </Box>
@@ -89,7 +93,7 @@ const categories = [
         viewBox="0 0 48 48"
       >
         <g fill="none">
-          <g clip-path="url(#simplesvg-id-a)">
+          <g clipPath="url(#simplesvg-id-a)">
             <path
               d="M33.374 33.874c4.243-4.242 1.415-18.384-4.95-24.748c-2.828-2.829-10.96-8.84-19.798 0c-8.84 8.838-2.829 16.97 0 19.798c6.364 6.365 20.506 9.193 24.748 4.95z"
               stroke="#ff8000"
