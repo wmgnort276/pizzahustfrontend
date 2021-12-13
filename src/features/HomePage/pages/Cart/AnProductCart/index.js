@@ -41,14 +41,15 @@ export default function AnProductCart({ chooseProduct }) {
     setOpenId(0);
     setAnchorEl(null);
   }
-  function changeItem(item) {
+  function changeItem(item, itemsToChange) {
     const newProductDefault = chooseProduct.productDefault.map((i) =>
-      i.id === openId ? { ...item } : i
+      i.id === openId ? { ...item, itemsToChange } : i
     );
     chooseProduct = {
       ...chooseProduct,
       productDefault: newProductDefault,
     };
+    console.log('chooseProduct', chooseProduct);
     dispatch(ChooseProduct(chooseProduct));
   }
 
@@ -164,7 +165,7 @@ export default function AnProductCart({ chooseProduct }) {
                   {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
                   <ChangeCombo
                     changeItem={changeItem}
-                    changeTo={item.itemChange}
+                    changeTo={item.itemsToChange}
                   />
                 </Popover>
                 <span>{item.name}</span>

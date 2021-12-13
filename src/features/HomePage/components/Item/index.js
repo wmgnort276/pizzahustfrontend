@@ -72,23 +72,29 @@ export default function Item({ item }) {
     if (item.hasOwnProperty('numberperson')) {
       // Lấy item mặc định trong combo
       const productDefault = [];
-      const numberPizza = item.combo[0].amountPizza;
-      const numberSide = item.combo[0].amount;
-      for (let i = 0; i < numberPizza; i++) {
-        const newItem = {
-          ...item.combo[0].pizza,
-          id: v4(),
-          itemChange: item.pizzas,
-        };
-        productDefault.push(newItem);
+      // const numberPizza = item.combo[0].amountPizza;
+      // const numberSide = item.combo[0].amount;
+      for (let j = 0; j < item.combo.length; j++) {
+        const numberPizza = item.combo[j].amountPizza;
+        for (let i = 0; i < numberPizza; i++) {
+          const newItem = {
+            ...item.combo[j].pizza,
+            id: v4(),
+            itemsToChange: item.pizzas,
+          };
+          productDefault.push(newItem);
+        }
       }
-      for (let i = 0; i < numberSide; i++) {
-        const newItem = {
-          ...item.combo[0].dishes,
-          id: v4(),
-          itemChange: item.sides,
-        };
-        productDefault.push(newItem);
+      for (let j = 0; j < item.combo.length; j++) {
+        const numberSide = item.combo[j].amount;
+        for (let i = 0; i < numberSide; i++) {
+          const newItem = {
+            ...item.combo[j].dishes,
+            id: v4(),
+            itemsToChange: item.sides,
+          };
+          productDefault.push(newItem);
+        }
       }
       setNewItem({ ...item, id: v4(), quantity: 1, productDefault });
     }

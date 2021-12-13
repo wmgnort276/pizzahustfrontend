@@ -43,18 +43,16 @@ const useStyles = makeStyles({
 
 export default function ChangeCombo({ product, changeTo, changeItem }) {
   const classes = useStyles();
-  // console.log(changeTo);
-  // const changeItem = (item) => {
-  //   console.log('item change', item);
-
-  // };
 
   return (
     <Box className={classes.root}>
       <Box className={classes.listChange}>
         {changeTo.map((item) => (
           <Box key={item.pk} className={classes.itemChange}>
-            <Box className={classes.wrapImg} onClick={() => changeItem(item)}>
+            <Box
+              className={classes.wrapImg}
+              onClick={() => changeItem(item, changeTo)}
+            >
               <Box className={classes.itemImg}>
                 <img src={item.image} alt="" />
               </Box>
