@@ -3,12 +3,48 @@ import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/material';
 
 const useStyles = makeStyles({
-  root: {
-    // backgroundColor: '#FFF2F2',
-  },
+  root: {},
 
   container: {
     display: 'flex',
+    gap: '20px',
+    marginBottom: '20px',
+  },
+
+  footer: {
+    flex: 1,
+  },
+
+  title: {
+    fontSize: '18px',
+    fontWeight: 700,
+  },
+
+  list: {
+    '& ul': {
+      padding: 0,
+      '& li': {
+        listStyleType: 'none',
+        margin: '10px 0',
+        '& a': {
+          textDecoration: 'none',
+          color: '#000',
+          fontSize: '14px',
+          fontWeight: 500,
+          '&:hover': {
+            textDecoration: 'underline',
+          },
+        },
+      },
+    },
+  },
+
+  address: {
+    '& p': {
+      margin: 0,
+      fontSize: '14px',
+      fontWeight: 500,
+    },
   },
 });
 
@@ -65,6 +101,9 @@ export default function Footer() {
             <ul>
               <li>
                 <a href="/#">Liên hệ</a>
+              </li>
+              <li>
+                <a href="/#">Hướng dẫn mua hàng</a>
               </li>
               <li>
                 <a href="/#">Chính sách giao hàng</a>
