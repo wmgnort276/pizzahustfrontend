@@ -51,7 +51,7 @@ const menus = [
       </svg>
     ),
     listItem: undefined,
-    api: 'http://127.0.0.1:8000/side/?menu=Sang',
+    api: 'http://127.0.0.1:8000/side/?menu=Appetizer',
   },
   {
     id: 2,
@@ -68,7 +68,7 @@ const menus = [
       </svg>
     ),
     listItem: undefined,
-    api: 'http://127.0.0.1:8000/side/?menu=Trua',
+    api: 'http://127.0.0.1:8000/side/?menu=Main',
   },
   {
     id: 4,
@@ -85,7 +85,7 @@ const menus = [
       </svg>
     ),
     listItem: undefined,
-    api: 'http://127.0.0.1:8000/side/?menu=Toi',
+    api: 'http://127.0.0.1:8000/side/?menu=Dessert',
   },
   {
     id: 5,
@@ -102,7 +102,7 @@ const menus = [
       </svg>
     ),
     listItem: undefined,
-    api: 'http://127.0.0.1:8000/side/?menu=Chay',
+    api: 'http://127.0.0.1:8000/side/?menu=Vegetarian',
   },
   {
     id: 6,
@@ -119,6 +119,6 @@ const menus = [
       </svg>
     ),
     listItem: undefined,
-    api: 'http://127.0.0.1:8000/side/?menu=Treem',
+    api: 'http://127.0.0.1:8000/side/?menu=Children',
   },
 ];
