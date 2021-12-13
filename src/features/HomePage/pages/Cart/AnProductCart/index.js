@@ -123,7 +123,7 @@ export default function AnProductCart({ chooseProduct }) {
       {chooseProduct.hasOwnProperty('numberperson') && (
         <Box className={classes.combo}>
           <Box>
-            {chooseProduct.combo.map((item) => (
+            {chooseProduct.product.map((item) => (
               <Box className={classes.comboItem} key={item.pk}>
                 <img
                   src={item.image}

@@ -43,7 +43,7 @@ export default function Combo() {
     async function getData() {
       const response = await fetch('http://127.0.0.1:8000/combo/');
       const responseJSON = await response.json();
-      // console.log(responseJSON);
+      console.log('combo', responseJSON);
       setData(responseJSON);
     }
 
@@ -55,13 +55,13 @@ export default function Combo() {
       <Box className={classes.root}>
         <Box className={classes.title}>Combo khuyến mãi</Box>
         <Box className={classes.body}>
-          {data.map((item) => (
-            <Item key={item.pk} item={item} type={item.type} />
+          {comboList.map((item) => (
+            <Item key={item.id} item={item} />
           ))}
         </Box>
         <Button
           className={classes.moreBtn}
-          sx={{ display: limit >= data.length ? 'none' : '' }}
+          sx={{ display: limit >= comboList.length ? 'none' : '' }}
           variant="contained"
           onClick={handleMoreBtn}
         >
