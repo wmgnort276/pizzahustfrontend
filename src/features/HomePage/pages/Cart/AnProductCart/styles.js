@@ -78,6 +78,7 @@ const useStyles = makeStyles({
 
   combo: {
     flex: 1,
+    overflow: 'auto',
   },
 
   comboItem: {

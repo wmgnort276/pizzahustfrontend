@@ -88,8 +88,9 @@ export default function AnProductCart({ chooseProduct }) {
         dispatch(addProduct(chooseProduct));
       }
     }
+    console.log(chooseProduct.combo[0].amountPizza);
+    console.log(chooseProduct.combo[0].amount);
   }
-  // console.log('chooseProduct', chooseProduct);
 
   return (
     <Box component="form" onSubmit={handleToCartBtn} className={classes.root}>
@@ -123,31 +124,63 @@ export default function AnProductCart({ chooseProduct }) {
       {chooseProduct.hasOwnProperty('numberperson') && (
         <Box className={classes.combo}>
           <Box>
-            {chooseProduct.combo.map((item) => (
-              <Box className={classes.comboItem} key={item.pk}>
-                <img
-                  src={item.image}
-                  onClick={(event) => handleChangeCombo(item.pk, event)}
-                  alt=""
-                />
-                <Popover
-                  open={item.pk === openId}
-                  anchorEl={anchorEl}
-                  onClose={handleCloseChange}
-                  transformOrigin={{
-                    vertical: 'center',
-                    horizontal: 'right',
-                  }}
-                >
-                  {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
-                  <ChangeCombo product={item} />
-                </Popover>
-                <span>
-                  {item.quantity} {item.name}
-                </span>
-                <div>Mua lẻ</div>
-              </Box>
-            ))}
+            {
+              Array.apply(null, { length: chooseProduct.combo[0].amountPizza }).map(() => 
+                <Box className={classes.comboItem} key={chooseProduct.combo[0].pk}>
+                  <img
+                    src={chooseProduct.combo[0].pizza.image}
+                    onClick={(event) => handleChangeCombo(chooseProduct.combo[0].pizza.pk, event)}
+                    alt=""
+                    />
+                  <Popover
+                    open={chooseProduct.combo[0].pizza.pk === openId}
+                    anchorEl={anchorEl}
+                    onClose={handleCloseChange}
+                    transformOrigin={{
+                      vertical: 'center',
+                      horizontal: 'right',
+                    }}
+                  >
+                    {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
+                    <ChangeCombo product={chooseProduct.combo[0]} changeTo={chooseProduct.pizzas}/>
+                  </Popover>
+                  <span>
+                    {chooseProduct.combo[0].pizza.name}
+                  </span>
+                  <div>Mua lẻ</div>
+                </Box>
+              ) 
+            }
+          </Box>
+
+          <Box>
+            {
+              Array.apply(null, { length: chooseProduct.combo[0].amount }).map(() => 
+                <Box className={classes.comboItem} key={chooseProduct.combo[0].pk}>
+                  <img
+                    src={chooseProduct.combo[0].dishes.image}
+                    onClick={(event) => handleChangeCombo(chooseProduct.combo[0].dishes.pk, event)}
+                    alt=""
+                    />
+                  <Popover
+                    open={chooseProduct.combo[0].dishes.pk === openId}
+                    anchorEl={anchorEl}
+                    onClose={handleCloseChange}
+                    transformOrigin={{
+                      vertical: 'center',
+                      horizontal: 'right',
+                    }}
+                  >
+                    {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
+                    <ChangeCombo product={chooseProduct.combo[0]} changeTo={chooseProduct.sides} />
+                  </Popover>
+                  <span>
+                    {chooseProduct.combo[0].dishes.name}
+                  </span>
+                  <div>Mua lẻ</div>
+                </Box>
+              ) 
+            }
           </Box>
         </Box>
       )}
