@@ -72,8 +72,6 @@ export default function Item({ item }) {
     if (item.hasOwnProperty('numberperson')) {
       // Lấy item mặc định trong combo
       const productDefault = [];
-      // const numberPizza = item.combo[0].amountPizza;
-      // const numberSide = item.combo[0].amount;
       for (let j = 0; j < item.combo.length; j++) {
         const numberPizza = item.combo[j].amountPizza;
         for (let i = 0; i < numberPizza; i++) {

@@ -41,9 +41,19 @@ export default function AnProductCart({ chooseProduct }) {
     setOpenId(0);
     setAnchorEl(null);
   }
+  // Thay đổi combo khi chọn sản phẩm khác
   function changeItem(item, itemsToChange) {
+    const idx = chooseProduct.productDefault.findIndex(
+      (item) => item.id === openId
+    );
     const newProductDefault = chooseProduct.productDefault.map((i) =>
-      i.id === openId ? { ...item, itemsToChange } : i
+      i.id === openId
+        ? {
+            ...item,
+            id: chooseProduct.productDefault[idx].id,
+            itemsToChange,
+          }
+        : i
     );
     chooseProduct = {
       ...chooseProduct,
