@@ -87,8 +87,8 @@ export default function AnProductCart({ chooseProduct }) {
       } else {
         dispatch(addProduct(chooseProduct));
       }
-      console.log(chooseProduct.combo[0].amountPizza);
-      console.log(chooseProduct.combo[0].amount);
+      console.log("pizza", chooseProduct.pizzas);
+      console.log("dishes", chooseProduct.dishes);
     }
   }
 
@@ -125,6 +125,7 @@ export default function AnProductCart({ chooseProduct }) {
         <Box className={classes.combo}>
           <Box>
             {
+              // Pizza render
               Array.apply(null, { length: chooseProduct.combo[0].amountPizza }).map(() => 
                 <Box className={classes.comboItem} key={chooseProduct.combo[0].pk}>
                   <img
@@ -155,6 +156,7 @@ export default function AnProductCart({ chooseProduct }) {
 
           <Box>
             {
+              // Side render
               Array.apply(null, { length: chooseProduct.combo[0].amount }).map(() => 
                 <Box className={classes.comboItem} key={chooseProduct.combo[0].pk}>
                   <img
