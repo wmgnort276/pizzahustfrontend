@@ -16,25 +16,29 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    border: '1px solid #fff',
 
     '& span': {
       textAlign: 'center',
-      color: '#006a31',
+      color: '#000',
       fontSize: '14px',
       fontWeight: 600,
+    },
+    '&:hover': {
+      border: '1px solid #ff8000',
+    },
+    '&:hover span': {
+      color: '#ff8000',
     },
   },
 
   wrapImg: {
-    border: '1px solid #ccc',
   },
 
   itemImg: {
     width: '100%',
     boxSizing: 'border-box',
-    margin: '20px auto',
     cursor: 'pointer',
-
     '& img': {
       width: '100%',
     },

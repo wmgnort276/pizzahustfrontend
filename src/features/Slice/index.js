@@ -54,6 +54,7 @@ const cart = createSlice({
     },
 
     buyAllRequest: (state) => {
+      console.log(state)
       var dataPost = {
         "cart": "nam'",
         "name": "Lương An Nam",

@@ -79,11 +79,28 @@ const useStyles = makeStyles({
   combo: {
     flex: 1,
     overflow: 'auto',
+    /* width */
+    '&::-webkit-scrollbar': {
+      width: '5px',
+      borderRadius: '10px',
+    },
+
+    /* Track */
+    '&::-webkit-scrollbar-track': {
+      background: '#fff2e0',
+    },
+
+    /* Handle */
+    '&::-webkit-scrollbar-thumb': {
+      background: '#ff8000',
+      borderRadius: '10px',
+    },
   },
 
   comboItem: {
     display: 'flex',
     margin: '30px 0',
+    border: '1px solid #ffffff',
     position: 'relative',
 
     '& img': {
@@ -94,7 +111,7 @@ const useStyles = makeStyles({
       alignSelf: 'center',
       fontSize: '16px',
       fontWeight: 600,
-      color: '#006a31',
+      color: '#000000',
       marginLeft: '10px',
     },
     '& > div': {
@@ -103,6 +120,15 @@ const useStyles = makeStyles({
       bottom: 0,
       fontWeight: 600,
       cursor: 'pointer',
+      '&:hover': {
+        color: '#ff8000',
+      },
+    },
+    '&:hover': {
+      border: '1px solid #ff8000',
+      '& span': {
+        color: '#ff8000',
+      },
     },
   },
 });
