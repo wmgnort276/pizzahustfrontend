@@ -51,8 +51,8 @@ export default function PayCard() {
     return (
       <Box key={item.id} className={classes.productItem}>
         <img
-          // src={item.image}
-          src={process.env.PUBLIC_URL + `${item.srcImg}`}
+          src={item.image}
+          // src={process.env.PUBLIC_URL + `${item.srcImg}`}
           alt=""
         />
         <Box className={classes.itemInfo}>
@@ -90,6 +90,8 @@ export default function PayCard() {
       </Box>
     );
   }
+
+  console.log(cart)
 
   return (
     <Box className={classes.root}>
