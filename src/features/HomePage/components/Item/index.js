@@ -129,7 +129,7 @@ export default function Item({ item }) {
         <div>
           <Rating readOnly defaultValue={item.score_fields} size="small" />
           <p>
-            {cost.current}
+            {item.hasOwnProperty('numberperson') ? cost.current : item.cost}
             <span style={{ color: '#ff8000' }}> đ</span>
           </p>
         </div>
