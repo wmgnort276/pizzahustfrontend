@@ -30,10 +30,10 @@ const useStyles = makeStyles({
 
 export default function Combo() {
   const classes = useStyles();
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(6);
 
   function handleMoreBtn() {
-    if (limit < comboList.length) {
+    if (limit < data.length) {
       setLimit(limit + 6);
     }
   }
@@ -43,7 +43,6 @@ export default function Combo() {
     async function getData() {
       const response = await fetch('http://127.0.0.1:8000/combo/');
       const responseJSON = await response.json();
-      // console.log('combo', responseJSON);
       setData(responseJSON);
     }
 

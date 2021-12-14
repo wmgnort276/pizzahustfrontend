@@ -82,7 +82,6 @@ export default function AnProductCart({ chooseProduct }) {
         const toppingCost = topping !== null ? topping.addCost : 0;
         product = {
           ...chooseProduct,
-          id: v4(),
           cost: chooseProduct.cost + size.addCost + toppingCost,
           quantity: 1,
           size: size.size,

@@ -105,6 +105,8 @@ export default function Item({ item }) {
         cost: cost.current,
         subProduct,
       });
+    } else {
+      setNewItem({ ...item, id: v4() });
     }
   }, [item]);
 
@@ -112,7 +114,7 @@ export default function Item({ item }) {
     if (item.hasOwnProperty('numberperson')) {
       dispatch(ChooseProduct(newItem));
     } else {
-      dispatch(ChooseProduct(item));
+      dispatch(ChooseProduct(newItem));
     }
   }
 
