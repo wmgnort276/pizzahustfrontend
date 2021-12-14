@@ -41,7 +41,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ChangeCombo({ changeTo, changeItem }) {
+export default function ChangeCombo({ handleChangeItem, changeTo }) {
   const classes = useStyles();
 
   return (
@@ -51,7 +51,7 @@ export default function ChangeCombo({ changeTo, changeItem }) {
           <Box key={item.pk} className={classes.itemChange}>
             <Box
               className={classes.wrapImg}
-              onClick={() => changeItem(item, changeTo)}
+              onClick={() => handleChangeItem(item, changeTo)}
             >
               <Box className={classes.itemImg}>
                 <img src={item.image} alt="" />

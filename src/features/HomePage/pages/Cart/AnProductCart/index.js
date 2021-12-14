@@ -42,7 +42,7 @@ export default function AnProductCart({ chooseProduct }) {
     setAnchorEl(null);
   }
   // Cập nhật combo khi chọn sản phẩm khác
-  function changeItem(item, itemsToChange) {
+  function handleChangeItem(item, itemsToChange) {
     const idx = chooseProduct.subProduct.findIndex(
       (item) => item.id === openId
     );
@@ -194,12 +194,12 @@ export default function AnProductCart({ chooseProduct }) {
                 >
                   {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
                   <ChangeCombo
-                    changeItem={changeItem}
+                    handleChangeItem={handleChangeItem}
                     changeTo={item.itemsToChange}
                   />
                 </Popover>
                 <span>{item.name}</span>
-                <div>Mua lẻ</div>
+                <Box onClick={() => dispatch(ChooseProduct(item))}>Mua lẻ</Box>
               </Box>
             ))}
           </Box>
