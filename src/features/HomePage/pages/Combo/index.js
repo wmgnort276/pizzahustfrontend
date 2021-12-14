@@ -43,7 +43,7 @@ export default function Combo() {
     async function getData() {
       const response = await fetch('http://127.0.0.1:8000/combo/');
       const responseJSON = await response.json();
-      console.log('combo', responseJSON);
+      // console.log('combo', responseJSON);
       setData(responseJSON);
     }
 

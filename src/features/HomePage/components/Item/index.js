@@ -2,7 +2,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { Fab, Rating, Tooltip } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { ChooseProduct } from 'features/Slice';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { v4 } from 'uuid';
 import { useDispatch } from 'react-redux';
 import ListItem from '../ListItem';
@@ -65,13 +65,13 @@ export default function Item({ item }) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [newItem, setNewItem] = useState({});
+  const cost = useRef(0);
 
   useEffect(() => {
-    // Nếu sản phẩm được chọn là Combo
-
+    // Nếu sản phẩm là Combo
     if (item.hasOwnProperty('numberperson')) {
-      // Lấy item mặc định trong combo
-      const productDefault = [];
+      // Lấy sub product trong combo, tính giá của combo
+      const subProduct = [];
       for (let j = 0; j < item.combo.length; j++) {
         const numberPizza = item.combo[j].amountPizza;
         for (let i = 0; i < numberPizza; i++) {
@@ -80,7 +80,8 @@ export default function Item({ item }) {
             id: v4(),
             itemsToChange: item.pizzas,
           };
-          productDefault.push(newItem);
+          cost.current = cost.current + newItem.cost;
+          subProduct.push(newItem);
         }
       }
       for (let j = 0; j < item.combo.length; j++) {
@@ -91,10 +92,19 @@ export default function Item({ item }) {
             id: v4(),
             itemsToChange: item.sides,
           };
-          productDefault.push(newItem);
+
+          cost.current = cost.current + newItem.cost;
+          subProduct.push(newItem);
         }
       }
-      setNewItem({ ...item, id: v4(), quantity: 1, productDefault });
+      cost.current = (cost.current * (100 - item.percent)) / 100;
+      setNewItem({
+        ...item,
+        id: v4(),
+        quantity: 1,
+        cost: cost.current,
+        subProduct,
+      });
     }
   }, [item]);
 
@@ -119,7 +129,7 @@ export default function Item({ item }) {
         <div>
           <Rating readOnly defaultValue={item.score_fields} size="small" />
           <p>
-            {item.cost}
+            {cost.current}
             <span style={{ color: '#ff8000' }}> đ</span>
           </p>
         </div>

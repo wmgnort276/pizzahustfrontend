@@ -1,66 +1,68 @@
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import NavIcon from "./NavIcon";
-import Divider from "@mui/material/Divider";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import React, { useState } from "react";
-import { makeStyles } from "@mui/styles";
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import { Box } from '@mui/material';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import { makeStyles } from '@mui/styles';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import NavIcon from './NavIcon';
 
 const useStyles = makeStyles({
   navList: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    borderRadius: "0 30px 0 0",
-    backgroundColor: "#fff",
-    position: "fixed !important",
-    width: "8.3333%",
-    height: "100vh",
-    "& li": {
-      justifyContent: "center",
-      margin: "12px 0",
-      height: "46px",
-      width: "46px",
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    borderRadius: '0 30px 0 0',
+    backgroundColor: '#fff',
+    position: 'fixed !important',
+    width: '8.3333%',
+    height: '100vh',
+    '& li': {
+      justifyContent: 'center',
+      margin: '12px 0',
+      height: '46px',
+      width: '46px',
     },
   },
   navIcon: {
-    cursor: "pointer",
-    borderRadius: "12px",
-    background: "rgba(255, 255, 255, 0.5)",
+    cursor: 'pointer',
+    borderRadius: '12px',
+    background: 'rgba(255, 255, 255, 0.5)',
     boxShadow:
-      "4px 4px 4px rgba(156, 156, 156, 0.1), -2px -2px 4px rgba(208, 208, 208, 0.15)",
-    transition: "transform 0.5s",
+      '4px 4px 4px rgba(156, 156, 156, 0.1), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+    transition: 'transform 0.5s',
 
-    "& svg": {
-      fill: "#D2D2D2",
+    '& svg': {
+      fill: '#D2D2D2',
     },
-    "&:hover": {
-      backgroundColor: "#fff",
-      cursor: "pointer",
-      transform: "scale(1.2)",
+    '&:hover': {
+      backgroundColor: '#fff',
+      cursor: 'pointer',
+      transform: 'scale(1.2)',
       boxShadow:
-        "4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)",
-      "& svg": {
-        fill: "#ff8001",
+        '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+      '& svg': {
+        fill: '#ff8001',
       },
     },
   },
   active: {
-    borderRadius: "45px",
-    backgroundColor: "#ff8001 !important",
-    transform: "scale(1.2)",
-    "& svg": {
-      fill: "#fff",
+    borderRadius: '45px',
+    backgroundColor: '#ff8001 !important',
+    transform: 'scale(1.2)',
+    '& svg': {
+      fill: '#fff',
     },
-    "&:hover": {
-      backgroundColor: "#fff",
-      cursor: "pointer",
-      transform: "scale(1.2)",
+    '&:hover': {
+      backgroundColor: '#fff',
+      cursor: 'pointer',
+      transform: 'scale(1.2)',
       boxShadow:
-        "4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)",
-      "& svg": {
-        fill: "#fff",
+        '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
+      '& svg': {
+        fill: '#fff',
       },
     },
   },
@@ -69,44 +71,42 @@ const useStyles = makeStyles({
 export default function NavBar() {
   const classes = useStyles();
   const [isActive, setIsActive] = useState(1);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    setIsActive(5);
+    navigate('/personal', { replace: true });
+  };
 
   return (
     <List component="nav" className={classes.navList}>
-      {/* <ListItem index={1} className={`${classes.navIcon} ${Number(this.index)===currentIndex ? classes.active : ''}`}
-        currentIndex={currentIndex}
-      >
-        
-        <NavIcon sx={{ fontSize: 30 }} />
-      </ListItem> */}
-
       {nav.map((item) => (
-        <ListItem
-          key={item.id}
-          className={`${classes.navIcon}  ${
-            isActive === item.id ? classes.active : ""
-          } `}
-          onClick={() => setIsActive(item.id)}
-        >
-          <NavIcon sx={{ fontSize: 30 }} icon={item.icon} link={item.link} />
-        </ListItem>
+        <NavLink to="personal" key={item.id} className={classes.link}>
+          <ListItem
+            className={`${classes.navIcon}  ${
+              isActive === item.id ? classes.active : ''
+            } `}
+            onClick={() => setIsActive(item.id)}
+          >
+            <Box onClick={() => navigate(`${item.link}`, { replace: true })}>
+              {item.icon}
+            </Box>
+          </ListItem>
+        </NavLink>
       ))}
 
-      <Divider
-        variant="middle"
-        flexItem
-        style={{ marginTop: "10px", marginBottom: "10px" }}
-      />
+      <Divider variant="middle" flexItem sx={{ mt: '10px', mb: '10px' }} />
 
       <ListItem
         key={5}
         className={`${classes.navIcon}  ${
-          isActive === 5 ? classes.active : ""
+          isActive === 5 ? classes.active : ''
         } `}
-        onClick={() => setIsActive(5)}
+        onClick={handleClick}
       >
-        <a href="/personal">
+        <Box>
           <PersonOutlinedIcon sx={{ fontSize: 30 }}></PersonOutlinedIcon>
-        </a>
+        </Box>
       </ListItem>
 
       <ListItem className={classes.navIcon}>
@@ -119,8 +119,8 @@ export default function NavBar() {
 const nav = [
   {
     id: 1,
-    name: "HomePage",
-    link: "/",
+    name: 'HomePage',
+    link: '/',
     icon: (
       <svg
         className="home_icon_component"
@@ -155,8 +155,8 @@ const nav = [
   },
   {
     id: 4,
-    name: "Sale",
-    link: "#",
+    name: 'Sale',
+    link: '#',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -188,8 +188,8 @@ const nav = [
   },
   {
     id: 2,
-    name: "Category",
-    link: "#",
+    name: 'Category',
+    link: '#',
     icon: (
       <svg
         width="26px"
@@ -219,8 +219,8 @@ const nav = [
   },
   {
     id: 3,
-    name: "Menu",
-    link: "#",
+    name: 'Menu',
+    link: '#',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

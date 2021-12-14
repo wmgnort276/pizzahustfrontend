@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 import AnProductCart from 'features/HomePage/pages/Cart/AnProductCart';
 import EmptyCard from 'features/HomePage/pages/Cart/EmptyCard';
 import ListProductCart from 'features/HomePage/pages/Cart/ListProductCart';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
@@ -22,7 +22,10 @@ export default function Cart() {
   const classes = useStyles();
   const cart = useSelector((state) => state.cart.listProduct);
   const choose = useSelector((state) => state.cart.chooseProduct);
-  console.log('cart:', cart);
+  
+  useEffect(() => {
+    console.log('cart:', cart);
+  }, [cart]);
 
   return (
     <Box className={classes.root}>

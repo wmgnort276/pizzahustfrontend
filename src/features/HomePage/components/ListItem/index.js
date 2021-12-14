@@ -36,7 +36,7 @@ export default function ListItem({ listItem, api }) {
     }
 
     getData();
-  }, []);
+  }, [api]);
 
   function handleMoreBtn() {
     if (limit < data.length) {

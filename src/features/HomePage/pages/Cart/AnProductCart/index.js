@@ -6,6 +6,7 @@ import {
   addOldProduct,
   addProduct,
   BackBtnClick,
+  ChooseProduct,
 } from 'features/Slice';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +14,6 @@ import { v4 } from 'uuid';
 import ChangeCombo from '../ChangeCombo';
 import { useStyles } from './styles';
 import './styles.css';
-import { ChooseProduct } from 'features/Slice';
 
 export default function AnProductCart({ chooseProduct }) {
   const classes = useStyles();
@@ -41,25 +41,32 @@ export default function AnProductCart({ chooseProduct }) {
     setOpenId(0);
     setAnchorEl(null);
   }
-  // Thay đổi combo khi chọn sản phẩm khác
+  // Cập nhật combo khi chọn sản phẩm khác
   function changeItem(item, itemsToChange) {
-    const idx = chooseProduct.productDefault.findIndex(
+    const idx = chooseProduct.subProduct.findIndex(
       (item) => item.id === openId
     );
-    const newProductDefault = chooseProduct.productDefault.map((i) =>
+    // Cập nhật giá combo
+    const cost =
+      chooseProduct.cost -
+      ((chooseProduct.subProduct[idx].cost - item.cost) *
+        chooseProduct.percent) /
+        100;
+    // Cập nhật sub product
+    const newSubProduct = chooseProduct.subProduct.map((i) =>
       i.id === openId
         ? {
             ...item,
-            id: chooseProduct.productDefault[idx].id,
+            id: chooseProduct.subProduct[idx].id,
             itemsToChange,
           }
         : i
     );
     chooseProduct = {
       ...chooseProduct,
-      productDefault: newProductDefault,
+      cost,
+      subProduct: newSubProduct,
     };
-    console.log('chooseProduct', chooseProduct);
     dispatch(ChooseProduct(chooseProduct));
   }
 
@@ -110,16 +117,29 @@ export default function AnProductCart({ chooseProduct }) {
 
     // Mua combo
     else {
+      // Lấy các trường cần thiết
+      const comboProduct = {
+        id: chooseProduct.id,
+        image: chooseProduct.image,
+        name: chooseProduct.name,
+        numberperson: chooseProduct.numberperson,
+        percent: chooseProduct.percent,
+        quantity: 1,
+        score_fields: chooseProduct.score_fields,
+        time: chooseProduct.time,
+        cost: chooseProduct.cost,
+        subProduct: chooseProduct.subProduct,
+      };
       const idx = cart.findIndex((item) => item.id === chooseProduct.id);
       if (idx !== -1) {
         // Nếu sản phẩm mới trùng sản phẩm đã chọn, quantity + 1
-        if (cart[idx].productDefault === chooseProduct.productDefault) {
+        if (cart[idx].subProduct === chooseProduct.subProduct) {
           dispatch(AddBtnClick(idx));
         } else {
-          dispatch(addOldProduct(chooseProduct));
+          dispatch(addOldProduct(comboProduct));
         }
       } else {
-        dispatch(addProduct(chooseProduct));
+        dispatch(addProduct(comboProduct));
       }
     }
   }
@@ -156,7 +176,7 @@ export default function AnProductCart({ chooseProduct }) {
       {chooseProduct.hasOwnProperty('numberperson') && (
         <Box className={classes.combo}>
           <Box>
-            {chooseProduct.productDefault.map((item) => (
+            {chooseProduct.subProduct.map((item) => (
               <Box className={classes.comboItem} key={item.id}>
                 <img
                   src={item.image}

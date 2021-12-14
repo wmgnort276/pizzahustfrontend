@@ -57,7 +57,7 @@ export default function ListProductCart({ cart }) {
         </Box>
         <Box className={classes.productList}>
           {cart.map((item) => (
-            <Box key={item.pk} className={classes.productItem}>
+            <Box key={item.id} className={classes.productItem}>
               <img
                 src={item.image}
                 // src={process.env.PUBLIC_URL + `${item.srcImg}`}

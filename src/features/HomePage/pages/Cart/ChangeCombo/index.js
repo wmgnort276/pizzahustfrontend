@@ -41,7 +41,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ChangeCombo({ product, changeTo, changeItem }) {
+export default function ChangeCombo({ changeTo, changeItem }) {
   const classes = useStyles();
 
   return (
@@ -64,21 +64,3 @@ export default function ChangeCombo({ product, changeTo, changeItem }) {
     </Box>
   );
 }
-
-const listChange = [
-  {
-    pk: 1,
-    srcImg: 'combo/1_item1-1.png',
-    name: 'Pizza Puff_Giăm Bông & Thịt Xông Khói',
-  },
-  {
-    pk: 2,
-    srcImg: 'combo/1_item1-2.png',
-    name: 'Pizza Puff_Thanh Cua & Xúc Xích Cocktail',
-  },
-  {
-    pk: 3,
-    srcImg: 'combo/1_item1-3.png',
-    name: 'Pizza Puff_Gà BBQ Nướng Dứa',
-  },
-];
