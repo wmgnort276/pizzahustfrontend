@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import { makeStyles } from '@mui/styles';
+import './styles.css';
 
 const useStyles = makeStyles({
   root: {},
@@ -16,7 +17,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    border: '1px solid #fff',
+    border: '2px solid #fff',
 
     '& span': {
       textAlign: 'center',
@@ -25,7 +26,8 @@ const useStyles = makeStyles({
       fontWeight: 600,
     },
     '&:hover': {
-      border: '1px solid #ff8000',
+      border: '2px solid #ff8000',
+      borderRadius: '20px',
     },
     '&:hover span': {
       color: '#ff8000',
