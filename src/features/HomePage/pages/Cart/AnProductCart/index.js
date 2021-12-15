@@ -92,7 +92,6 @@ export default function AnProductCart({ chooseProduct }) {
         // Nếu sản phẩm không là pizza
         product = {
           ...chooseProduct,
-          id: v4(),
           quantity: 1,
         };
       }

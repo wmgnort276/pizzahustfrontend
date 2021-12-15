@@ -79,6 +79,7 @@ const useStyles = makeStyles({
   combo: {
     flex: 1,
     overflow: 'auto',
+    marginBottom: '40px',
     /* width */
     '&::-webkit-scrollbar': {
       width: '5px',
