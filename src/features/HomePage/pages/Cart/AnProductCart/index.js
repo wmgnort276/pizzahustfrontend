@@ -10,7 +10,6 @@ import {
 } from 'features/Slice';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { v4 } from 'uuid';
 import ChangeCombo from '../ChangeCombo';
 import { useStyles } from './styles';
 import './styles.css';
@@ -292,7 +291,7 @@ export default function AnProductCart({ chooseProduct }) {
         </Box>
       )}
 
-      <Button type="submit" name={'Thêm vào giỏ'} />
+      <Button type="submit" name="Thêm vào giỏ" />
     </Box>
   );
 }

@@ -82,7 +82,7 @@ export default function UserInfo() {
             sx={{ mt: 2, mb: 2 }}
           />
         </Box>
-        <Button type="submit" name={'Mua hàng'} />
+        <Button type="submit" name="Mua hàng" />
       </Box>
       <Snackbar
         open={buySuccess}

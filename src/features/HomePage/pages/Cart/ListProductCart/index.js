@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Divider, Popover, Tooltip, Typography } from '@mui/material';
 import Button from 'components/Button';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -11,6 +11,7 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 export default function ListProductCart({ cart }) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [total, setTotal] = useState(0);
   // Hiện thông tin chi tiết sản phẩm khi hover
   const [openId, setOpenId] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -25,20 +26,36 @@ export default function ListProductCart({ cart }) {
     setAnchorEl(null);
   };
 
+  // Tính tổng giá
+  useEffect(() => {
+    let newTotal = 0;
+    cart.map(function calcTotal(item) {
+      newTotal = newTotal + item.cost * item.quantity;
+      return newTotal;
+    });
+    setTotal(newTotal);
+  }, []);
+
   // Thay đổi sản phẩm
   const onSubBtnClick = (id) => {
     const idx = cart.findIndex((item) => item.id === id);
     dispatch(SubBtnClick(idx));
+    const newTotal = total - cart[idx].cost;
+    setTotal(newTotal);
   };
 
   const onAddBtnClick = (id) => {
     const idx = cart.findIndex((item) => item.id === id);
     dispatch(AddBtnClick(idx));
+    const newTotal = total + cart[idx].cost;
+    setTotal(newTotal);
   };
 
   const onDelBtnClick = (id) => {
     const idx = cart.findIndex((item) => item.id === id);
     dispatch(DelBtnClick(idx));
+    const newTotal = total - cart[idx].cost * cart[idx].quantity;
+    setTotal(newTotal);
   };
 
   return (
@@ -53,7 +70,10 @@ export default function ListProductCart({ cart }) {
       <Box className={classes.product}>
         <Box className={classes.text}>
           <span>Giỏ hàng</span>
-          <span>Tổng</span>
+          <span>
+            {total}
+            <span style={{ color: '#ff8000' }}> đ</span>
+          </span>
         </Box>
         <Box className={classes.productList}>
           {cart.map((item) => (
