@@ -101,7 +101,7 @@ const useStyles = makeStyles({
   comboItem: {
     display: 'flex',
     margin: '30px 0',
-    border: '1px solid #ffffff',
+    border: '2px solid #ffffff',
     position: 'relative',
 
     '& img': {
@@ -126,7 +126,8 @@ const useStyles = makeStyles({
       },
     },
     '&:hover': {
-      border: '1px solid #ff8000',
+      border: '2px solid #ff8000',
+      borderRadius: '20px',
       '& span': {
         color: '#ff8000',
       },
