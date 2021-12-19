@@ -1,4 +1,9 @@
-import { Box } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-import TaskBar from 'features/HomePage/components/TaskBar';
-import React, { useState } from 'react';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+
+export default function Search() {
+  const { search } = useParams();
+  console.log(search.slice(15));
+
+  return <div>{search && <div>Search</div>}</div>;
+}

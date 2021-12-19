@@ -10,21 +10,17 @@ const useStyles = makeStyles({
     backgroundColor: '#fff',
   },
 
-  userInfo: {
+  userForm: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
+    margin: '30px 0 0 0',
 
     '& span': {
       fontSize: '18px',
       lineHeight: 22 / 18,
       fontWeight: 700,
     },
-  },
-
-  userForm: {
-    margin: '30px 0 0 0',
-    flex: 1,
     '& .MuiInputBase-root': {
       borderRadius: '8px',
       borderColor: '#ff8000',

@@ -2,9 +2,9 @@ import { Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import drinkList from 'constants/Category/drinkList';
 import pizzaList from 'constants/Category/pizzaList';
+import ListItem from 'features/HomePage/components/ListItem';
 import TaskBar from 'features/HomePage/components/TaskBar';
 import React, { useState } from 'react';
-import ListItem from '../../components/ListItem';
 
 const useStyles = makeStyles({
   root: {},
@@ -24,7 +24,7 @@ export default function Category() {
         categories={categories}
         activeId={activeId}
         onTabClick={onTabClick}
-        title="Thực đơn"
+        title="Category"
       />
       {categories.map(
         (category) =>
