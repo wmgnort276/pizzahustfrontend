@@ -1,6 +1,11 @@
 import React from 'react';
-import './styles.css';
-
-export default function Register() {
-  return <div>Register</div>;
+import App from './App';
+function Register() {
+    return (
+        <div>
+            <App />
+        </div>
+    )
 }
+
+export default Register

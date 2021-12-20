@@ -1,5 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-export default function Login() {
-  return <div>Đăng nhập</div>;
+import App from './App'
+function Login() {
+    return (
+        <div>
+            <App />
+        </div>
+    )
 }
+
+export default Login

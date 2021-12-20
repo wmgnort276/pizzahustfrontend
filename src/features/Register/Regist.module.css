@@ -1,0 +1,147 @@
+
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+} 
+
+.loginPage {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.leftSide {
+    align-items: center;
+    width: 50%;
+    background-color: #FFF2F2;
+    box-sizing: border-box;
+    padding: 100px 120px;
+}
+
+/* logo pizza hust */
+.logo {
+    width: 78px;
+    height: 47px;
+}
+
+/* title đăng nhập */
+.title {
+    width: 100%;
+    height: 31px;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+
+.content {
+    padding: 20px 20px;
+    margin-top: 10px;
+}
+
+
+/* từng cụm input */
+.form {
+    box-sizing: border-box;
+    padding: 25px 0 15px 0;
+    position: relative;
+}
+
+
+/* title ô input */
+.form_title {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 17px;
+    position: absolute;
+    top: 0;
+}
+
+
+/* ô input người dùng */
+.input_content {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #D2D2D2;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #FFF2F2;
+}
+
+
+.error {
+    color: red;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+
+
+
+.regist_btn {
+    text-align: center;
+    /* padding: 10px; */
+}
+
+/* nút đăng nhập */
+.regist_btn_input {
+    width: 163.01px;
+    height: 34.83px;
+    background: #FF8000;
+    border-radius: 5px; 
+    padding: 0;
+    border-width: 0;
+    border-style: none;
+    color: white;
+    cursor: pointer;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* chưa có tk đăng ký */
+.regist_route {
+    width: 100%;
+    height: 17px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 17px;
+    color: #000000;
+    margin: 0;
+    padding:30px 20px;
+}
+
+.regist_route a {
+    color: #FF8000; 
+    width: 100%;
+}
+
+.rightSide {
+    width: 50%;
+    text-align: center;
+    background: linear-gradient(146.9deg, 
+    #FF8001 0%, rgba(203, 21, 21, 0.81) 100%);
+}
+
+
+.wrap {
+    margin: 80px 100px;
+    height: 600px;
+    background: linear-gradient(147.99deg, rgba(255, 174, 62, 0.75) 0%, rgba(203, 21, 21, 0.57) 100%);
+    border-radius: 30px;
+   
+}
+
+.img {
+   margin: 150px auto;
+}
