@@ -1,6 +1,7 @@
 import { Box, Slide, useScrollTrigger } from '@mui/material';
 import Slider from 'features/HomePage/components/Slider';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useStyles } from './styles';
 
 function HideOnScroll({ children }) {
@@ -14,25 +15,38 @@ function HideOnScroll({ children }) {
 
 export default function Header() {
   const classes = useStyles();
+  const navigate = useNavigate();
 
-  function onSearch(e){
-    console.log(e.target.value)
-  }
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const searchValue = data.get('Search');
+    navigate(`/search_keyword=${searchValue}`, { replace: true });
+  };
 
   return (
     <Box className={classes.root}>
       <Box className={classes.header}>
         <HideOnScroll>
-          <Box className={classes.searchBox}>
-            <input className={classes.searchBtn} placeholder="Tìm kiếm" onChange={onSearch}/>
+          <Box
+            component="form"
+            onSubmit={handleSearch}
+            className={classes.searchBox}
+          >
+            <input
+              type="text"
+              className={classes.searchBtn}
+              placeholder="Tìm kiếm"
+              name="Search"
+            />
             <svg
+              type="submit"
               width="14"
               height="14"
               viewBox="0 0 14 14"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              onClick={onSearch}
-              style={{cursor: 'pointer'}}
+              style={{ cursor: 'pointer' }}
             >
               <path
                 fillRule="evenodd"

@@ -34,7 +34,7 @@ export default function ListProductCart({ cart }) {
       return newTotal;
     });
     setTotal(newTotal);
-  }, []);
+  }, [cart]);
 
   // Thay đổi sản phẩm
   const onSubBtnClick = (id) => {

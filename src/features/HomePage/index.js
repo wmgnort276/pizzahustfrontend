@@ -2,12 +2,10 @@ import { Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import NavBar from 'components/NavBar';
 import React from 'react';
+import { Navigate, Route, Routes } from 'react-router';
 import Cart from './pages/Cart';
-import Category from './pages/Category';
-import Combo from './pages/Combo';
-import Footer from './pages/Footer';
-import Header from './pages/Header';
-import Menu from './pages/Menu';
+import Main from './pages/Main';
+import Search from './pages/Search';
 
 const useStyles = makeStyles({
   root: {
@@ -34,11 +32,11 @@ export default function HomePage() {
           <NavBar className={classes.navBar} />
         </Grid>
         <Grid className={classes.main} item xs={7}>
-          <Header />
-          <Combo />
-          <Category />
-          <Menu />
-          <Footer />
+          <Routes>
+            <Route path="" element={<Navigate to="home" />} />
+            <Route path="home" element={<Main />} />
+            <Route path=":search" element={<Search />} />
+          </Routes>
         </Grid>
         <Grid className={classes.cart} item xs={4}>
           <Cart />
