@@ -97,7 +97,7 @@ const FormSignup = ({ submitForm }) => {
             </div> 
 
             <p className={styles.regist_route}>
-                 Đã có tài khoản? <a href="/Login"> Đăng nhập </a>
+                 Đã có tài khoản? <Link to="/Login"> Đăng nhập </Link>
              </p>
         </form>
 
