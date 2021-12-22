@@ -29,17 +29,17 @@ const useForm = (callback, validate) => {
     
   };
 
-  const userApi = 'https://jsonplaceholder.typicode.com/users';
+  // const userApi = 'https://jsonplaceholder.typicode.com/users';
 
-  const postApi = (userInp) => {
-    var e = {
-      method: 'POST',
-      body: JSON.stringify(userInp)
-    }
+  // const postApi = (userInp) => {
+  //   var e = {
+  //     method: 'POST',
+  //     body: JSON.stringify(userInp)
+  //   }
     
-    fetch(userApi, e)
-      .then(res => res.json());
-  }
+  //   fetch(userApi, e)
+  //     .then(res => res.json());
+  // }
 
 
 
@@ -55,7 +55,8 @@ const useForm = (callback, validate) => {
         }
         console.log(userInp);  // nhận được kết quả
         console.log(values);
-        postApi(userInp);
+
+        // postApi(userInp);
       }
     },
     [errors]

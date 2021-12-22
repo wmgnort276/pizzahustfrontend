@@ -1,7 +1,6 @@
 
 body {
     margin: 0;
-    
 }
 
 a {
@@ -11,8 +10,10 @@ a {
 .loginPage {
     display: flex;
     flex-direction: row;
+    width: 100vw;
+    min-height: 650px;
     height: 100vh;
-    width: 100vw !important;
+    /* overflow: hidden; */
 }
 
 .leftSide {
@@ -20,8 +21,11 @@ a {
     width: 50%;
     background-color: #FFF2F2;
     box-sizing: border-box;
-    padding: 100px 120px;
+    height: 100%;
+    padding: 100px 120px 0 120px;
 }
+
+
 
 /* logo pizza hust */
 .logo {
@@ -43,13 +47,16 @@ a {
 
 
 .content {
-    padding: 20px 20px;
-    margin-top: 10px;
+    padding: 40px 20px 20px 20px;
+    /* margin-top: 10px; */
+    height: 100%;
 }
 
+
+/* từng cụm input */
 .form {
     box-sizing: border-box;
-    padding: 25px 0;
+    padding: 25px 0 20px 0;
     position: relative;
 }
 
@@ -70,19 +77,35 @@ a {
 .input_content {
     width: 100%;
     height: 42px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 14px;
     border: 1px solid #D2D2D2;
     box-sizing: border-box;
     border-radius: 4px;
     background-color: #FFF2F2;
+    padding-left: 10px;
+}
+
+.input_content:focus{
+    outline: none ;
+    border: 2px solid #FF8001;
+    /* opacity: 0.7; */
 }
 
 
 .error {
     color: red;
     box-sizing: border-box;
+    margin: 0;
+    /* position: absolute; */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
 }
 
-/* quên mật khẩu */
 .forgetPass {
     width: 100%;
     height: 30px;
@@ -93,23 +116,24 @@ a {
     font-weight: 500;
     font-size: 15px;
     line-height: 17px;
-    color: #FF8000;
     box-sizing: border-box;
     margin: 0 auto;
 }
 
 .forgetPass a {
-    color: #FF8000; 
+    color: #FF8000 !important;
+
 }
+
 
 .login_btn {
     text-align: center;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 /* nút đăng nhập */
 .login_btn_input {
-    width: 163.011px;
+    width: 163.01px;
     height: 34.83px;
     background: #FF8000;
     border-radius: 5px; 
@@ -134,29 +158,34 @@ a {
     line-height: 17px;
     color: #000000;
     margin: 0;
-    padding:30px 20px;
+    padding:30px 20px 0 20px;
 }
 
 .login_route a {
     color: #FF8000; 
+    width: 100%;
 }
 
 .rightSide {
+    height: 100%;
     width: 50%;
     text-align: center;
     background: linear-gradient(146.9deg, 
     #FF8001 0%, rgba(203, 21, 21, 0.81) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
 .wrap {
-    margin: 80px 100px;
-    height: 600px;
+    box-sizing: border-box;
+    height: 80%;
+    width: 80%;
     background: linear-gradient(147.99deg, rgba(255, 174, 62, 0.75) 0%, rgba(203, 21, 21, 0.57) 100%);
     border-radius: 30px;
-   
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.img {
-   margin: 150px auto;
-}

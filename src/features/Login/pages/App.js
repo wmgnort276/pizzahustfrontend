@@ -1,4 +1,4 @@
-
+import { useNavigate } from 'react-router-dom';
 import React, {useState} from 'react';
 import LoginForm from "./LoginForm"
 import {useEffect} from 'react'
@@ -8,6 +8,11 @@ import HomePage from 'features/HomePage';
 
 function App() {
    
+  const apifake = {
+    email: 'nam@gmail.com',
+    password: 123456
+  }
+
   const [userDatas,setUserDatas] = useState([])
   const userApi = 'https://jsonplaceholder.typicode.com/users';
 
@@ -36,12 +41,19 @@ function App() {
     }
   }
 
+  const navigate = useNavigate();
+  function Nav(){
+
+    setTimeout(() => {
+      navigate('/home', { replace: true });
+    }, 1200);
+  }
 
   return (
     <div className="App">
     
       {(error === "No error") 
-       ? (<HomePage />) 
+       ? Nav() 
        :
        (<LoginForm Login={Login} error={error}/>)
       }

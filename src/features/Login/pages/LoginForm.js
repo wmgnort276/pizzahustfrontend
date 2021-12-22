@@ -41,7 +41,8 @@ function LoginForm({Login,error}){
                 </div>
 
                 <form onSubmit={submitHandle}> 
-                    <div className="form-inner">
+
+                    <div className={styles.form_inner}>
                         <h2 className={styles.title}>Đăng nhập</h2>
                         
                         <div className={styles.content}>
@@ -70,7 +71,7 @@ function LoginForm({Login,error}){
 
                             <p className={styles.login_route}>
                                 Chưa có tài khoản? 
-                                <a href="/Register"> Đăng ký </a>
+                                <Link to="/Register"> Đăng ký </Link>
                             </p>
                     </div>
                 </form>

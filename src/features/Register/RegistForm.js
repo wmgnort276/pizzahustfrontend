@@ -12,6 +12,7 @@ const FormSignup = ({ submitForm }) => {
   );
 
   return (
+    
     <div className={styles.loginPage}>
       <div className={styles.leftSide}>
       
@@ -34,7 +35,7 @@ const FormSignup = ({ submitForm }) => {
                     </svg>
 
         </div>
-        <form onSubmit={handleSubmit} className='regist-form' noValidate>
+        <form onSubmit={handleSubmit} className={styles.regist_form} noValidate>
 
             <h2 className={styles.title}> Đăng ký </h2>
 
@@ -96,11 +97,12 @@ const FormSignup = ({ submitForm }) => {
             </div> 
 
             <p className={styles.regist_route}>
-                 Đã có tài khoản? <a href="/Login"> Đăng nhập </a>
+                 Đã có tài khoản? <Link to="/Login"> Đăng nhập </Link>
              </p>
         </form>
 
     </div>
+
       <div className={styles.rightSide}>
                 <div className={styles.wrap}>
                         <img  src={img} className={styles.img} />
