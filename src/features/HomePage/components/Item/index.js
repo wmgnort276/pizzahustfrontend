@@ -5,7 +5,7 @@ import { ChooseProduct } from 'features/Slice';
 import React, { useEffect, useState, useRef } from 'react';
 import { v4 } from 'uuid';
 import { useDispatch } from 'react-redux';
-import ListItem from '../ListItem';
+// import ListItem from '../ListItem';
 
 const useStyles = makeStyles({
   root: {
@@ -70,43 +70,39 @@ export default function Item({ item }) {
   useEffect(() => {
     // Nếu sản phẩm là Combo
     if (item.hasOwnProperty('numberperson')) {
-      console.log(item)
-    //   // Lấy sub product trong combo, tính giá của combo
-    //   const subProduct = [];
-    //   for (let j = 0; j < item.combo.length; j++) {
-    //     const numberPizza = item.combo[j].amountPizza;
-    //     for (let i = 0; i < numberPizza; i++) {
-    //       const newItem = {
-    //         ...item.combo[j].pizza,
-    //         id: v4(),
-    //         itemsToChange: item.pizzas,
-    //       };
-    //       cost.current = cost.current + newItem.cost;
-    //       subProduct.push(newItem);
-    //     }
-    //   }
-    //   for (let j = 0; j < item.combo.length; j++) {
-    //     const numberSide = item.combo[j].amount;
-    //     for (let i = 0; i < numberSide; i++) {
-    //       const newItem = {
-    //         ...item.combo[j].dishes,
-    //         id: v4(),
-    //         itemsToChange: item.sides,
-    //       };
+      // Lấy sub product trong combo, tính giá của combo
+      const subProduct = [];
+      item.pizzaincombo.map(function (pizza) {
+        const newItem = {
+          ...pizza.pizza,
+          id: v4(),
+          itemsToChange: item.pizzas,
+        };
+        cost.current = cost.current + newItem.cost;
+        subProduct.push(newItem);
+        return 0;
+      });
+      item.sideincombo.map(function (side) {
+        const newItem = {
+          ...side.sidedishes,
+          id: v4(),
+          itemsToChange: side.sides,
+        };
+        cost.current = cost.current + newItem.cost;
+        subProduct.push(newItem);
+        return 0;
+      });
 
-    //       cost.current = cost.current + newItem.cost;
-    //       subProduct.push(newItem);
-    //     }
-    //   }
-    //   cost.current = (cost.current * (100 - item.percent)) / 100;
-    //   setNewItem({
-    //     ...item,
-    //     id: v4(),
-    //     quantity: 1,
-    //     cost: cost.current,
-    //     subProduct,
-    //   });
-    // } else {
+      cost.current = (cost.current * (100 - item.percent)) / 100;
+
+      setNewItem({
+        ...item,
+        id: v4(),
+        quantity: 1,
+        cost: cost.current,
+        subProduct,
+      });
+    } else {
       setNewItem({ ...item, id: v4() });
     }
   }, [item]);

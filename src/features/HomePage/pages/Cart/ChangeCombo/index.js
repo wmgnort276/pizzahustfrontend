@@ -34,8 +34,7 @@ const useStyles = makeStyles({
     },
   },
 
-  wrapImg: {
-  },
+  wrapImg: {},
 
   itemImg: {
     width: '100%',
@@ -54,11 +53,12 @@ export default function ChangeCombo({ handleChangeItem, changeTo }) {
     <Box className={classes.root}>
       <Box className={classes.listChange}>
         {changeTo.map((item) => (
-          <Box key={item.pk} className={classes.itemChange}>
-            <Box
-              className={classes.wrapImg}
-              onClick={() => handleChangeItem(item, changeTo)}
-            >
+          <Box
+            key={item.pk}
+            className={classes.itemChange}
+            onClick={() => handleChangeItem(item, changeTo)}
+          >
+            <Box className={classes.wrapImg}>
               <Box className={classes.itemImg}>
                 <img src={item.image} alt="" />
               </Box>
