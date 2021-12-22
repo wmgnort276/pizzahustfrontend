@@ -1,11 +1,10 @@
-
 body {
     margin: 0;
 }
 
 a {
-    text-decoration: none;
-} 
+  text-decoration: none;
+}
 
 .loginPage {
     display: flex;
@@ -29,22 +28,21 @@ a {
 
 /* logo pizza hust */
 .logo {
-    width: 78px;
-    height: 47px;
+  width: 78px;
+  height: 47px;
 }
 
 /* title đăng nhập */
 .title {
-    width: 100%;
-    height: 31px;
-    font-family: Montserrat;
-    font-weight: 700;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 22px;
+  width: 100%;
+  height: 31px;
+  font-family: Montserrat;
+  font-weight: 700;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
 }
-
 
 .content {
     padding: 40px 20px 20px 20px;
@@ -60,18 +58,16 @@ a {
     position: relative;
 }
 
-
 /* title ô input */
 .form_title {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 17px;
-    position: absolute;
-    top: 0;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 17px;
+  position: absolute;
+  top: 0;
 }
-
 
 /* ô input người dùng */
 .input_content {
@@ -92,7 +88,6 @@ a {
     border: 2px solid #FF8001;
     /* opacity: 0.7; */
 }
-
 
 .error {
     color: red;
@@ -176,7 +171,6 @@ a {
     justify-content: center;
     align-items: center;
 }
-
 
 .wrap {
     box-sizing: border-box;

@@ -4,8 +4,6 @@ import LoginForm from "./LoginForm"
 import {useEffect} from 'react'
 import HomePage from 'features/HomePage';
 
-
-
 function App() {
    
   const apifake = {
@@ -18,26 +16,28 @@ function App() {
 
   useEffect(() => {
     fetch(userApi)
-        .then(respone => respone.json())
-        .then(userData => {
-          setUserDatas(userData);
-          // console.log(userDatas);
-        })
-},[])
+      .then((respone) => respone.json())
+      .then((userData) => {
+        setUserDatas(userData);
+        // console.log(userDatas);
+      });
+  }, []);
 
-  
-  const [user,setUser] = useState({email:""});
-  const [error, setError] = useState("");
-  
-  const Login = details => {
+  const [user, setUser] = useState({ email: '' });
+  const [error, setError] = useState('');
+
+  const Login = (details) => {
     console.log(details);
 
-    if(userDatas.some(e => (e.email == details.email && e.username == details.password))){
-      setError("No error");
-    }
-    else {
+    if (
+      userDatas.some(
+        (e) => e.email == details.email && e.username == details.password
+      )
+    ) {
+      setError('No error');
+    } else {
       // console.log("Infor not correct");
-      setError("error");
+      setError('error');
     }
   }
 

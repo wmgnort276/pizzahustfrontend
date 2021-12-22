@@ -1,16 +1,13 @@
 import { useNavigate, Link } from 'react-router-dom';
 import React, { useState,useEffect } from 'react';
 import FormSignup from './RegistForm';
-import HomePage from 'features/HomePage';
+
 
 const App = () => {
-
   const [isSubmitted, setIsSubmitted] = useState(false);
-
 
   function submitForm() {
     setIsSubmitted(true);
-    
   }
 
   const navigate = useNavigate();
@@ -33,9 +30,7 @@ const App = () => {
         )}
 
       </div>
-
     </>
-    
   );
 };
 
