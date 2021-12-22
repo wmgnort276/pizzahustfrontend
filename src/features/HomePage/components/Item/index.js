@@ -70,42 +70,43 @@ export default function Item({ item }) {
   useEffect(() => {
     // Nếu sản phẩm là Combo
     if (item.hasOwnProperty('numberperson')) {
-      // Lấy sub product trong combo, tính giá của combo
-      const subProduct = [];
-      for (let j = 0; j < item.combo.length; j++) {
-        const numberPizza = item.combo[j].amountPizza;
-        for (let i = 0; i < numberPizza; i++) {
-          const newItem = {
-            ...item.combo[j].pizza,
-            id: v4(),
-            itemsToChange: item.pizzas,
-          };
-          cost.current = cost.current + newItem.cost;
-          subProduct.push(newItem);
-        }
-      }
-      for (let j = 0; j < item.combo.length; j++) {
-        const numberSide = item.combo[j].amount;
-        for (let i = 0; i < numberSide; i++) {
-          const newItem = {
-            ...item.combo[j].dishes,
-            id: v4(),
-            itemsToChange: item.sides,
-          };
+      console.log(item)
+    //   // Lấy sub product trong combo, tính giá của combo
+    //   const subProduct = [];
+    //   for (let j = 0; j < item.combo.length; j++) {
+    //     const numberPizza = item.combo[j].amountPizza;
+    //     for (let i = 0; i < numberPizza; i++) {
+    //       const newItem = {
+    //         ...item.combo[j].pizza,
+    //         id: v4(),
+    //         itemsToChange: item.pizzas,
+    //       };
+    //       cost.current = cost.current + newItem.cost;
+    //       subProduct.push(newItem);
+    //     }
+    //   }
+    //   for (let j = 0; j < item.combo.length; j++) {
+    //     const numberSide = item.combo[j].amount;
+    //     for (let i = 0; i < numberSide; i++) {
+    //       const newItem = {
+    //         ...item.combo[j].dishes,
+    //         id: v4(),
+    //         itemsToChange: item.sides,
+    //       };
 
-          cost.current = cost.current + newItem.cost;
-          subProduct.push(newItem);
-        }
-      }
-      cost.current = (cost.current * (100 - item.percent)) / 100;
-      setNewItem({
-        ...item,
-        id: v4(),
-        quantity: 1,
-        cost: cost.current,
-        subProduct,
-      });
-    } else {
+    //       cost.current = cost.current + newItem.cost;
+    //       subProduct.push(newItem);
+    //     }
+    //   }
+    //   cost.current = (cost.current * (100 - item.percent)) / 100;
+    //   setNewItem({
+    //     ...item,
+    //     id: v4(),
+    //     quantity: 1,
+    //     cost: cost.current,
+    //     subProduct,
+    //   });
+    // } else {
       setNewItem({ ...item, id: v4() });
     }
   }, [item]);
@@ -131,7 +132,7 @@ export default function Item({ item }) {
         <div>
           <Rating readOnly defaultValue={item.score_fields} size="small" />
           <p>
-            {item.hasOwnProperty('numberperson') ? cost.current : item.cost}
+            {item.hasOwnProperty('numberperson') ? item.price_field : item.cost}
             <span style={{ color: '#ff8000' }}> đ</span>
           </p>
         </div>

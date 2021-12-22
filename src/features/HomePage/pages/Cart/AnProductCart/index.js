@@ -171,36 +171,37 @@ export default function AnProductCart({ chooseProduct }) {
 
       {/* MUA THEO COMBO */}
       {chooseProduct.hasOwnProperty('numberperson') && (
-        <Box className={classes.combo}>
-          <Box>
-            {chooseProduct.subProduct.map((item) => (
-              <Box className={classes.comboItem} key={item.id}>
-                <img
-                  src={item.image}
-                  onClick={(event) => handleChangeCombo(item.id, event)}
-                  alt=""
-                />
-                <Popover
-                  open={item.id === openId}
-                  anchorEl={anchorEl}
-                  onClose={handleCloseChange}
-                  transformOrigin={{
-                    vertical: 'center',
-                    horizontal: 'right',
-                  }}
-                >
-                  {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
-                  <ChangeCombo
-                    handleChangeItem={handleChangeItem}
-                    changeTo={item.itemsToChange}
-                  />
-                </Popover>
-                <span>{item.name}</span>
-                <Box onClick={() => dispatch(ChooseProduct(item))}>Mua lẻ</Box>
-              </Box>
-            ))}
-          </Box>
-        </Box>
+        console.log(chooseProduct)
+        // <Box className={classes.combo}>
+        //   <Box>
+        //     {chooseProduct.subProduct.map((item) => (
+        //       <Box className={classes.comboItem} key={item.id}>
+        //         <img
+        //           src={item.image}
+        //           onClick={(event) => handleChangeCombo(item.id, event)}
+        //           alt=""
+        //         />
+        //         <Popover
+        //           open={item.id === openId}
+        //           anchorEl={anchorEl}
+        //           onClose={handleCloseChange}
+        //           transformOrigin={{
+        //             vertical: 'center',
+        //             horizontal: 'right',
+        //           }}
+        //         >
+        //           {/* Truyền thêm props (api, ...) vào ChangeCombo để lấy được các sản phẩm thay thế */}
+        //           <ChangeCombo
+        //             handleChangeItem={handleChangeItem}
+        //             changeTo={item.itemsToChange}
+        //           />
+        //         </Popover>
+        //         <span>{item.name}</span>
+        //         <Box onClick={() => dispatch(ChooseProduct(item))}>Mua lẻ</Box>
+        //       </Box>
+        //     ))}
+        //   </Box>
+        // </Box>
       )}
 
       {/* MUA MỘT SẢN PHẨM */}
