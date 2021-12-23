@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
 import { Alert, Box, Snackbar, TextField } from '@mui/material';
 import Button from 'components/Button';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { buyAllRequest } from 'features/Slice';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useStyles } from './styles';
 import './styles.css';
 
 export default function UserForm() {
   const classes = useStyles();
   const [buySuccess, setBuySuccess] = useState(false);
+  const cart = useSelector((state) => state.cart.listProduct);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -25,6 +26,7 @@ export default function UserForm() {
       address: data.get('Address'),
     };
     console.log('data to order', dataToOrder);
+    console.log('cart ', cart);
 
     // var dataPost = {
     //   cart: "nam'",
