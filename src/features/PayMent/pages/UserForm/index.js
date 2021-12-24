@@ -3,11 +3,13 @@ import { Alert, Box, Snackbar, TextField } from '@mui/material';
 import Button from 'components/Button';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of ef3f30f5 ([LTN] post order)
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector  } from 'react-redux';
-=======
->>>>>>> b5466dd81023899e9cd74c58c0bf31660db0dc55
 import { buyAllRequest } from 'features/Slice';
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 =======
@@ -15,6 +17,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { buyAllRequest } from 'features/Slice';
+=======
+>>>>>>> parent of ef3f30f5 ([LTN] post order)
 import { useStyles } from './styles';
 import './styles.css';
 
@@ -38,7 +42,6 @@ export default function UserForm() {
     console.log('data to order', dataToOrder);
 <<<<<<< HEAD
     console.log('cart ', cart);
-<<<<<<< HEAD
     const orderside = cart.filter(item=>item.type)
     const ordercombo = cart.filter(item=>item.numberperson)
     const orderpizza = cart.filter(item=>item.size)
@@ -58,8 +61,6 @@ export default function UserForm() {
       })
     }
     console.log(orderpizza1)
-=======
->>>>>>> b5466dd81023899e9cd74c58c0bf31660db0dc55
 
     let orderside1 = [];
     for (let item of orderside){
