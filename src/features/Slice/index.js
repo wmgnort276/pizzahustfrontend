@@ -54,6 +54,7 @@ const cart = createSlice({
     },
 
     buyAllRequest: (state) => {
+      
       state.listProduct = [];
     },
   },

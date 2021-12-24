@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Box } from '@mui/material';
+import { Button, Box, CircularProgress } from '@mui/material';
 import { v4 } from 'uuid';
 import { makeStyles } from '@mui/styles';
 import Item from 'features/HomePage/components/Item';
@@ -39,11 +39,13 @@ export default function Combo() {
   }
 
   const [data, setData] = useState([]);
+  const[loading, setLoading] = useState(false);
   useEffect(() => {
     async function getData() {
       const response = await fetch('http://127.0.0.1:8000/combo/');
       const responseJSON = await response.json();
       setData(responseJSON);
+      setLoading(true);
     }
 
     getData();
@@ -53,19 +55,26 @@ export default function Combo() {
     <div>
       <Box className={classes.root}>
         <Box className={classes.title}>Combo khuyến mãi</Box>
-        <Box className={classes.body}>
-          {data.map((item) => (
-            <Item key={item.pk} item={item} />
-          ))}
-        </Box>
-        <Button
-          className={classes.moreBtn}
-          sx={{ display: limit >= data.length ? 'none' : '' }}
-          variant="contained"
-          onClick={handleMoreBtn}
-        >
-          Xem thêm
-        </Button>
+        {loading ? (
+        <>
+          <Box className={classes.body}>
+            {data.map((item) => (
+              <Item key={item.pk} item={item} />
+            ))}
+          </Box>
+          <Button
+            className={classes.moreBtn}
+            sx={{ display: limit >= data.length ? 'none' : '' }}
+            variant="contained"
+            onClick={handleMoreBtn}
+          >
+            Xem thêm
+          </Button>
+        </>) : (
+          <Box style={{textAlign: "center"}}>
+            <CircularProgress color="success" style={{margin: "20px auto"}}/>
+          </Box>
+        )}
       </Box>
     </div>
   );
