@@ -1,30 +1,9 @@
 import React, { useState } from 'react';
 import { Alert, Box, Snackbar, TextField } from '@mui/material';
 import Button from 'components/Button';
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of ef3f30f5 ([LTN] post order)
->>>>>>> 27e94a0f84c35ae20744eb14bb7f61384629c258
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector  } from 'react-redux';
-import { buyAllRequest } from 'features/Slice';
-<<<<<<< HEAD
-import React, { useState } from 'react';
-<<<<<<< HEAD
-=======
-import { useDispatch, useSelector } from 'react-redux';
-=======
->>>>>>> parent of b5466dd8 (console.log(cart))
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { buyAllRequest } from 'features/Slice';
-=======
->>>>>>> parent of ef3f30f5 ([LTN] post order)
->>>>>>> 27e94a0f84c35ae20744eb14bb7f61384629c258
 import { useStyles } from './styles';
 import './styles.css';
 
@@ -33,6 +12,7 @@ export default function UserForm() {
   const [buySuccess, setBuySuccess] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.listProduct);
 
   function handleBuyBtn(event) {
     event.preventDefault();
@@ -46,13 +26,6 @@ export default function UserForm() {
       address: data.get('Address'),
     };
     console.log('data to order', dataToOrder);
-<<<<<<< HEAD
-    console.log('cart ', cart);
-    
-=======
-<<<<<<< HEAD
-    console.log('cart ', cart);
->>>>>>> 27e94a0f84c35ae20744eb14bb7f61384629c258
     const orderside = cart.filter(item=>item.type)
     const ordercombo = cart.filter(item=>item.numberperson)
     const orderpizza = cart.filter(item=>item.size)
@@ -111,8 +84,6 @@ export default function UserForm() {
     console.log(pizzaincombo)
     console.log(sideincombo)
     console.log(ordercombo1)
-=======
->>>>>>> parent of b5466dd8 (console.log(cart))
 
     var dataPost = {
       // cart: "http://127.0.0.1:8000/cart/1/",
