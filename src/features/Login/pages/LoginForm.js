@@ -70,7 +70,7 @@ function LoginForm({Login,error}){
 
                             <p className={styles.login_route}>
                                 Chưa có tài khoản? 
-                                <Link to="/Register"> Đăng ký </Link>
+                                <a href="/Register"> Đăng ký </a>
                             </p>
                     </div>
                 </form>
