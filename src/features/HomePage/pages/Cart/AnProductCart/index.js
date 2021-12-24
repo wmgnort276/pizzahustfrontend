@@ -23,7 +23,7 @@ export default function AnProductCart({ chooseProduct }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
-
+  console.log(chooseProduct)
   // Cancel choose product
   function handleBackBtn() {
     dispatch(BackBtnClick());
@@ -127,6 +127,7 @@ export default function AnProductCart({ chooseProduct }) {
         time: chooseProduct.time,
         cost: chooseProduct.cost,
         subProduct: chooseProduct.subProduct,
+        pk: chooseProduct.pk,
       };
       const idx = cart.findIndex((item) => item.id === chooseProduct.id);
       if (idx !== -1) {

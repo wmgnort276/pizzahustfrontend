@@ -92,7 +92,8 @@ export default function Item({ item }) {
         subProduct.push(newItem);
         return 0;
       });
-
+      
+      // console.log(item)
       cost.current = (cost.current * (100 - item.percent)) / 100;
 
       setNewItem({
