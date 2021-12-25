@@ -50,7 +50,7 @@ export default function Combo() {
 
     getData();
   }, []);
-
+  console.log(data)
   return (
     <div>
       <Box className={classes.root}>

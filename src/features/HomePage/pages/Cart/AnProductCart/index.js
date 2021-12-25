@@ -128,6 +128,7 @@ export default function AnProductCart({ chooseProduct }) {
         cost: chooseProduct.cost,
         subProduct: chooseProduct.subProduct,
         pk: chooseProduct.pk,
+        description: chooseProduct.description,
       };
       const idx = cart.findIndex((item) => item.id === chooseProduct.id);
       if (idx !== -1) {
@@ -208,7 +209,7 @@ export default function AnProductCart({ chooseProduct }) {
       {/* MUA MỘT SẢN PHẨM */}
       {!chooseProduct.hasOwnProperty('numberperson') && (
         <Box className={classes.choose}>
-          {chooseProduct.hasOwnProperty('size') && (
+          {chooseProduct.hasOwnProperty('sizes') && (
             <Box>
               <Autocomplete
                 className={classes.select}
