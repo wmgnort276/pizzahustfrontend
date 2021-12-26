@@ -23,7 +23,7 @@ export default function AnProductCart({ chooseProduct }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
-
+  console.log(chooseProduct)
   // Cancel choose product
   function handleBackBtn() {
     dispatch(BackBtnClick());
@@ -127,6 +127,8 @@ export default function AnProductCart({ chooseProduct }) {
         time: chooseProduct.time,
         cost: chooseProduct.cost,
         subProduct: chooseProduct.subProduct,
+        pk: chooseProduct.pk,
+        description: chooseProduct.description,
       };
       const idx = cart.findIndex((item) => item.id === chooseProduct.id);
       if (idx !== -1) {
@@ -207,7 +209,7 @@ export default function AnProductCart({ chooseProduct }) {
       {/* MUA MỘT SẢN PHẨM */}
       {!chooseProduct.hasOwnProperty('numberperson') && (
         <Box className={classes.choose}>
-          {chooseProduct.hasOwnProperty('size') && (
+          {chooseProduct.hasOwnProperty('sizes') && (
             <Box>
               <Autocomplete
                 className={classes.select}
