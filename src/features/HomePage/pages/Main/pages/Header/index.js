@@ -21,7 +21,8 @@ export default function Header() {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const searchValue = data.get('Search');
-    navigate(`/search_keyword=${searchValue}`, { replace: true });
+    console.log(searchValue)
+    navigate(`/search=${searchValue}`, { replace: true });
   };
 
   return (

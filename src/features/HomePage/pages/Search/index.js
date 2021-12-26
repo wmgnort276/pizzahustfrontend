@@ -1,22 +1,17 @@
-import { Box } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-import React from 'react';
-import { useParams } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
-import { Fab, Rating } from '@mui/material';
-import { ChooseProduct } from '../../../Slice';
+import { Box, Fab, Rating } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import pizzaList from '../../../../constants/Category/pizzaList';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ChooseProduct } from '../../../Slice';
+
 const useStyles = makeStyles({
   container: {
-    marginTop: "10px"
+    marginTop: '10px',
   },
-  head: {
-
-  },
-  body: {
-    
-  },
+  head: {},
+  body: {},
   searchBtn: {
     height: '27px',
     width: '163px',
@@ -26,45 +21,128 @@ const useStyles = makeStyles({
     padding: '0 19px',
     boxSizing: 'border-box',
   },
-})
+});
 export default function Search() {
   const { search } = useParams();
-  console.log(search.slice(15));
-  
+  const navigate = useNavigate();
+
+  const [pizzaResponse, setPizzaResponse] = useState([]);
+  const [sideResponse, setSideResponse] = useState([]);
+  const [comboResponse, setComboResponse] = useState([]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const searchValue = data.get('Search');
+    console.log(searchValue);
+    navigate(`/search=${searchValue}`, { replace: true });
+  };
+
+  // API
+  const [loading, setLoading] = useState(false);
+  const pizzaSearch = 'http://127.0.0.1:8000/piza/?search=' + search.slice(7);
+  const sideSearch = 'http://127.0.0.1:8000/side/?search=' + search.slice(7);
+  const comboSearch = 'http://127.0.0.1:8000/combo/?search=' + search.slice(7);
+
+  useEffect(() => {
+    async function getData() {
+      const responsePizza = await fetch(pizzaSearch);
+      setPizzaResponse(await responsePizza.json());
+      setLoading(true);
+    }
+
+    getData();
+  }, [pizzaSearch]);
+
+  useEffect(() => {
+    async function getData() {
+      const responseSide = await fetch(sideSearch);
+      setSideResponse(await responseSide.json());
+      setLoading(true);
+    }
+
+    getData();
+  }, [sideSearch]);
+
+  useEffect(() => {
+    async function getData() {
+      const responseCombo = await fetch(comboSearch);
+      setComboResponse(await responseCombo.json());
+      setLoading(true);
+    }
+
+    getData();
+  }, [comboSearch]);
+
+  const data = [...pizzaResponse, ...sideResponse, ...comboResponse];
+
   const classes = useStyles();
-  return <div>{search && <div>
-        <Box className={classes.container}>
-            <Box className={classes.head} >
-              <div className="head-wrap" style={{position: "relative", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                  <img srcSet={process.env.PUBLIC_URL + "pizzaLogo.png 2x"}></img>
-                  <input
-                  style={{position: "absolute", right: "20px"}}
-              type="text"
-              className={classes.searchBtn}
-              placeholder="Tìm kiếm"
-              name="Search"
-            />
+  return (
+    <div>
+      {search && (
+        <div>
+          <Box className={classes.container}>
+            <Box
+              className={classes.head}
+              component="form"
+              onSubmit={handleSearch}
+            >
+              <div
+                className="head-wrap"
+                style={{
+                  position: 'relative',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <input
+                  style={{ position: 'absolute', right: '20px' }}
+                  type="text"
+                  className={classes.searchBtn}
+                  placeholder="Tìm kiếm"
+                  name="Search"
+                />
               </div>
             </Box>
-            <Box className={classes.body} style={{display: "flex", flexWrap: "wrap", flexDirection:"column", justifyContent: "space-between"}}>
-                <div className="body-head" style={{marginBottom: "6rem", textAlign: "center"}}>
-                    <h6 >Tìm kiếm</h6>
-                    <p style={{marginBottom: "0" }}>Hiển thị kết quả tìm kiếm cho {"Pate"}</p>
-                    <p style={{marginTop: "0" }}>Có {"16"} kết quả</p>
-                    
-
-
-
-                </div>
-                <div className="body-bottom" style={{display: "flex", flexWrap: "wrap", justifyContent: "space-between"}}>
-                  {console.log(pizzaList)}
-                    {pizzaList.map((pizza) => {
-                      return <Item item={pizza} />
-                    })}
-                </div>
+            <Box
+              className={classes.body}
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
+              <div
+                className="body-head"
+                style={{ marginBottom: '6rem', textAlign: 'center' }}
+              >
+                <h6>Tìm kiếm</h6>
+                <p style={{ marginBottom: '0' }}>
+                  Hiển thị kết quả tìm kiếm cho {search.slice(7)}
+                </p>
+                <p style={{ marginTop: '0' }}>Có {data.length} kết quả</p>
+              </div>
+              <div
+                className="body-bottom"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+                  gridGap: '20px',
+                }}
+              >
+                {data.length &&
+                  data.map((item) => {
+                    return <Item item={item} />;
+                  })}
+              </div>
             </Box>
-        </Box>
-    </div>}</div>;
+          </Box>
+        </div>
+      )}
+    </div>
+  );
 }
 
 const useStylesProductItem = makeStyles({
@@ -73,7 +151,7 @@ const useStylesProductItem = makeStyles({
     borderRadius: '20px',
     backgroundColor: '#fff',
     display: 'flex',
-    flex: "0 1 30%",
+    flex: '0 1 30%',
     flexDirection: 'column',
     boxSizing: 'border-box',
     marginBottom: '70px',
@@ -89,7 +167,7 @@ const useStylesProductItem = makeStyles({
 
     '&:hover': {
       '& img': {
-        transform: 'scale(1.2) rotate(60deg)',
+        transform: 'scale(1.2) rotate(20deg)',
         transition: '1s',
       },
       '& p': {
@@ -132,11 +210,7 @@ function Item({ item }) {
 
   return (
     <div className={classes.root}>
-      <img
-        src={process.env.PUBLIC_URL + `${item.srcImg}`}
-        alt=""
-        style={{ width: '100%' }}
-      />
+      <img src={item.image} alt="" style={{ width: '100%' }} />
       <p>{item.name}</p>
       <div className={classes.body}>
         <div>
