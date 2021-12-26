@@ -1,6 +1,6 @@
 import { Button, Box, CircularProgress } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import pizzaList from 'constants/Category/pizzaList';
+// import pizzaList from 'constants/Category/pizzaList';
 import Item from 'features/HomePage/components/Item';
 import React, { useEffect, useState } from 'react';
 
@@ -27,7 +27,7 @@ export default function ListItem({ listItem, api }) {
 
   // API
   const [data, setData] = useState([]);
-  const[loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function getData() {
       const response = await fetch(api);
@@ -64,8 +64,8 @@ export default function ListItem({ listItem, api }) {
           </Button>
         </>
       ) : (
-        <Box style={{textAlign: "center"}}>
-          <CircularProgress color="success" style={{margin: "20px auto"}}/>
+        <Box style={{ textAlign: 'center' }}>
+          <CircularProgress color="success" style={{ margin: '20px auto' }} />
         </Box>
       )}
     </Box>
