@@ -35,7 +35,7 @@ export default function UserForm() {
     let orderpizza1 = [];
     for (let item of orderpizza){
       orderpizza1.push({
-        "order": 2,//
+        "order": 1,//
         "size": "S",
         "soles": "Mem xop",
         "pizaa": item.pk,
@@ -51,7 +51,7 @@ export default function UserForm() {
     let orderside1 = [];
     for (let item of orderside){
       orderside1.push({
-        "order": 2,//
+        "order": 1,//
         "sidess": item.pk,
         "sidedis": item,
         "amount": item.quantity,
@@ -64,23 +64,23 @@ export default function UserForm() {
       var percent = item.percent
       for(let i of item.subProduct.filter(ite=>ite.sizes)){
         orderpizza1.push({
-          "order": 2,//
+          "order": 1,//
           "size": "L",
           "soles": "Mem xop",
           "comboorder": item.pk,
           "pizaa": i.pk,
           "pizzaa": i,
-          "amount": i.quantity,
+          "amount": item.quantity,
           // "cost": i.cost,
           "pecent": percent,
           })
       }
       for(let i of item.subProduct.filter(ite=>ite.type)){
         orderside1.push({
-          "order": 2,//
+          "order": 1,//
           "sidess": i.pk,
           "sidedis": i,
-          "amount": i.quantity,
+          "amount": item.quantity,
           "cost": i.cost,
           "pecent": percent,
           })
