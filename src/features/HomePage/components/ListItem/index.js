@@ -33,6 +33,7 @@ export default function ListItem({ listItem, api }) {
       const response = await fetch(api);
       const responseJSON = await response.json();
       setData(responseJSON);
+
       setLoading(true);
     }
 

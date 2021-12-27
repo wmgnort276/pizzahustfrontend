@@ -28,7 +28,7 @@ export default function UserForm() {
     console.log('data to order', dataToOrder);
     const orderside = cart.filter((item) => item.type);
     const ordercombo = cart.filter((item) => item.numberperson);
-    const orderpizza = cart.filter((item) => item.sizes);
+    const orderpizza = cart.filter((item) => item.costl);
     console.log(orderside);
     console.log(ordercombo);
     console.log(orderpizza);
@@ -42,7 +42,7 @@ export default function UserForm() {
         pizzaa: item,
         comboorder: null,
         amount: item.quantity,
-        cost: item.cost,
+        // cost: item.cost,
         pecent: 0,
       });
     }
@@ -62,10 +62,10 @@ export default function UserForm() {
     // console.log(orderside1)
     for (let item of ordercombo) {
       var percent = item.percent;
-      for (let i of item.subProduct.filter((ite) => ite.sizes)) {
+      for (let i of item.subProduct.filter((ite) => ite.costl)) {
         orderpizza1.push({
           order: 2, //
-          size: 'L',
+          size: 'M',
           soles: 'Mem xop',
           comboorder: item.pk,
           pizaa: i.pk,
