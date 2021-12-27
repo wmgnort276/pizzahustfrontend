@@ -19,7 +19,7 @@ export default function AnProductCart({ chooseProduct }) {
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
 
-  console.log(chooseProduct);
+  // console.log(chooseProduct);
   // Cancel choose product
   function handleBackBtn() {
     dispatch(BackBtnClick());
@@ -73,12 +73,13 @@ export default function AnProductCart({ chooseProduct }) {
     if (!chooseProduct.numberperson) {
       let product = {};
       // Nếu sản phẩm là pizza
-      if (chooseProduct.hasOwnProperty('size')) {
+      if (chooseProduct.hasOwnProperty('costl')) {
         // change cost when choose size, topping
         const toppingCost = topping !== null ? topping.addCost : 0;
         product = {
           ...chooseProduct,
           cost: chooseProduct.cost + size.addCost + toppingCost,
+          price: chooseProduct.cost + size.addCost + toppingCost,
           quantity: 1,
           size: size.size,
           sole: sole.sole,

@@ -61,7 +61,7 @@ const useStyles = makeStyles({
       transition: 'all 0.5s',
       transitionTiming: 'ease-in-out',
       '&:hover': {
-        transform: 'rotate(45deg)',
+        transform: 'rotate(20deg)',
       },
     },
 
