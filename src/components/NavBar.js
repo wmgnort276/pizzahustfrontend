@@ -109,7 +109,7 @@ export default function NavBar() {
         </Box>
       </ListItem>
 
-      <ListItem className={classes.navIcon}>
+      <ListItem className={classes.navIcon} onClick={()=>{navigate('/login', { replace: true })}}>
         <LogoutOutlinedIcon sx={{ fontSize: 30 }} />
       </ListItem>
     </List>
