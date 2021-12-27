@@ -36,8 +36,8 @@ export default function UserForm() {
     for (let item of orderpizza) {
       orderpizza1.push({
         order: 2, //
-        size: 'S',
-        soles: 'Mem xop',
+        size: item.size,
+        soles: item.sole,
         pizaa: item.pk,
         pizzaa: item,
         comboorder: null,
