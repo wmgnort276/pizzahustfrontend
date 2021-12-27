@@ -19,7 +19,7 @@ export default function AnProductCart({ chooseProduct }) {
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
 
-  console.log(chooseProduct);
+  // console.log(chooseProduct);
   // Cancel choose product
   function handleBackBtn() {
     dispatch(BackBtnClick());
