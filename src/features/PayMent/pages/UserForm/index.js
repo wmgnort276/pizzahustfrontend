@@ -36,8 +36,8 @@ export default function UserForm() {
     for (let item of orderpizza) {
       orderpizza1.push({
         order: 2, //
-        size: 'S',
-        soles: 'Mem xop',
+        size: item.size,
+        soles: item.sole,
         pizaa: item.pk,
         pizzaa: item,
         comboorder: null,
@@ -113,13 +113,13 @@ export default function UserForm() {
         // bạn có thể làm gì đó với kết quả cuối cùng này thì làm
 
         console.log('Success:', data); // ghi log kết quả hoàn thành
+        setTimeout(() => {
+          navigate('/success', { replace: true });
+        }, 1000);
       })
       .catch((error) => {
         console.error('Error:', error); // ghi log nếu xảy ra lỗi
       });
-    setTimeout(() => {
-      navigate('/success', { replace: true });
-    }, 1000);
     console.log('Success:', data); // ghi log kết quả hoàn thành
   }
 

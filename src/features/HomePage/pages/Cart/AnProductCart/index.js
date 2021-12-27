@@ -158,11 +158,11 @@ export default function AnProductCart({ chooseProduct }) {
 
   const soles = [
     {
-      sole: 'Đế giòn',
+      sole: 'Gion',
       addCost: 0,
     },
     {
-      sole: 'Đế mềm xốp',
+      sole: 'Mem xop',
       addCost: 0,
     },
   ];
