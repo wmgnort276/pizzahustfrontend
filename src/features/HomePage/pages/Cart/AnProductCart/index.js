@@ -19,7 +19,7 @@ export default function AnProductCart({ chooseProduct }) {
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
 
-  // console.log(chooseProduct);
+  console.log(chooseProduct);
   // Cancel choose product
   function handleBackBtn() {
     dispatch(BackBtnClick());
@@ -202,9 +202,11 @@ export default function AnProductCart({ chooseProduct }) {
           <p>{chooseProduct.name}</p>
           <p style={{ fontWeight: 400 }}>{chooseProduct.description}</p>
           <p>
-            {chooseProduct.cost +
-              (size !== null ? size.addCost : 0) +
-              (topping !== null ? topping.addCost : 0)}
+            {chooseProduct.hasOwnProperty('costl')
+              ? chooseProduct.cost +
+                (size !== null ? size.addCost : 0) +
+                (topping !== null ? topping.addCost : 0)
+              : chooseProduct.cost}
             <span style={{ color: '#FF8000' }}> đ</span>
           </p>
         </Box>
