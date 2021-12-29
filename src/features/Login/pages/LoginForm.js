@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import img from './foodImage.png';
 import styles from './LoginForm.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm({ Login, error }) {
+  const navigate = useNavigate();
   // const [details,setDetails] = useState({email: "",password: ""});
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -18,6 +20,9 @@ function LoginForm({ Login, error }) {
       })
       .then((respond) => {
         console.log(respond.data);
+        setTimeout(() => {
+          navigate('/home', { replace: true });
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
