@@ -1,7 +1,10 @@
 import React,{useState} from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import axios from "axios"
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
+=======
+>>>>>>> 734479b812c270a75fb62f3186d3fe61b23b64b9
 import img from "./foodImage.png"
 import styles from "./LoginForm.module.css";
 
@@ -10,9 +13,17 @@ function LoginForm({Login,error}){
     const navigate = useNavigate();
 
     // const [details,setDetails] = useState({email: "",password: ""});
+<<<<<<< HEAD
     const [username,setUserName] = useState("");
     const [password,setPassword] = useState("");
     // Xử lý khi submid
+=======
+
+    const [username,setUserName] = useState("");
+    const [password,setPassword] = useState("");
+    // Xử lý khi submid
+
+>>>>>>> 734479b812c270a75fb62f3186d3fe61b23b64b9
     function login(){
         console.log(username,password)
         axios.post("http://127.0.0.1:8000/api/login/", {
@@ -20,6 +31,7 @@ function LoginForm({Login,error}){
             password : password
         }).then(respond => {
             console.log(respond.data)
+<<<<<<< HEAD
             setTimeout(() => {
                 navigate('/home', { replace: true });
               }, 1000);
@@ -27,6 +39,14 @@ function LoginForm({Login,error}){
             console.log(error);
         })
     }
+=======
+        }).catch(error => {
+            console.log(error);
+        })
+        
+    }
+   
+>>>>>>> 734479b812c270a75fb62f3186d3fe61b23b64b9
 
     return (
         <div className={styles.loginPage}>
@@ -78,7 +98,11 @@ function LoginForm({Login,error}){
                             </div>
 
                             <div className={styles.login_btn}>
+<<<<<<< HEAD
                             <input className={styles.login_btn_input} onClick={login} value="Đăng nhập" style={{textAlign : "center"}}/>    
+=======
+                              <input className={styles.login_btn_input} onClick={login} value="Đăng nhập" style={{textAlign : "center"}}/>    
+>>>>>>> 734479b812c270a75fb62f3186d3fe61b23b64b9
                             </div>    
 
                             <p className={styles.login_route}>
