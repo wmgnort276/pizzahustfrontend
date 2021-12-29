@@ -1,10 +1,34 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import img from './foodImage.png';
 import styles from './Regist.module.css';
 import useForm from './RegistHandle';
 import validate from './validateInfo';
 
 const FormSignup = ({ submitForm }) => {
+  // const navigate = useNavigate();
+  // // const [details,setDetails] = useState({email: "",password: ""});
+  // const [username,setUserName] = useState("");
+  // const [address,setAddress] = useState("");
+  // const [password,setPassword] = useState("");
+  // // Xử lý khi submid
+  // function login(){
+
+  //     console.log(username,password)
+  //     axios.post("http://127.0.0.1:8000/api/register/", {
+  //         username : username,
+  //         address: address,
+  //         password : password
+  //     }).then(respond => {
+  //         console.log(respond.data)
+  //         setTimeout(() => {
+  //             navigate('/home', { replace: true });
+  //           }, 1000);
+  //     }).catch(error => {
+  //         console.log(error);
+  //     })
+  // }
+
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
     validate
@@ -148,7 +172,7 @@ const FormSignup = ({ submitForm }) => {
           </div>
 
           <p className={styles.regist_route}>
-            Đã có tài khoản? <a href="/Login"> Đăng nhập </a>
+            Đã có tài khoản? <Link to="/login"> Đăng nhập</Link>
           </p>
         </form>
       </div>

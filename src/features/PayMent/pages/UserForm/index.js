@@ -70,7 +70,7 @@ export default function UserForm() {
           comboorder: item.pk,
           pizaa: i.pk,
           pizzaa: i,
-          amount: i.quantity,
+          amount: item.quantity,
           // "cost": i.cost,
           pecent: percent,
         });
