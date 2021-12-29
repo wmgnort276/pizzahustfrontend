@@ -1,11 +1,35 @@
-import React from 'react';
-import {Routes, Route, Link} from 'react-router-dom';
+import React,{useState} from 'react';
+// import {Routes, Route, Link, useNavigate} from 'react-router-dom';
+// import axios from "axios"
 import validate from './validateInfo';
 import useForm from './RegistHandle';
 import img from './foodImage.png';
 import styles from  "./Regist.module.css";
 
 const FormSignup = ({ submitForm }) => {
+  // const navigate = useNavigate();
+  // // const [details,setDetails] = useState({email: "",password: ""});
+  // const [username,setUserName] = useState("");
+  // const [address,setAddress] = useState("");
+  // const [password,setPassword] = useState("");
+  // // Xử lý khi submid
+  // function login(){
+
+  //     console.log(username,password)
+  //     axios.post("http://127.0.0.1:8000/api/register/", {
+  //         username : username,
+  //         address: address,
+  //         password : password
+  //     }).then(respond => {
+  //         console.log(respond.data)
+  //         setTimeout(() => {
+  //             navigate('/home', { replace: true });
+  //           }, 1000);
+  //     }).catch(error => {
+  //         console.log(error);
+  //     })
+  // }
+
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
     validate

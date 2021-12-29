@@ -29,11 +29,14 @@ const useForm = (callback, validate) => {
     
   };
 
-  const userApi = 'https://jsonplaceholder.typicode.com/users';
+  const userApi = "http://127.0.0.1:8000/api/register/";
 
   const postApi = (userInp) => {
     var e = {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(userInp)
     }
     fetch(userApi, e)
@@ -53,6 +56,9 @@ const useForm = (callback, validate) => {
         console.log(userInp);  // nhận được kết quả
         console.log(values);
         postApi(userInp);
+        // setTimeout(() => {
+        //     navigate('/home', { replace: true });
+        //   }, 1000);
       }
     },
     [errors]
