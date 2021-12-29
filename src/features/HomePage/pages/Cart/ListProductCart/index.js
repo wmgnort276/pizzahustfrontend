@@ -78,18 +78,14 @@ export default function ListProductCart({ cart }) {
         <Box className={classes.productList}>
           {cart.map((item) => (
             <Box key={item.id} className={classes.productItem}>
-              <img
-                src={item.image}
-                // src={process.env.PUBLIC_URL + `${item.srcImg}`}
-                alt=""
-              />
+              <Box
+                onMouseEnter={(event) => handlePopoverOpen(item.id, event)}
+                onMouseLeave={handlePopoverClose}
+              >
+                <img src={item.image} alt="" />
+              </Box>
               <Box className={classes.itemInfo}>
-                <p
-                  onMouseEnter={(event) => handlePopoverOpen(item.id, event)}
-                  onMouseLeave={handlePopoverClose}
-                >
-                  {item.name}
-                </p>
+                <p>{item.name}</p>
                 {item.hasOwnProperty('size') && (
                   <Popover
                     sx={{
@@ -107,11 +103,43 @@ export default function ListProductCart({ cart }) {
                     }}
                   >
                     <Typography sx={{ p: 1 }}>
-                      {item.size}, {item.sole},{' '}
+                      Size {item.size}, {item.sole},{' '}
                       {item.topping ? item.topping : 'Không topping'}
                     </Typography>
                   </Popover>
                 )}
+
+                {item.hasOwnProperty('numberperson') && (
+                  <Popover
+                    sx={{
+                      pointerEvents: 'none',
+                    }}
+                    open={item.id === openId}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'center',
+                      horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                      vertical: 'center',
+                      horizontal: 'right',
+                    }}
+                  >
+                    {item.subProduct.map((subItem) => (
+                      <Box
+                        key={subItem.id}
+                        className={classes.productItem}
+                        sx={{ bgcolor: '#fff', m: '30px 20px' }}
+                      >
+                        <img src={subItem.image} alt="" />
+                        <Box className={classes.itemInfo}>
+                          <p>{subItem.name}</p>
+                        </Box>
+                      </Box>
+                    ))}
+                  </Popover>
+                )}
+
                 <Box className={classes.quantity}>
                   <Box onClick={() => onSubBtnClick(item.id)}>
                     <RemoveIcon sx={{ cursor: 'pointer' }} />

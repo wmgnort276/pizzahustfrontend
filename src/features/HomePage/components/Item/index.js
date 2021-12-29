@@ -78,7 +78,7 @@ export default function Item({ item }) {
           id: v4(),
           itemsToChange: item.pizzas,
         };
-        cost.current = cost.current + newItem.cost;
+        cost.current = cost.current + newItem.costm;
         subProduct.push(newItem);
         return 0;
       });
@@ -92,7 +92,7 @@ export default function Item({ item }) {
         subProduct.push(newItem);
         return 0;
       });
-      
+
       // console.log(item)
       cost.current = (cost.current * (100 - item.percent)) / 100;
 
@@ -129,7 +129,7 @@ export default function Item({ item }) {
         <div>
           <Rating readOnly defaultValue={item.score_fields} size="small" />
           <p>
-            {item.hasOwnProperty('numberperson') ? item.price_field : item.cost}
+            {item.hasOwnProperty('numberperson') ? cost.current : item.cost}
             <span style={{ color: '#ff8000' }}> đ</span>
           </p>
         </div>

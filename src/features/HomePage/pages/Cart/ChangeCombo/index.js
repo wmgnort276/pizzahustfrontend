@@ -4,7 +4,9 @@ import { makeStyles } from '@mui/styles';
 import './styles.css';
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    minHeight: '560px',
+  },
 
   listChange: {
     margin: '20px',

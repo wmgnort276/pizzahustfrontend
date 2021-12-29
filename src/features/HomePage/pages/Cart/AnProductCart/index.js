@@ -1,13 +1,8 @@
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Autocomplete, Box, Popover, TextField } from '@mui/material';
 import Button from 'components/Button';
-import {
-  AddBtnClick,
-  addOldProduct,
-  addProduct,
-  BackBtnClick,
-  ChooseProduct,
-} from 'features/Slice';
+import { AddBtnClick, addOldProduct } from 'features/Slice';
+import { addProduct, BackBtnClick, ChooseProduct } from 'features/Slice';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ChangeCombo from '../ChangeCombo';
@@ -23,7 +18,8 @@ export default function AnProductCart({ chooseProduct }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
-  console.log(chooseProduct)
+
+  console.log(chooseProduct);
   // Cancel choose product
   function handleBackBtn() {
     dispatch(BackBtnClick());
@@ -42,7 +38,7 @@ export default function AnProductCart({ chooseProduct }) {
   }
   // Cập nhật combo khi chọn sản phẩm khác
   function handleChangeItem(item, itemsToChange) {
-    console.log(item, itemsToChange);
+    // console.log(item, itemsToChange);
     const idx = chooseProduct.subProduct.findIndex(
       (item) => item.id === openId
     );
@@ -77,12 +73,13 @@ export default function AnProductCart({ chooseProduct }) {
     if (!chooseProduct.numberperson) {
       let product = {};
       // Nếu sản phẩm là pizza
-      if (chooseProduct.hasOwnProperty('size')) {
+      if (chooseProduct.hasOwnProperty('costl')) {
         // change cost when choose size, topping
         const toppingCost = topping !== null ? topping.addCost : 0;
         product = {
           ...chooseProduct,
           cost: chooseProduct.cost + size.addCost + toppingCost,
+          price: chooseProduct.cost + size.addCost + toppingCost,
           quantity: 1,
           size: size.size,
           sole: sole.sole,
@@ -128,6 +125,7 @@ export default function AnProductCart({ chooseProduct }) {
         cost: chooseProduct.cost,
         subProduct: chooseProduct.subProduct,
         pk: chooseProduct.pk,
+        description: chooseProduct.description,
       };
       const idx = cart.findIndex((item) => item.id === chooseProduct.id);
       if (idx !== -1) {
@@ -142,6 +140,47 @@ export default function AnProductCart({ chooseProduct }) {
       }
     }
   }
+
+  const sizes = [
+    {
+      size: 'S',
+      addCost: 0,
+    },
+    {
+      size: 'M',
+      addCost: chooseProduct.costm - chooseProduct.cost,
+    },
+    {
+      size: 'L',
+      addCost: chooseProduct.costl - chooseProduct.cost,
+    },
+  ];
+
+  const soles = [
+    {
+      sole: 'Gion',
+      addCost: 0,
+    },
+    {
+      sole: 'Mem xop',
+      addCost: 0,
+    },
+  ];
+
+  const toppings = [
+    {
+      topping: 'Thêm phô mai phủ',
+      addCost: 10000,
+    },
+    {
+      topping: 'Thêm phô mai viền',
+      addCost: 10000,
+    },
+    {
+      topping: 'Double sốt',
+      addCost: 10000,
+    },
+  ];
 
   return (
     <Box component="form" onSubmit={handleToCartBtn} className={classes.root}>
@@ -163,9 +202,11 @@ export default function AnProductCart({ chooseProduct }) {
           <p>{chooseProduct.name}</p>
           <p style={{ fontWeight: 400 }}>{chooseProduct.description}</p>
           <p>
-            {chooseProduct.cost +
-              (size !== null ? size.addCost : 0) +
-              (topping !== null ? topping.addCost : 0)}
+            {chooseProduct.hasOwnProperty('costl')
+              ? chooseProduct.cost +
+                (size !== null ? size.addCost : 0) +
+                (topping !== null ? topping.addCost : 0)
+              : chooseProduct.cost}
             <span style={{ color: '#FF8000' }}> đ</span>
           </p>
         </Box>
@@ -208,7 +249,7 @@ export default function AnProductCart({ chooseProduct }) {
       {/* MUA MỘT SẢN PHẨM */}
       {!chooseProduct.hasOwnProperty('numberperson') && (
         <Box className={classes.choose}>
-          {chooseProduct.hasOwnProperty('size') && (
+          {chooseProduct.hasOwnProperty('costl') && (
             <Box>
               <Autocomplete
                 className={classes.select}
@@ -297,44 +338,3 @@ export default function AnProductCart({ chooseProduct }) {
     </Box>
   );
 }
-
-const sizes = [
-  {
-    size: 'S',
-    addCost: 0,
-  },
-  {
-    size: 'M',
-    addCost: 80000,
-  },
-  {
-    size: 'L',
-    addCost: 160000,
-  },
-];
-
-const soles = [
-  {
-    sole: 'Đế giòn',
-    addCost: 0,
-  },
-  {
-    sole: 'Đế mềm xốp',
-    addCost: 0,
-  },
-];
-
-const toppings = [
-  {
-    topping: 'Thêm phô mai phủ',
-    addCost: 10000,
-  },
-  {
-    topping: 'Thêm phô mai viền',
-    addCost: 10000,
-  },
-  {
-    topping: 'Double sốt',
-    addCost: 10000,
-  },
-];

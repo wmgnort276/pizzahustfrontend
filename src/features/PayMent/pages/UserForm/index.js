@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, Box, Snackbar, TextField } from '@mui/material';
 import Button from 'components/Button';
-import { useDispatch, useSelector  } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { buyAllRequest } from 'features/Slice';
 import { useStyles } from './styles';
@@ -26,76 +26,79 @@ export default function UserForm() {
       address: data.get('Address'),
     };
     console.log('data to order', dataToOrder);
-    const orderside = cart.filter(item=>item.type)
-    const ordercombo = cart.filter(item=>item.numberperson)
-    const orderpizza = cart.filter(item=>item.size)
-    console.log(orderside)
-    console.log(ordercombo)
-    console.log(orderpizza)
+    const orderside = cart.filter((item) => item.type);
+    const ordercombo = cart.filter((item) => item.numberperson);
+    const orderpizza = cart.filter((item) => item.costl);
+    console.log(orderside);
+    console.log(ordercombo);
+    console.log(orderpizza);
     let orderpizza1 = [];
-    for (let item of orderpizza){
+    for (let item of orderpizza) {
       orderpizza1.push({
-        "order": 1,//
-        "pizaa": item.pk,
-        "pizzaa": item,
-        "amount": item.quantity,
-        "cost": item.cost,
-      })
+        order: 2, //
+        size: item.size,
+        soles: item.sole,
+        pizaa: item.pk,
+        pizzaa: item,
+        comboorder: null,
+        amount: item.quantity,
+        // cost: item.cost,
+        pecent: 0,
+      });
     }
-    console.log(orderpizza1)
+    // console.log(orderpizza1)
 
     let orderside1 = [];
-    for (let item of orderside){
+    for (let item of orderside) {
       orderside1.push({
-        "order": 1,//
-        "sidess": item.pk,
-        "sidedis": item,
-        "amount": item.quantity,
-        "cost": item.cost,
-      })
+        order: 2, //
+        sidess: item.pk,
+        sidedis: item,
+        amount: item.quantity,
+        cost: item.cost,
+        pecent: 0,
+      });
     }
-    console.log(orderside1)
-    let pizzaincombo= [];
-    let sideincombo = [];
-    let ordercombo1 = [];
-    for (let item of ordercombo){
-      for(let i of item.subProduct.filter(ite=>ite.size)){
-        pizzaincombo.push({
-          "pizza": i,
-          "pizzacombo": i.pk,
-        })
+    // console.log(orderside1)
+    for (let item of ordercombo) {
+      var percent = item.percent;
+      for (let i of item.subProduct.filter((ite) => ite.costl)) {
+        orderpizza1.push({
+          order: 2, //
+          size: 'M',
+          soles: 'Mem xop',
+          comboorder: item.pk,
+          pizaa: i.pk,
+          pizzaa: i,
+          amount: i.quantity,
+          // "cost": i.cost,
+          pecent: percent,
+        });
       }
-      for(let i of item.subProduct.filter(ite=>ite.type)){
-        sideincombo.push({
-          "type": i.type,
-          "sidedishes": i,
-        })
+      for (let i of item.subProduct.filter((ite) => ite.type)) {
+        orderside1.push({
+          order: 2, //
+          sidess: i.pk,
+          sidedis: i,
+          amount: item.quantity,
+          cost: i.cost,
+          pecent: percent,
+        });
       }
-      ordercombo1.push({
-        "amount": item.quantity,
-        "order": 1,
-        "combobox": item.pk,
-        "comboinformation": {
-          "pizzaincombo": pizzaincombo,
-          "sideincombo": sideincombo,
-        },
-      })
     }
-    console.log(pizzaincombo)
-    console.log(sideincombo)
-    console.log(ordercombo1)
+    console.log(orderpizza1);
+    console.log(orderside1);
 
     var dataPost = {
-      // cart: "http://127.0.0.1:8000/cart/1/",
+      cart: null, //neu co tk mk thi them th nay vao
       name: dataToOrder.name,
       phonenumber: dataToOrder.phone,
       email: dataToOrder.email,
       address: dataToOrder.address,
       orderpizza: orderpizza1,
       orderside: orderside1,
-      ordercombo: ordercombo1,
-      delive: false,
-      cost_fields: 670100,
+      delive: 'Dang xac nhan',
+      cost_fields: 20000,
     };
     var url_post = 'http://127.0.0.1:8000/order/';
     fetch(url_post, {
@@ -110,13 +113,14 @@ export default function UserForm() {
         // bạn có thể làm gì đó với kết quả cuối cùng này thì làm
 
         console.log('Success:', data); // ghi log kết quả hoàn thành
+        setTimeout(() => {
+          navigate('/success', { replace: true });
+        }, 1000);
       })
       .catch((error) => {
         console.error('Error:', error); // ghi log nếu xảy ra lỗi
       });
-    setTimeout(() => {
-      navigate('/success', { replace: true });
-    }, 1000);
+    console.log('Success:', data); // ghi log kết quả hoàn thành
   }
 
   function handleClose() {
