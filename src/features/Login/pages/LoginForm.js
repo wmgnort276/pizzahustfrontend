@@ -1,32 +1,28 @@
 import React,{useState} from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import axios from "axios"
 import img from "./foodImage.png"
 import styles from "./LoginForm.module.css";
 
 
 function LoginForm({Login,error}){
 
-    const [details,setDetails] = useState({email: "",password: ""});
+    // const [details,setDetails] = useState({email: "",password: ""});
 
     const [username,setUserName] = useState("");
     const [password,setPassword] = useState("");
     // Xử lý khi submid
 
-    const submitHandle = s => {
-        s.preventDefault();
-        Login(details); // in ra console, Login(doi so truyen vao ben tren)
-    }
     function login(){
         console.log(username,password)
-        let item = {username, password};
-        let result = fetch("https://jsonplaceholder.typicode.com/users/1", {
-            method : 'POST',
-            headers : {
-                "Content-Type" : "application/json",
-                "Accept" : 'application/json'
-            },
-            body : JSON.stringify(item)
-        });
+        axios.post("http://127.0.0.1:8000/api/login/", {
+            username : username,
+            password : password
+        }).then(respond => {
+            console.log(respond.data)
+        }).catch(error => {
+            console.log(error);
+        })
         
     }
    
@@ -54,7 +50,7 @@ function LoginForm({Login,error}){
 
                 </div>
 
-                <form onSubmit={submitHandle}> 
+                <form > 
                     <div className="form-inner">
                         <h2 className={styles.title}>Đăng nhập</h2>
                         
