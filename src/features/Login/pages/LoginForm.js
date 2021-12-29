@@ -1,20 +1,30 @@
 import React,{useState} from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import axios from "axios"
 import img from "./foodImage.png"
 import styles from "./LoginForm.module.css";
 
 
 function LoginForm({Login,error}){
 
-    const [details,setDetails] = useState({email: "",password: ""});
+    // const [details,setDetails] = useState({email: "",password: ""});
 
+    const [username,setUserName] = useState("");
+    const [password,setPassword] = useState("");
     // Xử lý khi submid
 
-    const submitHandle = s => {
-        s.preventDefault();
-        Login(details); // in ra console, Login(doi so truyen vao ben tren)
+    function login(){
+        console.log(username,password)
+        axios.post("http://127.0.0.1:8000/api/login/", {
+            username : username,
+            password : password
+        }).then(respond => {
+            console.log(respond.data)
+        }).catch(error => {
+            console.log(error);
+        })
+        
     }
-
    
 
     return (
@@ -40,20 +50,22 @@ function LoginForm({Login,error}){
 
                 </div>
 
-                <form onSubmit={submitHandle}> 
+                <form > 
                     <div className="form-inner">
                         <h2 className={styles.title}>Đăng nhập</h2>
                         
                         <div className={styles.content}>
 
                             <div className={styles.form}>
-                                <label className={styles.form_title} htmlFor="email">Email</label>
-                                <input type="email" name="email" className={styles.input_content} id="email" onChange={e => setDetails({...details,email: e.target.value})} value={details.email} />
+                                <label className={styles.form_title} htmlFor="username">username</label>
+                                <input type="text" name="username" className={styles.input_content} id="email" 
+                                onChange={e => setUserName(e.target.value)} />
                             </div>
 
                             <div className={styles.form}>
                                 <label className={styles.form_title} htmlFor="password">Mật khẩu</label>
-                                <input type="password" name="password" className={styles.input_content} id="password" onChange={e => setDetails({...details,password: e.target.value})} value={details.password}/>
+                                <input type="password" name="password" className={styles.input_content} id="password"
+                                 onChange={e => setPassword(e.target.value)}/>
                             </div>
                                     
                             {(error === "error") ? (<div className={styles.error}>Email hoặc mật khẩu không đúng, vui lòng nhập lại!</div>) : ""}
@@ -65,7 +77,7 @@ function LoginForm({Login,error}){
                             </div>
 
                             <div className={styles.login_btn}>
-                              <input className={styles.login_btn_input} type="submit" value="Đăng nhập" />    
+                              <input className={styles.login_btn_input} onClick={login} value="Đăng nhập" style={{textAlign : "center"}}/>    
                             </div>    
 
                             <p className={styles.login_route}>
