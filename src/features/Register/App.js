@@ -1,7 +1,6 @@
-import { useNavigate, Link } from 'react-router-dom';
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import FormSignup from './RegistForm';
-
 
 const App = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -11,26 +10,16 @@ const App = () => {
   }
 
   const navigate = useNavigate();
-  function Nav(){
+  function Nav() {
     setTimeout(() => {
-      navigate('/home', { replace: true });
+      navigate('/login', { replace: true });
     }, 1200);
   }
 
   return (
-    <>
-      <div className='form-container'>
-
-        {!isSubmitted ? (
-
-          <FormSignup submitForm={submitForm} />
-
-        ) : (
-         Nav()
-        )}
-
-      </div>
-    </>
+    <div className="form-container">
+      {!isSubmitted ? <FormSignup submitForm={submitForm} /> : Nav()}
+    </div>
   );
 };
 

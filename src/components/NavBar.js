@@ -81,18 +81,17 @@ export default function NavBar() {
   return (
     <List component="nav" className={classes.navList}>
       {nav.map((item) => (
-        <NavLink to="personal" key={item.id} className={classes.link}>
-          <ListItem
-            className={`${classes.navIcon}  ${
-              isActive === item.id ? classes.active : ''
-            } `}
-            onClick={() => setIsActive(item.id)}
-          >
-            <Box onClick={() => navigate(`${item.link}`, { replace: true })}>
-              {item.icon}
-            </Box>
-          </ListItem>
-        </NavLink>
+        <ListItem
+          key={item.id}
+          className={`${classes.navIcon}  ${
+            isActive === item.id ? classes.active : ''
+          } `}
+          onClick={() => setIsActive(item.id)}
+        >
+          <Box onClick={() => navigate(`${item.link}`, { replace: true })}>
+            {item.icon}
+          </Box>
+        </ListItem>
       ))}
 
       <Divider variant="middle" flexItem sx={{ mt: '10px', mb: '10px' }} />
@@ -109,7 +108,12 @@ export default function NavBar() {
         </Box>
       </ListItem>
 
-      <ListItem className={classes.navIcon} onClick={()=>{navigate('/login', { replace: true })}}>
+      <ListItem
+        className={classes.navIcon}
+        onClick={() => {
+          navigate('/login', { replace: true });
+        }}
+      >
         <LogoutOutlinedIcon sx={{ fontSize: 30 }} />
       </ListItem>
     </List>
