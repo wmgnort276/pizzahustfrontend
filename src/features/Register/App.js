@@ -13,7 +13,7 @@ const App = () => {
   const navigate = useNavigate();
   function Nav(){
     setTimeout(() => {
-      navigate('/home', { replace: true });
+      navigate('/personalinfor', { replace: true });
     }, 1200);
   }
 

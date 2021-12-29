@@ -6,10 +6,7 @@ import HomePage from 'features/HomePage';
 
 function App() {
    
-  const apifake = {
-    email: 'nam@gmail.com',
-    password: 123456
-  }
+ 
 
   const [userDatas,setUserDatas] = useState([])
   const userApi = 'https://jsonplaceholder.typicode.com/users';
