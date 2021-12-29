@@ -12,7 +12,7 @@ const App = () => {
   const navigate = useNavigate();
   function Nav() {
     setTimeout(() => {
-      navigate('/login', { replace: true });
+      navigate('/personalinfor', { replace: true });
     }, 1200);
   }
 

@@ -1,17 +1,9 @@
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import React, {useState} from 'react';
-import LoginForm from "./LoginForm"
-import {useEffect} from 'react'
-import HomePage from 'features/HomePage';
+import LoginForm from './LoginForm';
 
 function App() {
-   
-  const apifake = {
-    email: 'nam@gmail.com',
-    password: 123456
-  }
-
-  const [userDatas,setUserDatas] = useState([])
+  const [userDatas, setUserDatas] = useState([]);
   const userApi = 'https://jsonplaceholder.typicode.com/users';
 
   useEffect(() => {
@@ -23,7 +15,6 @@ function App() {
       });
   }, []);
 
-  const [user, setUser] = useState({ email: '' });
   const [error, setError] = useState('');
 
   const Login = (details) => {
@@ -31,7 +22,7 @@ function App() {
 
     if (
       userDatas.some(
-        (e) => e.email == details.email && e.username == details.password
+        (e) => e.email === details.email && e.username === details.password
       )
     ) {
       setError('No error');
@@ -39,24 +30,18 @@ function App() {
       // console.log("Infor not correct");
       setError('error');
     }
-  }
+  };
 
   const navigate = useNavigate();
-  function Nav(){
-
+  function Nav() {
     setTimeout(() => {
-      navigate('/home', { replace: true });
+      navigate('/', { replace: true });
     }, 1200);
   }
 
   return (
     <div className="App">
-    
-      {(error === "No error") 
-       ? Nav() 
-       :
-       (<LoginForm Login={Login} error={error}/>)
-      }
+      {error === 'No error' ? Nav() : <LoginForm Login={Login} error={error} />}
     </div>
   );
 }
