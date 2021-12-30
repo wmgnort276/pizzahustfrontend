@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Box, CircularProgress } from '@mui/material';
+import { Box } from '@mui/material';
 // import { v4 } from 'uuid';
 import { makeStyles } from '@mui/styles';
-import Item from 'features/HomePage/components/Item';
+import ListItem from 'features/HomePage/components/ListItem';
+import React from 'react';
 
 const useStyles = makeStyles({
   root: {},
@@ -13,69 +13,16 @@ const useStyles = makeStyles({
     fontWeight: 700,
     lineHeight: 22 / 18,
   },
-
-  body: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-    gridGap: '20px',
-  },
-
-  moreBtn: {
-    width: '100%',
-    background: 'linear-gradient(45deg, #f59838  30%, #ffca53 90%)',
-    borderRadius: '30px !important',
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-  },
 });
 
 export default function Combo() {
   const classes = useStyles();
-  const [limit, setLimit] = useState(6);
-
-  function handleMoreBtn() {
-    if (limit < data.length) {
-      setLimit(limit + 6);
-    }
-  }
-
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    async function getData() {
-      const response = await fetch('http://127.0.0.1:8000/combo/');
-      const responseJSON = await response.json();
-      setData(responseJSON);
-      setLoading(true);
-    }
-
-    getData();
-  }, []);
 
   return (
     <div>
       <Box className={classes.root}>
         <Box className={classes.title}>Combo khuyến mãi</Box>
-        {loading ? (
-          <>
-            <Box className={classes.body}>
-              {data.slice(0, limit).map((item) => (
-                <Item key={item.pk} item={item} />
-              ))}
-            </Box>
-            <Button
-              className={classes.moreBtn}
-              sx={{ display: limit >= data.length ? 'none' : '' }}
-              variant="contained"
-              onClick={handleMoreBtn}
-            >
-              Xem thêm
-            </Button>
-          </>
-        ) : (
-          <Box style={{ textAlign: 'center' }}>
-            <CircularProgress color="success" style={{ margin: '20px auto' }} />
-          </Box>
-        )}
+        <ListItem api="http://127.0.0.1:8000/combo/" />
       </Box>
     </div>
   );
