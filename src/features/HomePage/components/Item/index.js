@@ -2,9 +2,9 @@ import AddIcon from '@mui/icons-material/Add';
 import { Fab, Rating, Tooltip } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { ChooseProduct } from 'features/Slice';
-import React, { useEffect, useState, useRef } from 'react';
-import { v4 } from 'uuid';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { v4 } from 'uuid';
 // import ListItem from '../ListItem';
 
 const useStyles = makeStyles({
@@ -19,12 +19,6 @@ const useStyles = makeStyles({
     boxShadow:
       '4px 4px 4px rgba(255, 128, 1, 0.25), -2px -2px 4px rgba(208, 208, 208, 0.15)',
     transition: 'all 0.2s ease-in-out',
-
-    '& img': {
-      alignSelf: 'center',
-      marginTop: '-70px',
-      transition: '.3s all ease-in-out!important',
-    },
 
     '&:hover': {
       '& img': {
@@ -51,6 +45,19 @@ const useStyles = makeStyles({
     },
     '& Fab': {
       backgroundColor: '#ff8000',
+    },
+  },
+
+  image: {
+    minHeight: '128px',
+    marginTop: '-70px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    '& img': {
+      width: '80%',
+      transition: '.3s all ease-in-out!important',
     },
   },
 
@@ -118,12 +125,9 @@ export default function Item({ item }) {
 
   return (
     <div className={classes.root}>
-      <img
-        src={item.image}
-        // src={process.env.PUBLIC_URL + `${item.srcImg}`}
-        alt=""
-        style={{ width: '80%' }}
-      />
+      <div className={classes.image}>
+        <img src={item.image} alt="" />
+      </div>
       <p>{item.name}</p>
       <div className={classes.body}>
         <div>

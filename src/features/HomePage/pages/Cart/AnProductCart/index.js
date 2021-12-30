@@ -45,8 +45,10 @@ export default function AnProductCart({ chooseProduct }) {
     // Cập nhật giá combo
     const cost =
       chooseProduct.cost -
-      ((chooseProduct.subProduct[idx].cost - item.cost) *
-        chooseProduct.percent) /
+      ((item.costm
+        ? chooseProduct.subProduct[idx].costm - item.costm
+        : chooseProduct.subProduct[idx].cost - item.cost) *
+        (100 - chooseProduct.percent)) /
         100;
     // Cập nhật sub product
     const newSubProduct = chooseProduct.subProduct.map((i) =>
