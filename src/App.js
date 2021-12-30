@@ -22,7 +22,6 @@ export default function App() {
   return (
     <div className={classes.root}>
       <Routes>
-        {/* <Route path="/" element={<Navigate to="/home" />} /> */}
         <Route path="/*" element={<HomePage />} />
         <Route path="/pay" element={<Pay />} />
         <Route path="/login" element={<Login />} />
