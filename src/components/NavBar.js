@@ -5,9 +5,10 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { makeStyles } from '@mui/styles';
-import React, { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import NavIcon from './NavIcon';
+import { logout } from 'features/Login/slice';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
   navList: {
@@ -72,10 +73,20 @@ export default function NavBar() {
   const classes = useStyles();
   const [isActive, setIsActive] = useState(1);
   const navigate = useNavigate();
+  const tokenUser = useSelector((state) => state.login.token);
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     setIsActive(5);
     navigate('/personal', { replace: true });
+  };
+
+  const handleLogin = () => {
+    if (tokenUser === '') {
+      navigate('/login', { replace: true });
+    } else {
+      dispatch(logout());
+    }
   };
 
   return (
@@ -97,6 +108,7 @@ export default function NavBar() {
       <Divider variant="middle" flexItem sx={{ mt: '10px', mb: '10px' }} />
 
       <ListItem
+        sx={{ display: tokenUser ? 'inherit' : 'none' }}
         key={5}
         className={`${classes.navIcon}  ${
           isActive === 5 ? classes.active : ''
@@ -108,13 +120,10 @@ export default function NavBar() {
         </Box>
       </ListItem>
 
-      <ListItem
-        className={classes.navIcon}
-        onClick={() => {
-          navigate('/login', { replace: true });
-        }}
-      >
-        <LogoutOutlinedIcon sx={{ fontSize: 30 }} />
+      <ListItem className={classes.navIcon} onClick={handleLogin}>
+        <LogoutOutlinedIcon
+          sx={{ fontSize: 30, transform: tokenUser ? 'rotate(180deg)' : '' }}
+        />
       </ListItem>
     </List>
   );

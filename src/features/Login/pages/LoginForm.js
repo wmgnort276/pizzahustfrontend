@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 import img from './foodImage.png';
 import styles from './LoginForm.module.css';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { saveDataLogin } from '../slice';
 
 function LoginForm({ Login, error }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   // const [details,setDetails] = useState({email: "",password: ""});
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -20,8 +24,13 @@ function LoginForm({ Login, error }) {
       })
       .then((respond) => {
         console.log(respond.data);
+        const dataLogin = {
+          username,
+          token: respond.data.token,
+        };
+        dispatch(saveDataLogin(dataLogin));
         setTimeout(() => {
-          navigate('/home', { replace: true });
+          navigate('/', { replace: true });
         }, 1000);
       })
       .catch((error) => {
