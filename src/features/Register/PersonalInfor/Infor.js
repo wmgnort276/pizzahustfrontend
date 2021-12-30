@@ -116,7 +116,7 @@ function Infor(props) {
                 </label>
 
                 <input
-                  type="text"
+                  type="tel"
                   name="phoneNumber"
                   className={styles.input_content}
                   id="phoneNumber"

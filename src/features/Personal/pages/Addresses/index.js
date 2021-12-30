@@ -1,53 +1,81 @@
-import React from 'react';
-import { Grid } from '@mui/material';
-import './styleAddAddress.css';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Grid } from "@mui/material";
+import "./styleAddAddress.css";
 export default function Addresses() {
+  const user = useSelector((state) => state.login.username);
+  console.log(user);
+  // API
+  const [data, setData] = useState([]);
+  const api = `http://127.0.0.1:8000/profile/?user__username=${user}`;
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch(api);
+      const responseJSON = await response.json();
+      console.log(responseJSON);
+      setData(responseJSON);
+    }
+    getData();
+  }, [api]);
+
+  const [newData, setNewData] = useState({});
+
+  const handleChangeData = (s) => {
+    s.preventDefault();
+    console.log(newData)
+  }
+
   return (
     <Grid container className="addresses">
       <Grid item xs={8}>
-        <h2 className="address-info">Danh sách địa chỉ</h2>
-        <h4 className="address-info__text">Địa chỉ mặc định</h4>
-        <h6 className="address-info__place">Nhà riêng</h6>
-        <div className="address-info__item">
-          <span className="address-info__item--text">
-            <div className="address-info--text">Số điện thoại</div>
-            <div>Địa chỉ</div>
-          </span>
-          <span className="address-info__item--info">
-            <div className="address-info--text">0886765593</div>
-            <div>101/70 Thanh Nhàn , Hai Bà Trưng , Hà Nội</div>
-          </span>
+        <h2 className="add-address__text">Chỉnh sửa thông tin </h2>
+        <div className="add-address">
+          <p>Tên</p>
+          <input
+            className="add-address__input"
+            type="text"
+            value={data[0].name}
+            onChange={(e) =>
+              setNewData({ ...newData, name: e.target.value })
+            }
+          />
         </div>
-        <h4 className="address-info__text">Địa chỉ khác</h4>
-        <h6 className="address-info__place">Công ty</h6>
-        <div className="address-info__item">
-          <span className="address-info__item--text">
-            <div className="address-info--text">Số điện thoại</div>
-            <div>Địa chỉ</div>
-          </span>
-          <span className="address-info__item--info">
-            <div className="address-info--text">0886765593</div>
-            <div>101/70 Thanh Nhàn , Hai Bà Trưng , Hà Nội</div>
-          </span>
+        <div className="add-address">
+          <p>Email</p>
+          <input
+            className="add-address__input"
+            type="email"
+            value={data[0].email}
+            onChange={(e) =>
+              setNewData({ ...newData, email: e.target.value })
+            }
+          />
         </div>
-      </Grid>
-      <Grid item xs={4}>
-        <h2 className="add-address__text">Thêm địa chỉ</h2>
         <div className="add-address">
           <p>Số điện thoại</p>
-          <input className="add-address__input" type="text" />
+          <input
+            className="add-address__input"
+            type="tel"
+            value={data[0].number_phone}
+            onChange={(e) =>
+              setNewData({ ...newData, number_phone: e.target.value })
+            }
+          />
         </div>
         <div className="add-address">
           <p>Địa chỉ</p>
-          <input className="add-address__input" type="text" />
+          <input
+            className="add-address__input"
+            type="text"
+            value={data[0].address}
+            onChange={(e) =>
+              setNewData({ ...newData, address: e.target.value })
+            }
+          />
         </div>
-        <div className="add-address">
-          <p>Tên gợi nhớ</p>
-          <input className="add-address__input" type="text" />
-        </div>
-        <input className="add-address--checkbox" type="checkbox" />
-        <span>Đặt làm địa chỉ mặc định</span>
-        <button className="add-address--button">Thêm mới</button>
+        {/* <input className="add-address--checkbox" type="checkbox" /> */}
+        {/* <span>Đặt làm địa chỉ mặc định</span> */}
+        <button className="add-address--button" onClick={(e) => handleChangeData()}>Chỉnh sửa</button>
       </Grid>
     </Grid>
   );
