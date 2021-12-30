@@ -14,9 +14,9 @@ export default function Account() {
       const responseJSON = await response.json();
       setData(responseJSON);
     }
-
     getData();
   }, [api]);
+
   return (
     <div className="account-info">
       <h2 className="address-info">Thông tin tài khoản</h2>
@@ -47,6 +47,7 @@ export default function Account() {
     </div>
   );
 }
+
 
 // const account = {
 //   user: '',
