@@ -6,17 +6,17 @@ export default function Account() {
   const user = useSelector((state) => state.login.username);
   console.log(user)
   // API
+  let api = ''
   const [data, setData] = useState({});
-  const api = `http://127.0.0.1:8000/profile/?user__username=${user}`
-  useEffect(() => {
-    async function getData() {
-      const response = await fetch(api);
-      const responseJSON = await response.json();
-      setData(responseJSON);
-    }
+  async function getData() {
+    api = await `http://127.0.0.1:8000/profile/?user__username=${user}`
+    const response = await fetch(api);
+    const responseJSON = await response.json();
+    setData(responseJSON);
+  }
 
-    getData();
-  }, [api]);
+  getData();
+
   return (
     <div className="account-info">
       <h2 className="address-info">Thông tin tài khoản</h2>
