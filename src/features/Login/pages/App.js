@@ -13,7 +13,7 @@ function App() {
     axios
       .post('http://127.0.0.1:8000/api/login/', {
         username: details.userName,
-        password: details.password,
+        password: details.password
       })
       .then((respond) => {
         setToken(respond.data);
@@ -34,8 +34,8 @@ function App() {
   const navigate = useNavigate();
   function Nav() {
     setTimeout(() => {
-      navigate('/', { replace: true });
-    }, 1200);
+      navigate('/home', { replace: true });
+    }, 500);
   }
 
   return (
