@@ -12,7 +12,6 @@ export default function Account() {
     async function getData() {
       const response = await fetch(api);
       const responseJSON = await response.json();
-      console.log(responseJSON);
       setData(responseJSON);
     }
 
