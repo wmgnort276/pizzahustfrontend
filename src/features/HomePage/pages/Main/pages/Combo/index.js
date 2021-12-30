@@ -58,7 +58,7 @@ export default function Combo() {
         {loading ? (
           <>
             <Box className={classes.body}>
-              {data.map((item) => (
+              {data.slice(0, limit).map((item) => (
                 <Item key={item.pk} item={item} />
               ))}
             </Box>
