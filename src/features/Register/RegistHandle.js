@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-const useForm = (callback, validate) => {
+const useForm = (callback, validate, setUser, setEmail) => {
   const [values, setValues] = useState({
-    username: '',
-    email: '',
-    password: '',
-    password2: '',
+    username: "",
+    email: "",
+    password: "",
+    password2: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -25,22 +25,34 @@ const useForm = (callback, validate) => {
     setIsSubmitting(true);
   };
 
-  const userApi = 'http://127.0.0.1:8000/api/register/';
+  const userApi = "http://127.0.0.1:8000/api/register/";
 
   const postApi = (userInp) => {
     var e = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(userInp),
     };
-    fetch(userApi, e).then((res) => res.json());
+    fetch(userApi, e)
+      .then((res) => {
+        if(res.ok) {
+          res.json()
+          setUser(values.username)
+          setEmail(values.email)
+          callback()
+        }else{
+          alert("Tên đăng nhập đã tồn tại")
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      callback();
       var [a, b, c] = [values.username, values.email, values.password];
       var userInp = {
         username: a,

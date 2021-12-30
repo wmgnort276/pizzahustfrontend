@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material';
 import NavBar from 'components/NavBar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+// import { useSelector } from "react-redux";
 import Account from './pages/Account';
 import Addresses from './pages/Addresses';
 import Order from './pages/Order';
@@ -13,6 +14,22 @@ export default function Personal() {
     setActiveId(id);
   };
 
+  // const user = useSelector((state) => state.login.username);
+  // console.log(user)
+  // // API
+  // const [data, setData] = useState({});
+  // const api = `http://127.0.0.1:8000/profile/?user__username=${user}`
+  // useEffect(() => {
+  //   async function getData() {
+  //     const response = await fetch(api);
+  //     const responseJSON = await response.json();
+  //     setData(responseJSON);
+  //   }
+
+  //   getData();
+  // }, [api]);
+  // console.log(data)
+
   return (
     <Grid container className="content">
       <Grid item xs={1}>
@@ -24,9 +41,9 @@ export default function Personal() {
           srcSet={process.env.PUBLIC_URL + 'user.png'}
           alt=""
         />
-        <div>
-          Hi, <span className="user-tabs__userName">Hướng</span>
-        </div>
+        {/* <div>
+          Hi, <span className="user-tabs__userName">{data[0].name}</span>
+        </div> */}
         {tabs.map((tab) => (
           <div
             key={tab.id}

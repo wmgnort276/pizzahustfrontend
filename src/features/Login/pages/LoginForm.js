@@ -16,7 +16,7 @@ function LoginForm({ Login, error }) {
   const [password, setPassword] = useState('');
   // Xử lý khi submid
   function login() {
-    console.log(username, password);
+    // console.log(username, password);
     axios
       .post('http://127.0.0.1:8000/api/login/', {
         username: username,

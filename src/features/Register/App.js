@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import FormSignup from './RegistForm';
+import PersonnalInfor from './PersonalInfor'
 
 const App = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -9,16 +9,12 @@ const App = () => {
     setIsSubmitted(true);
   }
 
-  const navigate = useNavigate();
-  function Nav() {
-    setTimeout(() => {
-      navigate('/personalinfor', { replace: true });
-    }, 1200);
-  }
-
+  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
+  console.log(user)
   return (
     <div className="form-container">
-      {!isSubmitted ? <FormSignup submitForm={submitForm} /> : Nav()}
+      {!isSubmitted ? <FormSignup submitForm={submitForm} setUser={setUser} setEmail={setEmail}/> : <PersonnalInfor user={user} email={email}/>}
     </div>
   );
 };

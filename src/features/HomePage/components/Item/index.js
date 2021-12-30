@@ -23,6 +23,7 @@ const useStyles = makeStyles({
     '& img': {
       alignSelf: 'center',
       marginTop: '-70px',
+      minHeight: '140px',
       transition: '.3s all ease-in-out!important',
     },
 

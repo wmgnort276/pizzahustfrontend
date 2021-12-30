@@ -5,7 +5,7 @@ import styles from './Regist.module.css';
 import useForm from './RegistHandle';
 import validate from './validateInfo';
 
-const FormSignup = ({ submitForm }) => {
+const FormSignup = ({ submitForm, setUser, setEmail }) => {
   // const navigate = useNavigate();
   // // const [details,setDetails] = useState({email: "",password: ""});
   // const [username,setUserName] = useState("");
@@ -31,7 +31,9 @@ const FormSignup = ({ submitForm }) => {
 
   const { handleChange, handleSubmit, values, errors } = useForm(
     submitForm,
-    validate
+    validate,
+    setUser,
+    setEmail,
   );
 
   return (

@@ -1,10 +1,10 @@
 import React from 'react';
 import App from './App';
 
-function PersonnalInfor() {
+function PersonnalInfor({user, email}) {
   return (
     <div>
-      <App />
+      <App user={user} email={email}/>
     </div>
   );
 }
