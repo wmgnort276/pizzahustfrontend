@@ -24,7 +24,7 @@ export default function Category() {
         categories={categories}
         activeId={activeId}
         onTabClick={onTabClick}
-        title="Category"
+        title="Thực đơn"
       />
       {categories.map(
         (category) =>
