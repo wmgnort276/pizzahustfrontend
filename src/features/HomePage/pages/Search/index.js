@@ -1,42 +1,19 @@
 import AddIcon from '@mui/icons-material/Add';
 import { Box, Fab, Rating } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import ListItem from 'features/HomePage/components/ListItem';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ChooseProduct } from '../../../Slice';
+import SearchBtn from '../Main/pages/SearchBtn';
 
-const useStyles = makeStyles({
-  container: {
-    marginTop: '10px',
-  },
-  head: {},
-  body: {},
-  searchBtn: {
-    height: '27px',
-    width: '163px',
-    border: 'none',
-    outline: 'none',
-    borderRadius: '45px',
-    padding: '0 19px',
-    boxSizing: 'border-box',
-  },
-});
 export default function Search() {
   const { search } = useParams();
-  const navigate = useNavigate();
 
   const [pizzaResponse, setPizzaResponse] = useState([]);
   const [sideResponse, setSideResponse] = useState([]);
   const [comboResponse, setComboResponse] = useState([]);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const searchValue = data.get('Search');
-    console.log(searchValue);
-    navigate(`/search=${searchValue}`, { replace: true });
-  };
 
   // API
   const [loading, setLoading] = useState(false);
@@ -49,97 +26,35 @@ export default function Search() {
       const responsePizza = await fetch(pizzaSearch);
       setPizzaResponse(await responsePizza.json());
       setLoading(true);
-    }
 
-    getData();
-  }, [pizzaSearch]);
-
-  useEffect(() => {
-    async function getData() {
       const responseSide = await fetch(sideSearch);
       setSideResponse(await responseSide.json());
       setLoading(true);
-    }
 
-    getData();
-  }, [sideSearch]);
-
-  useEffect(() => {
-    async function getData() {
       const responseCombo = await fetch(comboSearch);
       setComboResponse(await responseCombo.json());
       setLoading(true);
     }
 
     getData();
-  }, [comboSearch]);
+  }, [comboSearch, pizzaSearch, sideSearch]);
 
   const data = [...pizzaResponse, ...sideResponse, ...comboResponse];
 
-  const classes = useStyles();
   return (
     <div>
-      {search && (
-        <div>
-          <Box className={classes.container}>
-            <Box
-              className={classes.head}
-              component="form"
-              onSubmit={handleSearch}
-            >
-              <div
-                className="head-wrap"
-                style={{
-                  position: 'relative',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <input
-                  style={{ position: 'absolute', right: '20px' }}
-                  type="text"
-                  className={classes.searchBtn}
-                  placeholder="Tìm kiếm"
-                  name="Search"
-                />
-              </div>
-            </Box>
-            <Box
-              className={classes.body}
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}
-            >
-              <div
-                className="body-head"
-                style={{ marginBottom: '6rem', textAlign: 'center' }}
-              >
-                <h6>Tìm kiếm</h6>
-                <p style={{ marginBottom: '0' }}>
-                  Hiển thị kết quả tìm kiếm cho {search.slice(7)}
-                </p>
-                <p style={{ marginTop: '0' }}>Có {data.length} kết quả</p>
-              </div>
-              <div
-                className="body-bottom"
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-                  gridGap: '20px',
-                }}
-              >
-                {data.length &&
-                  data.map((item) => {
-                    return <Item item={item} />;
-                  })}
-              </div>
-            </Box>
+      {search.length > 7 && (
+        <Box sx={{ mt: 2 }}>
+          <SearchBtn />
+          <Box>
+            <div style={{ margin: '4rem 0 6rem 0', textAlign: 'center' }}>
+              Hiển thị kết quả tìm kiếm cho {search.slice(7)}
+              <p style={{ marginTop: '0' }}>Có {data.length} kết quả</p>
+            </div>
+
+            <ListItem listItem={data} />
           </Box>
-        </div>
+        </Box>
       )}
     </div>
   );

@@ -36,15 +36,17 @@ export default function ListItem({ listItem, api }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    async function getData() {
-      const response = await fetch(api);
-      const responseJSON = await response.json();
-      setData(responseJSON);
+    if (api) {
+      async function getData() {
+        const response = await fetch(api);
+        const responseJSON = await response.json();
+        setData(responseJSON);
 
-      setLoading(true);
+        setLoading(true);
+      }
+
+      getData();
     }
-
-    getData();
   }, [api]);
 
   function handleMoreBtn() {
@@ -55,26 +57,44 @@ export default function ListItem({ listItem, api }) {
 
   return (
     <Box className={classes.root}>
-      {loading ? (
+      {api ? (
+        loading ? (
+          <>
+            <Box className={classes.body}>
+              {data.slice(0, limit).map((item) => (
+                <Item key={item.pk} item={item} />
+              ))}
+            </Box>
+            <Button
+              className={classes.moreBtn}
+              sx={{ display: limit >= data.length ? 'none' : '' }}
+              variant="contained"
+              onClick={handleMoreBtn}
+            >
+              Xem thêm
+            </Button>
+          </>
+        ) : (
+          <Box style={{ textAlign: 'center' }}>
+            <CircularProgress color="success" style={{ margin: '20px auto' }} />
+          </Box>
+        )
+      ) : (
         <>
           <Box className={classes.body}>
-            {data.slice(0, limit).map((item) => (
+            {listItem.slice(0, limit).map((item) => (
               <Item key={item.pk} item={item} />
             ))}
           </Box>
           <Button
             className={classes.moreBtn}
-            sx={{ display: limit >= data.length ? 'none' : '' }}
+            sx={{ display: limit >= listItem.length ? 'none' : '' }}
             variant="contained"
             onClick={handleMoreBtn}
           >
             Xem thêm
           </Button>
         </>
-      ) : (
-        <Box style={{ textAlign: 'center' }}>
-          <CircularProgress color="success" style={{ margin: '20px auto' }} />
-        </Box>
       )}
     </Box>
   );

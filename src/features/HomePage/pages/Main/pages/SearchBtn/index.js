@@ -1,5 +1,4 @@
 import { Box, Slide, useScrollTrigger } from '@mui/material';
-import Slider from 'features/HomePage/components/Slider';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStyles } from './styles';
@@ -13,7 +12,7 @@ function HideOnScroll({ children }) {
   );
 }
 
-export default function Header() {
+export default function SearchBtn() {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -21,8 +20,9 @@ export default function Header() {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const searchValue = data.get('Search');
-    console.log(searchValue)
+    console.log(searchValue);
     navigate(`/search=${searchValue}`, { replace: true });
+    e.target.reset();
   };
 
   return (
@@ -59,7 +59,6 @@ export default function Header() {
             </svg>
           </Box>
         </HideOnScroll>
-        <Slider />
       </Box>
     </Box>
   );
