@@ -22,6 +22,10 @@ const useStyles = makeStyles({
     flex: 1,
     marginTop: '85px',
     alignSelf: 'center',
+
+    '& img': {
+      width: '100%',
+    },
   },
   logo: {
     display: 'flex',
@@ -36,9 +40,9 @@ export default function EmptyCard() {
     <Box className={classes.root}>
       <Box className={classes.logo}>
         <img
-          srcSet={process.env.PUBLIC_URL + "pizzaLogo.png 2x"}
+          srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
           alt=""
-          style={{ marginLeft: "auto", display: "block", cursor: "pointer" }}
+          style={{ marginLeft: 'auto', display: 'block', cursor: 'pointer' }}
         />
       </Box>
       <span>Giỏ hàng</span>
