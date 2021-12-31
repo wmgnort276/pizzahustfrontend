@@ -22,7 +22,7 @@ export default function Combo() {
     <div>
       <Box className={classes.root}>
         <Box className={classes.title}>Combo khuyến mãi</Box>
-        <ListItem api="http://127.0.0.1:8000/combo/" />
+        <ListItem listItem={undefined} api="http://127.0.0.1:8000/combo/" />
       </Box>
     </div>
   );

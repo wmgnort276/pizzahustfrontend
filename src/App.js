@@ -6,9 +6,8 @@ import Pay from 'features/PayMent';
 import Personal from 'features/Personal';
 import Register from 'features/Register/index';
 import PersonalInfor from 'features/Register/PersonalInfor/index';
-
 import React from 'react';
-import { Navigate, Route, Routes } from 'react-router';
+import { Route, Routes } from 'react-router';
 
 const useStyles = makeStyles({
   root: {

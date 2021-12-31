@@ -3,7 +3,9 @@ import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/material';
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    // fontFamily: 'Nunito',
+  },
 
   container: {
     display: 'flex',
@@ -117,7 +119,7 @@ export default function Footer() {
             </ul>
           </Box>
           <Box className={classes.title}>
-            <p>Tổng đài hỗ trợ</p>
+            <p>TỔNG ĐÀI HỖ TRỢ</p>
           </Box>
           <Box className={classes.list}>
             <ul>
