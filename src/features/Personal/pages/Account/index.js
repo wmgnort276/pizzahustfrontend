@@ -2,20 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './styleAccount.css';
 
-export default function Account() {
-  const user = useSelector((state) => state.login.username);
-  console.log(user);
-  // API
-  const [data, setData] = useState([]);
-  const api = `http://127.0.0.1:8000/profile/?user__username=${user}`;
-  useEffect(() => {
-    async function getData() {
-      const response = await fetch(api);
-      const responseJSON = await response.json();
-      setData(responseJSON);
-    }
-    getData();
-  }, [api]);
+export default function Account({data}) {
 
   return (
     <div className="account-info">

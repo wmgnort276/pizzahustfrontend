@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Alert, Box, Snackbar, TextField } from '@mui/material';
 import Button from 'components/Button';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +13,22 @@ export default function UserForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.listProduct);
+  const user = useSelector((state) => state.login.username);
+  console.log(user)
+
+  // API
+  const [dataCart, setDataCart] = useState([]);
+  const apiCart = `http://127.0.0.1:8000/cart/?user__username=${user}`;
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch(apiCart);
+      const responseJSON = await response.json();
+      setDataCart(responseJSON);
+    }
+    getData();
+  }, [apiCart]);
+  console.log(dataCart)
+
 
   function handleBuyBtn(event) {
     event.preventDefault();
@@ -35,7 +51,7 @@ export default function UserForm() {
     let orderpizza1 = [];
     for (let item of orderpizza) {
       orderpizza1.push({
-        order: 2, //
+        order: 41, //
         size: item.size,
         soles: item.sole,
         pizaa: item.pk,
@@ -51,7 +67,7 @@ export default function UserForm() {
     let orderside1 = [];
     for (let item of orderside) {
       orderside1.push({
-        order: 2, //
+        order: 41, //
         sidess: item.pk,
         sidedis: item,
         amount: item.quantity,
@@ -64,7 +80,7 @@ export default function UserForm() {
       var percent = item.percent;
       for (let i of item.subProduct.filter((ite) => ite.costl)) {
         orderpizza1.push({
-          order: 2, //
+          order: 41, //
           size: 'M',
           soles: 'Mem xop',
           comboorder: item.pk,
@@ -77,7 +93,7 @@ export default function UserForm() {
       }
       for (let i of item.subProduct.filter((ite) => ite.type)) {
         orderside1.push({
-          order: 2, //
+          order: 41, //
           sidess: i.pk,
           sidedis: i,
           amount: item.quantity,
@@ -88,9 +104,10 @@ export default function UserForm() {
     }
     console.log(orderpizza1);
     console.log(orderside1);
+    console.log(data)
 
     var dataPost = {
-      cart: null, //neu co tk mk thi them th nay vao
+      cart: dataCart[1] ? null : dataCart[0].pk, //neu co tk mk thi them th nay vao
       name: dataToOrder.name,
       phonenumber: dataToOrder.phone,
       email: dataToOrder.email,

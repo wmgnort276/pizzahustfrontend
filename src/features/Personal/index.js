@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import NavBar from 'components/NavBar';
 import React, { useState, useEffect } from 'react';
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Account from './pages/Account';
 import Addresses from './pages/Addresses';
 import Order from './pages/Order';
@@ -14,21 +14,35 @@ export default function Personal() {
     setActiveId(id);
   };
 
-  // const user = useSelector((state) => state.login.username);
-  // console.log(user)
-  // // API
-  // const [data, setData] = useState({});
-  // const api = `http://127.0.0.1:8000/profile/?user__username=${user}`
-  // useEffect(() => {
-  //   async function getData() {
-  //     const response = await fetch(api);
-  //     const responseJSON = await response.json();
-  //     setData(responseJSON);
-  //   }
+  const user = useSelector((state) => state.login.username);
+  console.log(user);
+  // API
+  const [data, setData] = useState([]);
+  const api = `http://127.0.0.1:8000/profile/?user__username=${user}`;
+  useEffect(() => {
+    async function getData() {
+      const response = await fetch(api);
+      const responseJSON = await response.json();
+      setData(responseJSON);
+    }
+    getData();
+  }, [api]);
 
-  //   getData();
-  // }, [api]);
-  // console.log(data)
+  const tabs = [
+    {
+      id: 1,
+      component: <Account data={data}/>,
+    },
+    {
+      id: 2,
+      component: <Order data={data}/>,
+    },
+    {
+      id: 3,
+      component: <Addresses data={data}/>,
+    },
+  ];
+  
 
   return (
     <Grid container className="content">
@@ -44,15 +58,27 @@ export default function Personal() {
         {/* <div>
           Hi, <span className="user-tabs__userName">{data[0].name}</span>
         </div> */}
-        {tabs.map((tab) => (
+        
           <div
-            key={tab.id}
             className="user-tabs__text"
-            onClick={() => onTabClick(tab.id)}
+            onClick={() => onTabClick(1)}
           >
-            {tab.name}
+            Thông tin tài khoản
           </div>
-        ))}
+
+          <div
+            className="user-tabs__text"
+            onClick={() => onTabClick(2)}
+          >
+            Đơn hàng
+          </div>
+
+          <div
+            className="user-tabs__text"
+            onClick={() => onTabClick(3)}
+          >
+            Địa chỉ
+          </div>
       </Grid>
       <Grid item xs={8}>
         <img
@@ -68,20 +94,3 @@ export default function Personal() {
   );
 }
 
-const tabs = [
-  {
-    id: 1,
-    name: 'Thông tin tài khoản',
-    component: <Account />,
-  },
-  {
-    id: 2,
-    name: 'Đơn hàng',
-    component: <Order />,
-  },
-  {
-    id: 3,
-    name: 'Danh sách địa chỉ',
-    component: <Addresses />,
-  },
-];
