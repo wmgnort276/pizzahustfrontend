@@ -50,7 +50,11 @@ export default function ListItem({ listItem, api }) {
   }, [api]);
 
   function handleMoreBtn() {
-    if (limit < data.length) {
+    if (api) {
+      if (limit < data.length) {
+        setLimit(limit + 6);
+      }
+    } else if (limit < listItem.length) {
       setLimit(limit + 6);
     }
   }
