@@ -11,7 +11,6 @@ const useStyles = makeStyles({
 
   back: {
     cursor: 'pointer',
-
     '&:hover': {
       fill: '#ff8000',
     },
@@ -23,20 +22,26 @@ const useStyles = makeStyles({
   },
 
   product: {
-    display: 'flex',
     width: '100%',
-
-    '& img': {
-      width: '40%',
-      height: 'auto',
-    },
-
     '& p': {
       margin: '15px 0 0 10px',
       fontWeight: 600,
       fontSize: '16px',
       lineHeight: 18 / 15,
     },
+  },
+
+  image: {
+    width: '40%',
+    display: 'inline-block',
+    '& img': {
+      width: '100%',
+    },
+  },
+
+  content: {
+    width: '60%',
+    display: 'inline-block',
   },
 
   choose: {

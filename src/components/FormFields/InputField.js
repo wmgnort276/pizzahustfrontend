@@ -1,36 +1,12 @@
 import { TextField } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import React from 'react';
 import { useController } from 'react-hook-form';
-
-const useStyles = makeStyles({
-  root: {
-    position: 'relative',
-    '& input::placeholder': {
-      fontFamily: 'Montserrat',
-      fontSize: '14px',
-    },
-    '& .MuiOutlinedInput-root': {
-      // '&:hover fieldset': {
-      //   borderColor: 'white',
-      // },
-      '&.Mui-focused fieldset': {
-        borderColor: '#FF8000',
-      },
-    },
-    '& .css-k4qjio-MuiFormHelperText-root.Mui-error': {
-      position: 'absolute',
-      color: '#FF8000',
-      bottom: '-22px',
-    },
-  },
-});
+import useStyles from './styles';
 
 export default function InputField({
   name,
   control,
   placeholder,
-  type,
   ...inputProps
 }) {
   const classes = useStyles();
@@ -47,7 +23,6 @@ export default function InputField({
       size="small"
       fullWidth
       margin="dense"
-      type={type || 'text'}
       onChange={onChange}
       onBlur={onBlur}
       inputRef={ref}

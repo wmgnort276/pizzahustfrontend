@@ -10,16 +10,11 @@ import Search from './pages/Search';
 const useStyles = makeStyles({
   root: {
     backgroundColor: '#FFF2F2',
-    display: 'flex',
   },
-
-  navBar: {},
 
   main: {
     padding: '0 40px 40px',
   },
-
-  cart: {},
 });
 
 export default function HomePage() {
@@ -29,7 +24,7 @@ export default function HomePage() {
     <>
       <Grid className={classes.root} container>
         <Grid item xs={1} className={classes.nav}>
-          <NavBar className={classes.navBar} />
+          <NavBar />
         </Grid>
         <Grid className={classes.main} item xs={7}>
           <Routes>
@@ -38,7 +33,7 @@ export default function HomePage() {
             <Route path=":search" element={<Search />} />
           </Routes>
         </Grid>
-        <Grid className={classes.cart} item xs={4}>
+        <Grid item xs={4}>
           <Cart />
         </Grid>
       </Grid>

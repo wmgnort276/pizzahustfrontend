@@ -15,16 +15,19 @@ const schema = yup.object({
       const parts = value?.split(' ') || [];
       return parts.filter((x) => !!x).length >= 2;
     }),
+  email: yup
+    .string()
+    .email('Invalid email')
+    .required('Please enter your email.'),
   phone: yup
     .number()
     .positive('Invalid phone number.')
     .required('Please enter your phone.')
     .typeError('Invalid phone number.'),
   address: yup.string().required('Please enter your address.'),
-  dateOfBirth: yup.string().required('Please enter your date of birth.'),
 });
 
-export default function InformationForm({ onSubmit }) {
+export default function AddressForm({ onSubmit }) {
   const [error, setError] = useState('');
 
   const { control, handleSubmit } = useForm({
@@ -47,13 +50,13 @@ export default function InformationForm({ onSubmit }) {
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         <Box>Họ và tên</Box>
         <InputField name="fullname" control={control} />
+        <Box sx={{ mt: 2 }}>Email</Box>
+        <InputField name="email" control={control} />
         <Box sx={{ mt: 2 }}>Số điện thoại</Box>
         <InputField name="phone" control={control} />
         <Box sx={{ mt: 2 }}>Địa chỉ</Box>
         <InputField name="address" control={control} />
-        <Box sx={{ mt: 2 }}>Ngày sinh</Box>
-        <InputField name="dateOfBirth" type="date" control={control} />
-        <AuthButton name="Chấp nhận" />
+        <AuthButton name="Chỉnh sửa" />
       </form>
       <Snackbar
         open={error ? true : false}

@@ -5,7 +5,7 @@ export default function Account({ data }) {
   return (
     <div className="account-info">
       <h2 className="address-info">Thông tin tài khoản</h2>
-      {data[0] && (
+      {data && (
         <div>
           <span className="account-info__label">
             <div className="account-info__item">Họ Tên</div>
@@ -14,9 +14,9 @@ export default function Account({ data }) {
             <div className="account-info__item">Mật khẩu</div>
           </span>
           <span className="account-info__value">
-            <div className="account-info__item">{data[0].name}</div>
-            <div className="account-info__item">{data[0].email}</div>
-            <div className="account-info__item">{data[0].number_phone}</div>
+            <div className="account-info__item">{data.name}</div>
+            <div className="account-info__item">{data.email}</div>
+            <div className="account-info__item">{data.number_phone}</div>
             <div className="account-info__item">
               <input
                 className="account-info__password"

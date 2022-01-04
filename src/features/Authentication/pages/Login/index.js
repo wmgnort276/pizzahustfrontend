@@ -15,7 +15,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const handleLogin = (values) => {
-    console.log('values', values);
+    // console.log('values', values);
     setError('');
     axios
       .post('http://127.0.0.1:8000/api/login/', {

@@ -20,11 +20,17 @@ const useStyles = makeStyles({
     position: 'fixed !important',
     width: '8.3333%',
     height: '100vh',
+    '& a': {
+      margin: '12px 0',
+    },
     '& li': {
       justifyContent: 'center',
-      margin: '12px 0',
       height: '46px',
       width: '46px',
+      display: 'inline-grid',
+    },
+    '& > li': {
+      margin: '12px 0',
     },
   },
   navIcon: {
@@ -76,7 +82,7 @@ export default function NavBar() {
   const tokenUser = useSelector((state) => state.auth.token);
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleUserInfo = () => {
     setIsActive(5);
     navigate('/personal', { replace: true });
   };
@@ -92,17 +98,18 @@ export default function NavBar() {
   return (
     <List component="nav" className={classes.navList}>
       {nav.map((item) => (
-        <ListItem
-          key={item.id}
-          className={`${classes.navIcon}  ${
-            isActive === item.id ? classes.active : ''
-          } `}
-          onClick={() => setIsActive(item.id)}
-        >
-          <Box onClick={() => navigate(`${item.link}`, { replace: true })}>
+        <a key={item.id} href={item.link}>
+          <ListItem
+            className={`${classes.navIcon}  ${
+              isActive === item.id ? classes.active : ''
+            } `}
+            onClick={() => setIsActive(item.id)}
+          >
+            {/* <Box onClick={() => navigate(`${item.link}`, { replace: true })}> */}
             {item.icon}
-          </Box>
-        </ListItem>
+            {/* </Box> */}
+          </ListItem>
+        </a>
       ))}
 
       <Divider variant="middle" flexItem sx={{ mt: '10px', mb: '10px' }} />
@@ -113,7 +120,7 @@ export default function NavBar() {
         className={`${classes.navIcon}  ${
           isActive === 5 ? classes.active : ''
         } `}
-        onClick={handleClick}
+        onClick={handleUserInfo}
       >
         <Box>
           <PersonOutlinedIcon sx={{ fontSize: 30 }}></PersonOutlinedIcon>
@@ -167,9 +174,9 @@ const nav = [
     ),
   },
   {
-    id: 4,
+    id: 2,
     name: 'Sale',
-    link: '#',
+    link: '#combo',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -200,9 +207,9 @@ const nav = [
     ),
   },
   {
-    id: 2,
+    id: 3,
     name: 'Category',
-    link: '#',
+    link: '#category',
     icon: (
       <svg
         width="26px"
@@ -231,9 +238,9 @@ const nav = [
     ),
   },
   {
-    id: 3,
+    id: 4,
     name: 'Menu',
-    link: '#',
+    link: '#menu',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

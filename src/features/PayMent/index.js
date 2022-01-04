@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import PayCard from './pages/PayCart';
 import UserForm from './pages/UserForm';
-import NavBar from 'components/NavBar';
+// import NavBar from 'components/NavBar';
 
 const useStyles = makeStyles({
   root: {
@@ -17,10 +17,10 @@ export default function Pay() {
 
   return (
     <Grid className={classes.root} container>
-      <Grid className={classes.navBar} item xs={1}>
+      {/* <Grid className={classes.navBar} item xs={1}>
         <NavBar />
-      </Grid>
-      <Grid className={classes.main} item xs={7}>
+      </Grid> */}
+      <Grid className={classes.main} item xs={8}>
         <PayCard />
       </Grid>
       <Grid className={classes.userForm} item xs={4}>
