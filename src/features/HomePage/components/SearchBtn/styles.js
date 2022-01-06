@@ -5,7 +5,7 @@ const useStyles = makeStyles({
 
   searchBox: {
     position: 'fixed',
-    zIndex: 1,
+    zIndex: 10,
     top: '27px',
     left: '40%',
     boxShadow:

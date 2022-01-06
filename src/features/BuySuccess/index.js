@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Box, Grid } from '@mui/material';
-import NavBar from 'components/NavBar';
+import NavBarLeft from 'components/NavBarLeft';
 import Button from 'components/Button';
 import { useNavigate } from 'react-router-dom';
 
@@ -48,7 +48,7 @@ export default function BuySuccess() {
     <Box className={classes.root}>
       <Grid className={classes.body} container>
         <Grid item xs={1}>
-          <NavBar className={classes.navBar} />
+          <NavBarLeft />
         </Grid>
         <Grid item xs={11}>
           <Box className={classes.main}>

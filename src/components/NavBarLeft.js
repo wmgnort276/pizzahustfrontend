@@ -75,7 +75,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function NavBar() {
+export default function NavBarLeft() {
   const classes = useStyles();
   const [isActive, setIsActive] = useState(1);
   const navigate = useNavigate();
@@ -96,7 +96,7 @@ export default function NavBar() {
   };
 
   return (
-    <List component="nav" className={classes.navList}>
+    <List className={classes.navList}>
       {nav.map((item) => (
         <a key={item.id} href={item.link}>
           <ListItem
@@ -123,7 +123,7 @@ export default function NavBar() {
         onClick={handleUserInfo}
       >
         <Box>
-          <PersonOutlinedIcon sx={{ fontSize: 30 }}></PersonOutlinedIcon>
+          <PersonOutlinedIcon sx={{ fontSize: 30 }} />
         </Box>
       </ListItem>
 

@@ -1,19 +1,24 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import { makeStyles } from '@mui/styles';
+import { makeStyles, useTheme } from '@mui/styles';
 import PayCard from './pages/PayCart';
 import UserForm from './pages/UserForm';
+import { useMediaQuery } from '@mui/material';
 // import NavBar from 'components/NavBar';
 
 const useStyles = makeStyles({
   root: {
     height: '100vh',
     backgroundColor: '#FFF2F2',
+    width: (props) =>
+      props.tablet ? 'calc(100vw - 16px) !important' : '100% !important',
   },
 });
 
 export default function Pay() {
-  const classes = useStyles();
+  const theme = useTheme();
+  const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
+  const classes = useStyles({ tablet });
 
   return (
     <Grid className={classes.root} container>

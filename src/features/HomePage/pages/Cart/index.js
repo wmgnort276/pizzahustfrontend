@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { Box, useMediaQuery } from '@mui/material';
+import { makeStyles, useTheme } from '@mui/styles';
 import AnProductCart from 'features/HomePage/pages/Cart/AnProductCart';
 import EmptyCard from 'features/HomePage/pages/Cart/EmptyCard';
 import ListProductCart from 'features/HomePage/pages/Cart/ListProductCart';
@@ -10,7 +10,8 @@ const useStyles = makeStyles({
   root: {
     position: 'fixed',
     zIndex: 2,
-    width: '33.3333%',
+    // right: 0,
+    width: (props) => (props.tablet ? '33.3333%' : '90%'),
     // boxSizing: 'border-box',
     // padding: '21px 28px 34px 32px',
     backgroundColor: '#fff',
@@ -19,10 +20,12 @@ const useStyles = makeStyles({
 });
 
 export default function Cart() {
-  const classes = useStyles();
+  const theme = useTheme();
+  const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
+  const classes = useStyles({ tablet });
   const cart = useSelector((state) => state.cart.listProduct);
   const choose = useSelector((state) => state.cart.chooseProduct);
-  
+
   useEffect(() => {
     console.log('cart:', cart);
   }, [cart]);
@@ -35,7 +38,7 @@ export default function Cart() {
         <AnProductCart chooseProduct={choose} />
       )}
 
-      {cart.length && Object.values(choose).length === 0 && (
+      {cart.length !== 0 && Object.values(choose).length === 0 && (
         <ListProductCart cart={cart} />
       )}
     </Box>
