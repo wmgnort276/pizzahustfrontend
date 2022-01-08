@@ -46,27 +46,17 @@ export default function BuySuccess() {
 
   return (
     <Box className={classes.root}>
-      <Grid className={classes.body} container>
-        <Grid item xs={1}>
-          <NavBarLeft />
-        </Grid>
-        <Grid item xs={11}>
-          <Box className={classes.main}>
-            <Box className={classes.img}>
-              <img
-                srcSet={process.env.PUBLIC_URL + 'buySuccess.png 2x'}
-                alt=""
-              />
-            </Box>
-            <Box className={classes.button} onClick={returnHome}>
-              <Button name="Quay lại trang chủ" />
-            </Box>
-            <Box className={classes.button}>
-              <Button name="Xem đơn hàng" />
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
+      <Box className={classes.main}>
+        <Box className={classes.img}>
+          <img srcSet={process.env.PUBLIC_URL + 'buySuccess.png 2x'} alt="" />
+        </Box>
+        <Box className={classes.button} onClick={returnHome}>
+          <Button name="Quay lại trang chủ" />
+        </Box>
+        <Box className={classes.button}>
+          <Button name="Xem đơn hàng" />
+        </Box>
+      </Box>
     </Box>
   );
 }

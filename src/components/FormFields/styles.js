@@ -15,9 +15,9 @@ const useStyles = makeStyles({
         borderColor: '#FF8000',
       },
     },
-    '& .css-k4qjio-MuiFormHelperText-root.Mui-error': {
+    '& .MuiFormHelperText-root': {
       position: 'absolute',
-      color: '#FF8000',
+      color: '#FF8000 !important',
       bottom: '-22px',
     },
   },

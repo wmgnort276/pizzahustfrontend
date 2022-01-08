@@ -14,7 +14,8 @@ import { useTheme } from '@mui/styles';
 export default function PayCard() {
   const theme = useTheme();
   const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
-  const classes = useStyles({ tablet });
+  const lMobile = useMediaQuery(theme.breakpoints.up('lMobile'));
+  const classes = useStyles({ lMobile, tablet });
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -109,6 +110,9 @@ export default function PayCard() {
 
           {/* Tổng tiền */}
           <Box className={classes.total}>
+            <span onClick={() => navigate('/', { replace: true })}>
+              Tiếp tục mua hàng
+            </span>
             <Box className={classes.fee}>
               <table>
                 <tr>
@@ -134,9 +138,6 @@ export default function PayCard() {
                 </tr>
               </table>
             </Box>
-            <span onClick={() => navigate('/', { replace: true })}>
-              Tiếp tục mua hàng
-            </span>
           </Box>
         </Box>
       </Box>

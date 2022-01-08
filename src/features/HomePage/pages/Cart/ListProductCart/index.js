@@ -13,7 +13,8 @@ import { useTheme } from '@mui/styles';
 export default function ListProductCart({ cart }) {
   const theme = useTheme();
   const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
-  const classes = useStyles({ tablet });
+  const laptop = useMediaQuery(theme.breakpoints.up('laptop'));
+  const classes = useStyles({ tablet, laptop });
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
 
@@ -80,6 +81,7 @@ export default function ListProductCart({ cart }) {
           {cart.map((item) => (
             <Box key={item.id} className={classes.productItem}>
               <Box
+                className={classes.image}
                 onMouseEnter={(event) => handlePopoverOpen(item.id, event)}
                 onMouseLeave={handlePopoverClose}
               >
@@ -132,7 +134,9 @@ export default function ListProductCart({ cart }) {
                         className={classes.productItem}
                         sx={{ bgcolor: '#fff', m: '30px 20px' }}
                       >
-                        <img src={subItem.image} alt="" />
+                        <Box className={classes.image}>
+                          <img src={subItem.image} alt="" />
+                        </Box>
                         <Box className={classes.itemInfo}>
                           <p>{subItem.name}</p>
                         </Box>

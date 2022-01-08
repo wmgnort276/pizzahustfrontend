@@ -59,13 +59,13 @@ const useStyles = makeStyles({
   },
 
   productItem: {
-    height: (props) => (props.tablet ? '80px' : '55px'),
+    height: (props) => (props.laptop ? '80px' : '55px'),
     backgroundColor: '#FFECD1',
     display: 'flex',
     alignItems: 'center',
     marginBottom: '24px',
     borderRadius: '57px',
-    fontSize: (props) => (props.tablet ? '16px' : '14px'),
+    fontSize: (props) => (props.laptop ? '16px' : '14px'),
 
     '& img': {
       width: '100px',
@@ -81,8 +81,16 @@ const useStyles = makeStyles({
     },
   },
 
+  image: {
+    flex: 2,
+    maxWidth: '120px',
+    '& img': {
+      width: '100%',
+    },
+  },
+
   itemInfo: {
-    flex: 1,
+    flex: 2,
 
     '& p': {
       fontWeight: 500,

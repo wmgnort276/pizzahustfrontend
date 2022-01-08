@@ -6,6 +6,8 @@ import useStyles from './styles';
 export default function InputField({
   name,
   control,
+  size,
+  label,
   placeholder,
   ...inputProps
 }) {
@@ -20,7 +22,8 @@ export default function InputField({
     <TextField
       className={classes.root}
       variant="outlined"
-      size="small"
+      size={size || 'small'}
+      label={label}
       // value={value}
       fullWidth
       margin="dense"

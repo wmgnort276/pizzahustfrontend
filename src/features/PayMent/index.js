@@ -1,17 +1,16 @@
 import { Grid } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles, useTheme } from '@mui/styles';
 import PayCard from './pages/PayCart';
 import UserForm from './pages/UserForm';
 import { useMediaQuery } from '@mui/material';
-// import NavBar from 'components/NavBar';
 
 const useStyles = makeStyles({
   root: {
     height: (props) => (props.tablet ? '100vh' : 'none'),
     backgroundColor: '#FFF2F2',
-    width: (props) =>
-      props.tablet ? 'calc(100vw - 16px) !important' : '100% !important',
+    width: (props) => (props.tablet ? 'calc(100vw - 16px) !important' : '100%'),
+    paddingLeft: '25px',
   },
 });
 
@@ -19,6 +18,13 @@ export default function Pay() {
   const theme = useTheme();
   const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
   const classes = useStyles({ tablet });
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  }, []);
 
   return (
     <Grid className={classes.root} container>
