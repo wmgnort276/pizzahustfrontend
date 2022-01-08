@@ -8,12 +8,11 @@ import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
-    position: 'fixed',
+    position: (props) => (props.tablet ? 'fixed' : 'block'),
     zIndex: 2,
-    // right: 0,
-    width: (props) => (props.tablet ? '33.3333%' : '90%'),
-    // boxSizing: 'border-box',
-    // padding: '21px 28px 34px 32px',
+    width: (props) => (props.tablet ? '33.3333%' : '100%'),
+    maxWidth: '420px',
+    margin: '0 auto',
     backgroundColor: '#fff',
     borderRadius: '20px 0 0 0',
   },

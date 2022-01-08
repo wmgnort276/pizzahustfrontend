@@ -8,6 +8,16 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     height: '100vh',
     backgroundColor: '#fff',
+    marginLeft: (props) => (props.tablet ? 'none' : '25px'),
+  },
+
+  logo: {
+    display: (props) => (props.tablet ? 'block' : 'none'),
+    '& img': {
+      marginLeft: 'auto',
+      display: 'block',
+      cursor: 'pointer',
+    },
   },
 
   userForm: {

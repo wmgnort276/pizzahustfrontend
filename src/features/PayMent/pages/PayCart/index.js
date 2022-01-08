@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Divider, Collapse } from '@mui/material';
+import { Box, Divider, Collapse, useMediaQuery } from '@mui/material';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { useStyles } from './styles';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { AddBtnClick, DelBtnClick, SubBtnClick } from 'features/Slice/index.js';
+import { AddBtnClick, DelBtnClick, SubBtnClick } from 'features/Slice';
 import { useNavigate } from 'react-router-dom';
 import { TransitionGroup } from 'react-transition-group';
+import { useTheme } from '@mui/styles';
 
 export default function PayCard() {
-  const classes = useStyles();
+  const theme = useTheme();
+  const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
+  const classes = useStyles({ tablet });
   const cart = useSelector((state) => state.cart.listProduct);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -51,11 +54,7 @@ export default function PayCard() {
   function renderItem({ item }) {
     return (
       <Box key={item.id} className={classes.productItem}>
-        <img
-          src={item.image}
-          // src={process.env.PUBLIC_URL + `${item.srcImg}`}
-          alt=""
-        />
+        <img src={item.image} alt="" />
         <Box className={classes.itemInfo}>
           <p>{item.name}</p>
           <Box className={classes.quantity}>
@@ -71,12 +70,13 @@ export default function PayCard() {
               <AddIcon sx={{ cursor: 'pointer' }} />
             </Box>
           </Box>
-          {item.size ? (
+          {/* {item.costl ? (
             <p style={{ fontSize: '10px', lineHeight: 6 / 5 }}>
               {item.size}, {item.sole}
               {item.topping !== '' ? `, ${item.topping}` : ''}
             </p>
-          ) : null}
+          ) : null} */}
+          <p className={classes.desc}>{item.description}</p>
         </Box>
         <Box className={classes.cost}>
           <HighlightOffIcon

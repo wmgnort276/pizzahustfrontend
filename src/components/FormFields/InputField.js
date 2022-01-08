@@ -21,6 +21,7 @@ export default function InputField({
       className={classes.root}
       variant="outlined"
       size="small"
+      // value={value}
       fullWidth
       margin="dense"
       onChange={onChange}

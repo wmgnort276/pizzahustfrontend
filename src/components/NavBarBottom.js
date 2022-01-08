@@ -2,8 +2,9 @@ import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import { Box, Drawer } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Cart from 'features/HomePage/pages/Cart';
+import { BackBtnClick } from 'features/Slice';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -28,6 +29,7 @@ const useStyles = makeStyles({
 export default function NavBarBottom() {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [openCart, setOpenCart] = useState(false);
   const loadingChoose = useSelector((state) => state.cart.loadingChoose);
 
@@ -39,13 +41,14 @@ export default function NavBarBottom() {
       return;
     }
     setOpenCart(open);
+    if (!open) {
+      dispatch(BackBtnClick());
+    }
   };
 
   useEffect(() => {
     if (loadingChoose === true) {
       setOpenCart(true);
-    } else {
-      setOpenCart(false);
     }
   }, [loadingChoose]);
 
@@ -65,27 +68,27 @@ export default function NavBarBottom() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <g clip-path="url(#clip0_750_6523)">
+          <g clipPath="url(#clip0_750_6523)">
             <path
               d="M11.25 27.5C11.9404 27.5 12.5 26.9404 12.5 26.25C12.5 25.5596 11.9404 25 11.25 25C10.5596 25 10 25.5596 10 26.25C10 26.9404 10.5596 27.5 11.25 27.5Z"
               stroke="white"
-              stroke-width="4"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M25 27.5C25.6904 27.5 26.25 26.9404 26.25 26.25C26.25 25.5596 25.6904 25 25 25C24.3096 25 23.75 25.5596 23.75 26.25C23.75 26.9404 24.3096 27.5 25 27.5Z"
               stroke="white"
-              stroke-width="4"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M1.25 1.25H6.25L9.6 17.9875C9.71431 18.563 10.0274 19.0799 10.4844 19.4479C10.9415 19.8158 11.5134 20.0112 12.1 20H24.25C24.8366 20.0112 25.4085 19.8158 25.8656 19.4479C26.3226 19.0799 26.6357 18.563 26.75 17.9875L28.75 7.5H7.5"
               stroke="white"
-              stroke-width="4"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </g>
           <defs>
@@ -97,7 +100,7 @@ export default function NavBarBottom() {
       </Box>
       <Drawer anchor="right" open={openCart} onClose={toggleDrawer(false)}>
         <Box
-          sx={{ width: '90vw' }}
+          sx={{ width: '90vw', maxWidth: '500px' }}
           role="presentation"
           onKeyDown={toggleDrawer(false)}
         >

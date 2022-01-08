@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Divider, Popover, Tooltip, Typography } from '@mui/material';
+import { Box, Divider, Popover } from '@mui/material';
+import { Tooltip, Typography, useMediaQuery } from '@mui/material';
 import Button from 'components/Button';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
@@ -7,11 +8,15 @@ import { useStyles } from './styles.js';
 import { useDispatch } from 'react-redux';
 import { AddBtnClick, DelBtnClick, SubBtnClick } from 'features/Slice/index.js';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { useTheme } from '@mui/styles';
 
 export default function ListProductCart({ cart }) {
-  const classes = useStyles();
+  const theme = useTheme();
+  const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
+  const classes = useStyles({ tablet });
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
+
   // Hiện thông tin chi tiết sản phẩm khi hover
   const [openId, setOpenId] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -61,11 +66,7 @@ export default function ListProductCart({ cart }) {
   return (
     <Box className={classes.root}>
       <Box className={classes.logo}>
-        <img
-          srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
-          alt=""
-          style={{ marginLeft: 'auto', display: 'block' }}
-        />
+        <img srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'} alt="" />
       </Box>
       <Box className={classes.product}>
         <Box className={classes.text}>

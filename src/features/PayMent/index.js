@@ -8,7 +8,7 @@ import { useMediaQuery } from '@mui/material';
 
 const useStyles = makeStyles({
   root: {
-    height: '100vh',
+    height: (props) => (props.tablet ? '100vh' : 'none'),
     backgroundColor: '#FFF2F2',
     width: (props) =>
       props.tablet ? 'calc(100vw - 16px) !important' : '100% !important',
@@ -25,10 +25,10 @@ export default function Pay() {
       {/* <Grid className={classes.navBar} item xs={1}>
         <NavBar />
       </Grid> */}
-      <Grid className={classes.main} item xs={8}>
+      <Grid item xs={tablet ? 8 : 12}>
         <PayCard />
       </Grid>
-      <Grid className={classes.userForm} item xs={4}>
+      <Grid item xs={tablet ? 4 : 12}>
         <UserForm />
       </Grid>
     </Grid>

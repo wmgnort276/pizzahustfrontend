@@ -146,11 +146,7 @@ export default function UserForm() {
   return (
     <Box className={classes.root}>
       <Box className={classes.logo}>
-        <img
-          srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
-          alt=""
-          style={{ marginLeft: 'auto', display: 'block' }}
-        />
+        <img srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'} alt="" />
       </Box>
       <Box
         component="form"
@@ -161,7 +157,6 @@ export default function UserForm() {
         <Box className={classes.userForm}>
           <TextField
             margin="normal"
-            autoFocus
             required
             fullWidth
             id="name"
@@ -211,7 +206,7 @@ export default function UserForm() {
         }}
       >
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-          Buy Successfull! Thank you!
+          Buy Successfully! Thank you!
         </Alert>
       </Snackbar>
     </Box>

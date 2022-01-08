@@ -7,14 +7,17 @@ export default function SelectField({ name, control, label, options }) {
   const classes = useStyles();
 
   const {
-    field: { onChange, onBlur },
+    field: { value, onChange, onBlur },
     fieldState: { invalid, error },
   } = useController({ name, control });
+
+  // console.log(value)
 
   return (
     <FormControl
       className={classes.root}
       fullWidth
+      value={value}
       label={label}
       variant="outlined"
       margin="dense"

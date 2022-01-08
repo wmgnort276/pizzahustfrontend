@@ -50,15 +50,19 @@ const useStyles = makeStyles({
 
   productItem: {
     display: 'flex',
+    gap: '10px',
+    height: (props) => (props.tablet ? '120px' : '100px'),
     alignItems: 'center',
-    fontSize: '16px',
+    fontSize: (props) => (props.tablet ? '16px' : '14px'),
     lineHeight: 5 / 4,
     fontWeight: 600,
     background: '#fff2e0',
     borderRadius: '100px 0 0 100px',
 
     '& img': {
-      width: '120px',
+      height: (props) => (props.tablet ? '120px' : '100px'),
+      width: (props) => (props.tablet ? '120px' : '100px'),
+      objectFit: 'contain',
     },
 
     '& p, span': {
@@ -77,6 +81,11 @@ const useStyles = makeStyles({
     '& > div': {
       padding: '0 10px',
     },
+  },
+
+  desc: {
+    fontSize: '12px',
+    fontWeight: 500,
   },
 
   cost: {

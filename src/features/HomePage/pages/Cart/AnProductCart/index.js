@@ -1,5 +1,6 @@
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import { Autocomplete, Box, Popover, TextField } from '@mui/material';
+import { Autocomplete, Box, Popover } from '@mui/material';
+import { TextField, useMediaQuery } from '@mui/material';
 import Button from 'components/Button';
 import { AddBtnClick, addOldProduct } from 'features/Slice';
 import { addProduct, BackBtnClick, ChooseProduct } from 'features/Slice';
@@ -7,10 +8,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ChangeCombo from '../ChangeCombo';
 import { useStyles } from './styles';
+import { useTheme } from '@mui/styles';
 import './styles.css';
 
 export default function AnProductCart({ chooseProduct }) {
-  const classes = useStyles();
+  const theme = useTheme();
+  const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
+  const classes = useStyles({ tablet });
   const [size, setSize] = useState(null);
   const [sole, setSole] = useState(null);
   const [topping, setTopping] = useState(null);
@@ -187,20 +191,18 @@ export default function AnProductCart({ chooseProduct }) {
   return (
     <Box component="form" onSubmit={handleToCartBtn} className={classes.root}>
       <Box className={classes.logo}>
-        <img
-          srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'}
-          alt=""
-          style={{ marginLeft: 'auto', display: 'block', cursor: 'pointer' }}
-        />
+        <img srcSet={process.env.PUBLIC_URL + 'pizzaLogo.png 2x'} alt="" />
       </Box>
-      <ArrowBackIosIcon className={classes.back} onClick={handleBackBtn} />
+      <Box className={classes.back} onClick={handleBackBtn}>
+        <ArrowBackIosIcon />
+      </Box>
       <Box className={classes.product}>
         <Box className={classes.image}>
           <img src={chooseProduct.image} alt="" />
         </Box>
         <Box className={classes.content}>
           <p>{chooseProduct.name}</p>
-          <p style={{ fontWeight: 400 }}>{chooseProduct.description}</p>
+          <p className={classes.desc}>{chooseProduct.description}</p>
           <p>
             {chooseProduct.hasOwnProperty('costl')
               ? chooseProduct.cost +
